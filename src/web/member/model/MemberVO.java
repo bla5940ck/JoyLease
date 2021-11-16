@@ -1,6 +1,7 @@
 package web.member.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class MemberVO {
 	private Integer memberId;
@@ -19,7 +20,7 @@ public class MemberVO {
 	private String accountName;
 	private Double rentScore;
 	private Double leaseScore;
-	private Date creatDate;
+	private Timestamp creatDate;
 	private byte[] pic;
 	private byte[] idcF;
 	private byte[] idcB;
@@ -120,10 +121,10 @@ public class MemberVO {
 	public void setLeaseScore(Double leaseScore) {
 		this.leaseScore = leaseScore;
 	}
-	public Date getCreatDate() {
+	public Timestamp getCreatDate() {
 		return creatDate;
 	}
-	public void setCreatDate(Date creatDate) {
+	public void setCreatDate(Timestamp  creatDate) {
 		this.creatDate = creatDate;
 	}
 	public byte[] getPic() {

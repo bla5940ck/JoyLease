@@ -83,6 +83,7 @@ public class BankJDBCDAO implements BankDAO_interface {
 
 				pstmt.setString(1, bankVO.getCode());
 				pstmt.setString(2, bankVO.getChineseName());
+				pstmt.setString(3, bankVO.getCode());
 
 
 				pstmt.executeUpdate();
@@ -134,10 +135,9 @@ public class BankJDBCDAO implements BankDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo 也稱為 Domain objects
 				bankVO = new BankVO();
 				bankVO.setCode(rs.getString("code"));
-				bankVO.setChineseName(rs.getString("chineseName"));
+				bankVO.setChineseName(rs.getString("chinese_name"));
 		
 			}
 
@@ -193,10 +193,9 @@ public class BankJDBCDAO implements BankDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// bankVO 也稱為 Domain objects
 				bankVO = new BankVO();
 				bankVO.setCode(rs.getString("code"));
-				bankVO.setChineseName(rs.getString("chineseName"));
+				bankVO.setChineseName(rs.getString("chinese_name"));
 
 				list.add(bankVO); // Store the row in the list
 			}
@@ -250,26 +249,26 @@ public class BankJDBCDAO implements BankDAO_interface {
 		BankVO bankVO2 = new BankVO();
 		bankVO2.setCode("822");
 		bankVO2.setChineseName("中國信託");
-
+		bankVO2.setCode("822");
 		dao.update(bankVO2);
-
+		
 		// 刪除
 //		dao.delete(7014);
 
 		// 查詢
-		BankVO bankVO3 = dao.findByPrimaryKey("822");
-		System.out.print(bankVO3.getCode() + ",");
-		System.out.print(bankVO3.getChineseName() + ",");
+//		BankVO bankVO3 = dao.findByPrimaryKey("822");
+//		System.out.print(bankVO3.getCode() + ",");
+//		System.out.print(bankVO3.getChineseName() );
+//
+//		System.out.println("---------------------");
 
-		System.out.println("---------------------");
-
-		// 查詢
-		List<BankVO> list = dao.getAll();
-		for (BankVO aBank : list) {
-			System.out.print(aBank.getCode() + ",");
-			System.out.print(aBank.getChineseName() + ",");
-
-			System.out.println();
-		}
+//		 查詢
+//		List<BankVO> list = dao.getAll();
+//		for (BankVO aBank : list) {
+//			System.out.print(aBank.getCode() + ",");
+//			System.out.print(aBank.getChineseName() );
+//
+//			System.out.println();
+//		}
 	}
 }

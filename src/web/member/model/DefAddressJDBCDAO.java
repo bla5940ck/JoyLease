@@ -91,14 +91,16 @@ public class DefAddressJDBCDAO implements DefAddressDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, defAddressVO.getDef711());
-			pstmt.setInt(2, defAddressVO.getMemberId());
-			pstmt.setInt(3, defAddressVO.getCode711());
-			pstmt.setString(4, defAddressVO.getName711());
-			pstmt.setString(5, defAddressVO.getAdd711());
-			pstmt.setInt(6, defAddressVO.getStatus());
-			pstmt.setString(7, defAddressVO.getRecipient());
-			pstmt.setString(8, defAddressVO.getRecptPhone());
+			
+			pstmt.setInt(1, defAddressVO.getMemberId());
+			pstmt.setInt(2, defAddressVO.getCode711());
+			pstmt.setString(3, defAddressVO.getName711());
+			pstmt.setString(4, defAddressVO.getAdd711());
+			pstmt.setInt(5, defAddressVO.getStatus());
+			pstmt.setString(6, defAddressVO.getRecipient());
+			pstmt.setString(7, defAddressVO.getRecptPhone());
+			pstmt.setInt(8, defAddressVO.getDef711());
+
 
 			pstmt.executeUpdate();
 
@@ -150,14 +152,14 @@ public class DefAddressJDBCDAO implements DefAddressDAO_interface {
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
 				defAddressVO = new DefAddressVO();
-				defAddressVO.setDef711(rs.getInt("def711"));
-				defAddressVO.setMemberId(rs.getInt("memberId"));
-				defAddressVO.setCode711(rs.getInt("code711"));
-				defAddressVO.setName711(rs.getString("name711"));
-				defAddressVO.setAdd711(rs.getString("add711"));
+				defAddressVO.setDef711(rs.getInt("def_711"));
+				defAddressVO.setMemberId(rs.getInt("member_Id"));
+				defAddressVO.setCode711(rs.getInt("code_711"));
+				defAddressVO.setName711(rs.getString("name_711"));
+				defAddressVO.setAdd711(rs.getString("add_711"));
 				defAddressVO.setStatus(rs.getInt("status"));
 				defAddressVO.setRecipient(rs.getString("recipient"));
-				defAddressVO.setRecptPhone(rs.getString("recptPhone"));
+				defAddressVO.setRecptPhone(rs.getString("recpt_Phone"));
 			}
 
 			// Handle any driver errors
@@ -215,14 +217,14 @@ public class DefAddressJDBCDAO implements DefAddressDAO_interface {
 			while (rs.next()) {
 				// defAddressVO 也稱為 Domain objects
 				defAddressVO = new DefAddressVO();
-				defAddressVO.setDef711(rs.getInt("def711"));
-				defAddressVO.setMemberId(rs.getInt("memberId"));
-				defAddressVO.setCode711(rs.getInt("code711"));
-				defAddressVO.setName711(rs.getString("name711"));
-				defAddressVO.setAdd711(rs.getString("add711"));
+				defAddressVO.setDef711(rs.getInt("def_711"));
+				defAddressVO.setMemberId(rs.getInt("member_Id"));
+				defAddressVO.setCode711(rs.getInt("code_711"));
+				defAddressVO.setName711(rs.getString("name_711"));
+				defAddressVO.setAdd711(rs.getString("add_711"));
 				defAddressVO.setStatus(rs.getInt("status"));
 				defAddressVO.setRecipient(rs.getString("recipient"));
-				defAddressVO.setRecptPhone(rs.getString("recptPhone"));
+				defAddressVO.setRecptPhone(rs.getString("recpt_Phone"));
 				list.add(defAddressVO); // Store the row in the list
 			}
 
@@ -282,22 +284,22 @@ public class DefAddressJDBCDAO implements DefAddressDAO_interface {
 //		defAddressVO2.setCode711(193742);
 //		defAddressVO2.setName711("永騰門市");
 //		defAddressVO2.setAdd711("UPDATE新北市XXXXXXTEST");
-//		defAddressVO2.setStatus(0);
+//		defAddressVO2.setStatus(1);
 //		defAddressVO2.setRecipient("休明");
 //		defAddressVO2.setRecptPhone("0988666777");
 //		dao.update(defAddressVO2);
 		
 		// 查詢
-		DefAddressVO defAddressVO2 = dao.findByPrimaryKey(6);
-				System.out.print(defAddressVO2.getDef711() + ",");
-				System.out.print(defAddressVO2.getMemberId() + ",");
-				System.out.print(defAddressVO2.getCode711() + ",");
-				System.out.print(defAddressVO2.getName711() + ",");
-				System.out.print(defAddressVO2.getAdd711() + ",");
-				System.out.print(defAddressVO2.getStatus() + ",");
-				System.out.print(defAddressVO2.getRecipient() + ",");
-				System.out.println(defAddressVO2.getRecptPhone());
-				System.out.println("---------------------");
+//		DefAddressVO defAddressVO2 = dao.findByPrimaryKey(6);
+//				System.out.print(defAddressVO2.getDef711() + ",");
+//				System.out.print(defAddressVO2.getMemberId() + ",");
+//				System.out.print(defAddressVO2.getCode711() + ",");
+//				System.out.print(defAddressVO2.getName711() + ",");
+//				System.out.print(defAddressVO2.getAdd711() + ",");
+//				System.out.print(defAddressVO2.getStatus() + ",");
+//				System.out.print(defAddressVO2.getRecipient() + ",");
+//				System.out.println(defAddressVO2.getRecptPhone());
+//				System.out.println("---------------------");
 				
 		// 查詢
 		List<DefAddressVO> list = dao.getAll();
