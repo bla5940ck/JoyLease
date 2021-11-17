@@ -31,10 +31,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 //		private static final String DELETE = 
 //			"DELETE FROM member where member_id = ?";
 		private static final String UPDATE = 
-			"UPDATE member set bank_code	=?,	email	=?,  login_id	=?,	idcn	=?,	phone_num	=?,	password	=?,"
-			+"status	=?,	name	=?,	nickname	=?,	birthday	=?,	address	=?,	bank_account	=?, account_name	=?,"
-			+ "rent_score	=?,	lease_score	=?,	creat_date	=?,	pic	=?,	idc_f	=?,	idc_b	=?,	foul	=?"
-			+ "where member_id = ?";
+			"UPDATE member set bank_code=?,	email=?,  login_id=?,	idcn	=?,	phone_num=?,	password=?,status	=?,	name=?,	nickname=?,	birthday	=?,	address=?,	bank_account=?, account_name=?,rent_score=?,	lease_score=?,	creat_date=?,	pic=?,	idc_f=?,	idc_b=?,	foul	=? where (member_id = ?)";
 
 	
 	@Override
@@ -348,8 +345,8 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 		
 		// ­×§ï
 		MemberVO memberVO2 = new MemberVO();
-		memberVO2.setBankCode("700");
-		memberVO2.setEmail("update_abc@gmail.com");
+		memberVO2.setBankCode("822");
+		memberVO2.setEmail("updateabc@gmail.com");
 		memberVO2.setLoginId("tibame");
 		memberVO2.setIdcn("A123456789");
 		memberVO2.setPhoneNum("0988567123");
@@ -401,26 +398,26 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 				// ¬d¸ß
 //				List<MemberVO> list = dao.getAll();
 //				for (MemberVO aMember : list) {
-//					System.out.print(aMember.getMemberId() + ",");
-//					System.out.print(aMember.getBankCode() + ",");
-//					System.out.print(aMember.getEmail() + ",");
-//					System.out.print(aMember.getLoginId() + ",");
-//					System.out.print(aMember.getIdcn() + ",");
-//					System.out.print(aMember.getPhoneNum() + ",");
-//					System.out.print(aMember.getPassword());
-//					System.out.print(aMember.getStatus() + ",");
-//					System.out.print(aMember.getName() + ",");
-//					System.out.print(aMember.getNickName() + ",");
-//					System.out.print(aMember.getBirthday() + ",");
-//					System.out.print(aMember.getAddress() + ",");
-//					System.out.print(aMember.getBankAccount());
-//					System.out.print(aMember.getAccountName() + ",");
-//					System.out.print(aMember.getRentScore() + ",");
-//					System.out.print(aMember.getLeaseScore() + ",");
-//					System.out.print(aMember.getCreatDate() + ",");
-//					System.out.print(aMember.getPic() + ",");
-//					System.out.print(aMember.getIdcF() + ",");
-//					System.out.print(aMember.getIdcB() + ",");
+//					System.out.print(aMember.getMemberId() + ", ");
+//					System.out.print(aMember.getBankCode() + ", ");
+//					System.out.print(aMember.getEmail() + ", ");
+//					System.out.print(aMember.getLoginId() + ", ");
+//					System.out.print(aMember.getIdcn() + ", ");
+//					System.out.print(aMember.getPhoneNum() + ", ");
+//					System.out.print(aMember.getPassword()+ ", ");
+//					System.out.print(aMember.getStatus() + ", ");
+//					System.out.print(aMember.getName() + ", ");
+//					System.out.print(aMember.getNickName() + ", ");
+//					System.out.print(aMember.getBirthday() + ", ");
+//					System.out.print(aMember.getAddress() + ", ");
+//					System.out.print(aMember.getBankAccount()+ ", ");
+//					System.out.print(aMember.getAccountName() + ", ");
+//					System.out.print(aMember.getRentScore() + ", ");
+//					System.out.print(aMember.getLeaseScore() + ", ");
+//					System.out.print(aMember.getCreatDate() + ", ");
+//					System.out.print(aMember.getPic() + ", ");
+//					System.out.print(aMember.getIdcF() + ", ");
+//					System.out.print(aMember.getIdcB() + ", ");
 //					System.out.print(aMember.getFoul());
 //					System.out.println();
 //				}
