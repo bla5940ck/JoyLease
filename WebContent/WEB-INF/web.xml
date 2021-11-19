@@ -16,8 +16,5 @@
   	<servlet-mapping>
   	<servlet-name>ProdServlet</servlet-name>
   	<url-pattern>/ProdServlet</url-pattern>
-  	</servlet-mapping>
-  	
-
-  	
+  </servlet-mapping>  	
 </web-app>
