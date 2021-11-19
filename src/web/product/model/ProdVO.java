@@ -45,7 +45,7 @@ public class ProdVO {
 	}
 
 	public Integer getProdID() {
-		return prodID;
+		return prodID; 
 	}
 
 	public void setProdID(Integer prodID) {
