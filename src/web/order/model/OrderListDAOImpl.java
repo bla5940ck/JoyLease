@@ -20,7 +20,7 @@ public class OrderListDAOImpl implements OrderListDAO_interface {
 
 	static {
 		try {
-			Class.forName(Util.DRIVER);
+			Class.forName(util.DRIVER);
 		} catch (ClassNotFoundException ce) {
 			ce.printStackTrace();
 		}
@@ -32,7 +32,7 @@ public class OrderListDAOImpl implements OrderListDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, orderList.getListID());
@@ -70,7 +70,7 @@ public class OrderListDAOImpl implements OrderListDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
 			pstmt = con.prepareStatement(FIND_BY_PK);
 
 			pstmt.setInt(1, listID);
@@ -124,7 +124,7 @@ public class OrderListDAOImpl implements OrderListDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

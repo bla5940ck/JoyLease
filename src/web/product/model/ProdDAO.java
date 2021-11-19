@@ -16,7 +16,7 @@ public class ProdDAO implements ProdDAOImpl {
 
 	static {
 		try {
-			Class.forName(Util.DRIVER);
+			Class.forName(util.DRIVER);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,7 +30,7 @@ public class ProdDAO implements ProdDAOImpl {
 		PreparedStatement pstmt = null;
 
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setInt(1, prod.getCategoryID());
@@ -78,7 +78,7 @@ public class ProdDAO implements ProdDAOImpl {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, prod.getCategoryID());
 			pstmt.setInt(2, prod.getProdStatus());
@@ -125,7 +125,7 @@ public class ProdDAO implements ProdDAOImpl {
 		ProdVO prod = null;
 
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, prodId);
 
@@ -174,7 +174,7 @@ public class ProdDAO implements ProdDAOImpl {
 		ResultSet rs = null;
 
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
 			pstmt = con.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
@@ -238,7 +238,7 @@ public class ProdDAO implements ProdDAOImpl {
 		
 		
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
 			pstmt = con.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
