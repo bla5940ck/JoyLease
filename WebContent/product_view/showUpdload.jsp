@@ -1,4 +1,8 @@
 
+<<<<<<< HEAD
+=======
+<%@page import="web.product.model.BookingService"%>
+>>>>>>> Hua
 <%@page import="web.product.model.ProdService"%>
 <%@page import="web.product.model.ProdCategoryDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -20,7 +24,11 @@
 	int prodID =(int)session.getAttribute("prodID");
 	product = prodDao.findProductByPK(prodID);		
 	BookingVO bk = new BookingVO();
+<<<<<<< HEAD
 	BookingDAO bkDao = new BookingDAO();
+=======
+	BookingService bkDao = new BookingService();
+>>>>>>> Hua
 	ProdCategoryDAO cateDao1 = new ProdCategoryDAO();
 	
 	int picAmount = 0;
@@ -35,7 +43,11 @@
 			picAmount++;
 	}
 	
+<<<<<<< HEAD
 	List<BookingVO> list = bkDao.findBookingByProdID(product.getProdID());
+=======
+	List<BookingVO> list = bkDao.findDateByProdID(product.getProdID());
+>>>>>>> Hua
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
