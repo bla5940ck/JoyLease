@@ -1,4 +1,4 @@
-package Util;
+package util;
 
 // 利用類別宣告常數，即可用呼叫的方式使用，日後維護也較簡易
 public class Util {
