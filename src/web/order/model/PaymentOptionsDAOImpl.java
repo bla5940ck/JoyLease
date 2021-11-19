@@ -23,7 +23,7 @@ public class PaymentOptionsDAOImpl implements PaymentOptionsDAO_interface {
 			"DELETE FROM PAY_OPTIONS WHERE PAY_ID = ?";
 	static {
 		try {
-			Class.forName(util.DRIVER);
+			Class.forName(Util.DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -36,7 +36,7 @@ public class PaymentOptionsDAOImpl implements PaymentOptionsDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, paymentOptions.getPayID());
@@ -71,7 +71,7 @@ public class PaymentOptionsDAOImpl implements PaymentOptionsDAO_interface {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, paymentOptions.getPayName());
@@ -105,7 +105,7 @@ public class PaymentOptionsDAOImpl implements PaymentOptionsDAO_interface {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, payID);
@@ -141,7 +141,7 @@ public class PaymentOptionsDAOImpl implements PaymentOptionsDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(FIND_BY_PK);
 
 			pstmt.setInt(1, payID);
@@ -192,7 +192,7 @@ public class PaymentOptionsDAOImpl implements PaymentOptionsDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			con = DriverManager.getConnection(util.URL, util.USER, util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(GET_ALL);
 			rs = pstmt.executeQuery();
 

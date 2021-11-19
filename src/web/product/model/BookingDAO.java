@@ -14,7 +14,7 @@ public class BookingDAO implements BookingDAOImpl {
 
 	static {
 		try {
-			Class.forName(util.DRIVER);
+			Class.forName(Util.DRIVER);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -26,7 +26,7 @@ public class BookingDAO implements BookingDAOImpl {
 		PreparedStatement pstmt = null;
 		
 		try {
-			con = DriverManager.getConnection(util.URL,util.USER,util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1,bk.getProdID());
 			pstmt.setInt(2,bk.getStatus());
@@ -53,7 +53,7 @@ public class BookingDAO implements BookingDAOImpl {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-			con = DriverManager.getConnection(util.URL,util.USER,util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bk.getStatus());
 			pstmt.setInt(2, bk.getBkID());
@@ -80,7 +80,7 @@ public class BookingDAO implements BookingDAOImpl {
 	PreparedStatement pstmt = null;
 	
 	try {
-		con = DriverManager.getConnection(util.URL,util.USER,util.PASSWORD);
+		con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, bkID);
 		pstmt.executeUpdate();
@@ -106,7 +106,7 @@ public class BookingDAO implements BookingDAOImpl {
 		BookingVO bk = null;
 		List<BookingVO> list = new ArrayList<BookingVO>();
 		try {
-			con = DriverManager.getConnection(util.URL,util.USER,util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, prodID);
 			
@@ -144,7 +144,7 @@ public class BookingDAO implements BookingDAOImpl {
 		BookingVO bk = null;
 		List<BookingVO> list = new ArrayList<BookingVO>();
 		try {
-			con = DriverManager.getConnection(util.URL,util.USER,util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bkID);
 			
@@ -187,7 +187,7 @@ public class BookingDAO implements BookingDAOImpl {
 		List<BookingVO> list = new ArrayList<BookingVO>();
 		
 		try {
-			con = DriverManager.getConnection(util.URL,util.USER,util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 		

@@ -14,7 +14,7 @@ public class ProdCategoryDAO implements ProdCategoryDAOImpl{
 		
 		static {
 			try {
-				Class.forName(util.DRIVER);
+				Class.forName(Util.DRIVER);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -29,7 +29,7 @@ public class ProdCategoryDAO implements ProdCategoryDAOImpl{
 		String sql = "select * from product_category where category_id = ?";
 		try {
 			
-			con = DriverManager.getConnection(util.URL,util.USER,util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
@@ -80,7 +80,7 @@ public class ProdCategoryDAO implements ProdCategoryDAOImpl{
 		String sql = "select * from product_category";
 		List<ProdCategoryVO> list = new ArrayList<ProdCategoryVO>();
 		try {
-			con = DriverManager.getConnection(util.URL,util.USER,util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
