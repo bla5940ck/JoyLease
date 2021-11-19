@@ -1,19 +1,19 @@
-package util;
+package Util;
 
-// ï¿½Qï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Å§iï¿½`ï¿½Æ¡Aï¿½Yï¿½iï¿½Î©Iï¿½sï¿½ï¿½ï¿½è¦¡ï¿½Ï¥Î¡Aï¿½ï¿½ï¿½ï¿½ï¿½@ï¿½]ï¿½ï¿½Â²ï¿½ï¿½
+// §Q¥ÎÃþ§O«Å§i±`¼Æ¡A§Y¥i¥Î©I¥sªº¤è¦¡¨Ï¥Î¡A¤é«áºûÅ@¤]¸ûÂ²©ö
 public class Util {
 	
 	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	
-	// MySQL 8.0.13ï¿½Hï¿½ï¿½uï¿½Ý«Oï¿½dserverTimezoneï¿½]ï¿½wï¿½Yï¿½i
+	// MySQL 8.0.13¥H«á¥u»Ý«O¯dserverTimezone³]©w§Y¥i
 	public static final String URL = 
 			"jdbc:mysql://localhost:3306/JoyLease?"
-//			+ "useSSL=false&"                   // ï¿½ï¿½ï¿½Ï¥Î¥[ï¿½Kï¿½sï¿½u (ï¿½Ý¦ï¿½ï¿½ï¿½ï¿½Ò¤~ï¿½ï¿½)
-			+ "rewriteBatchedStatements=true&"  // ï¿½å¦¸ï¿½ï¿½sï¿½Ý­nï¿½ï¿½ï¿½ï¿½T
-			+ "serverTimezone=Asia/Taipei";     // ï¿½]ï¿½wï¿½É°Ï¸ï¿½T
-//			+ "allowPublicKeyRetrieval=true&"   // ï¿½tï¿½XMySQL 8ï¿½Hï¿½áª©ï¿½ï¿½ï¿½ï¿½Kï¿½Xï¿½xï¿½sï¿½ï¿½ï¿½îªºï¿½]ï¿½w
-//			+ "useUnicode=true&"                // ï¿½Ï¥ï¿½Unicodeï¿½sï¿½X (ï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½|ï¿½Ã½X)
-//			+ "characterEncoding=utf-8";        // ï¿½rï¿½ï¿½ï¿½Ä¥ï¿½UTF-8ï¿½]ï¿½w
+//			+ "useSSL=false&"                   // ¤£¨Ï¥Î¥[±K³s½u (»Ý¦³¾ÌÃÒ¤~¦æ)
+			+ "rewriteBatchedStatements=true&"  // §å¦¸§ó·s»Ý­n¦¹¸ê°T
+			+ "serverTimezone=Asia/Taipei";     // ³]©w®É°Ï¸ê°T
+//			+ "allowPublicKeyRetrieval=true&"   // °t¦XMySQL 8¥H«áª©¥»¹ï±K½XÀx¦s¾÷¨îªº³]©w
+//			+ "useUnicode=true&"                // ¨Ï¥ÎUnicode½s½X (¤¤¤å¤~¤£·|¶Ã½X)
+//			+ "characterEncoding=utf-8";        // ¦r¤¸±Ä¥ÎUTF-8³]©w
 	
 	public static final String USER = "root";
 	
