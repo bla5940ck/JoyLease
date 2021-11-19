@@ -221,6 +221,7 @@ input.submit_btn1:hover{
 					<input type ="hidden" name ="prodID" value =<%=product.getProdID()%>>
 					<input type ="hidden"  name ="status" value="shelf">
 					<input type="hidden" name="action" value="update">
+					<input type ="hidden" name = "categorySelect" value=<%=product.getCategoryID()%>>
 					
 					<input class="submit_btn1" type="submit" value="上架" style="width:100px;height:50px;">
 				</form>

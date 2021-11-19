@@ -27,7 +27,9 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
-
+<!-- <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />    -->
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>   -->
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>   -->
 <%
 	String path = request.getContextPath();
 	ProdDAO productDao = new ProdDAO();
@@ -49,7 +51,21 @@
 	List<BookingVO> list = bkDao.findDateByProdID(product.getProdID());
 %>
 
-<script>
+	<script>
+	function selflog_show(id){ 
+// 		       $("#dialog" ).dialog();
+			console.log($("#startDate").val());
+		
+				
+		       
+		   };
+		
+		
+	  
+	
+
+
+
 	
 	var disableddates = new Array();
 <%for (int i = 0; i < list.size(); i++) {
@@ -171,6 +187,10 @@ a {
 </style>
 </head>
 <body>
+<!-- <div id ="dialog" title="加入購物車成功"> -->
+<!-- 		<p>12222</p> -->
+<!-- 		</div> -->
+		
 	<div id="userView">
 		<a href="memberData.jsp" title="測試超連結"><img
 			src="https://img.ltn.com.tw/Upload/ent/page/800/2021/03/14/phpJc0Acy.jpg"
@@ -194,7 +214,6 @@ a {
 				<td width="70%" valign="top">
 					<table>
 						<tr>
-							<%--                  <td rowspan="4"><img src="/Shop/ShowAllProduct?picNo=<%=request.getParameter("picno")%>" width="200" height="160"/></td> --%>
 							<div class="box">
 								<div id='show_L'>
 									<img
@@ -234,7 +253,7 @@ a {
 						</tr>
 					</table>
 					<div id="cart">
-						<a href="<%=path%>/ProdServlet?action=cart"> <img
+						 <a href="javascript:selflog_show(<%=product.getProdID()%>)"> <img
 							src="http://ae01.alicdn.com/kf/H7c4a2878bd1840ab8c1b7a51bdf9c770P.jpg"
 							width="60"></a>
 						
