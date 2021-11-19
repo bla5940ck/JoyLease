@@ -1,18 +1,19 @@
-package util;
+package Util;
 
+// §Q¥ÎÃş§O«Å§i±`¼Æ¡A§Y¥i¥Î©I¥sªº¤è¦¡¨Ï¥Î¡A¤é«áºûÅ@¤]¸ûÂ²©ö
 public class Util {
 	
 	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	
-	// MySQL 8.0.13ï¿½ï¿½îµ£ï¿½î©è•­ï¿½î£®ï¿½î‚åš™è¸è•­ï¿½î²Ÿè±²ï­è•­è¬’ï€—rverTimezoneï¿½î¡…ï¿½ï¿½î¢†è•­è¬å †î¨“åš™è¸î‡
+	// MySQL 8.0.13¥H«á¥u»İ«O¯dserverTimezone³]©w§Y¥i
 	public static final String URL = 
-			"jdbc:mysql://localhost:3306/Joylease?"
-//			+ "useSSL=false&"                   
-//			+ "rewriteBatchedStatements=true&"  
-			+ "serverTimezone=Asia/Taipei&"  
-//			+ "allowPublicKeyRetrieval=true&" 
-			+ "useUnicode=true&"                
-			+ "characterEncoding=utf-8";        
+			"jdbc:mysql://localhost:3306/JoyLease?"
+//			+ "useSSL=false&"                   // ¤£¨Ï¥Î¥[±K³s½u (»İ¦³¾ÌÃÒ¤~¦æ)
+			+ "rewriteBatchedStatements=true&"  // §å¦¸§ó·s»İ­n¦¹¸ê°T
+			+ "serverTimezone=Asia/Taipei";     // ³]©w®É°Ï¸ê°T
+//			+ "allowPublicKeyRetrieval=true&"   // °t¦XMySQL 8¥H«áª©¥»¹ï±K½XÀx¦s¾÷¨îªº³]©w
+//			+ "useUnicode=true&"                // ¨Ï¥ÎUnicode½s½X (¤¤¤å¤~¤£·|¶Ã½X)
+//			+ "characterEncoding=utf-8";        // ¦r¤¸±Ä¥ÎUTF-8³]©w
 	
 	public static final String USER = "root";
 	
