@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import Util.Util;
+import util.Util;
 
 public class PaymentOptionsDAOImpl implements PaymentOptionsDAO_interface {
 
