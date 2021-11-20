@@ -153,7 +153,7 @@ th, td {
 		<main class="main">
 			<div>
 			
-			<FORM METHOD="post" ACTION="/JoyLease/OrderListServlet">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/OrderListServlet">
 					<b>輸入訂單明細編號 (如1):</b> 
 					<input type="text" name="listID"> 
 					<input type="hidden" name="action" value="getOne_For_Display">
@@ -162,7 +162,7 @@ th, td {
 			
 			<jsp:useBean id="OrdserListSvc" scope="page" class="web.order.model.OrderListService" />
 				
-			<FORM METHOD="post" ACTION="/JoyLease/OrderListServlet">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/OrderListServlet">
 				<b>選擇訂單明細編號:</b> 
 				<select size="1" name="listID">
 					<c:forEach var="OrderListVO" items="${OrdserListSvc.all}">
