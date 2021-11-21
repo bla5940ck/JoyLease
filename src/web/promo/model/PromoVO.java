@@ -22,6 +22,11 @@ public class PromoVO implements java.io.Serializable{
 		this.status = status;
 	}
 	
+	
+	public PromoVO() {
+		super();
+	}
+
 
 	public Integer getPromo_id() {
 		return promo_id;
