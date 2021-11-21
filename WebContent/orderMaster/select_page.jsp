@@ -42,13 +42,13 @@
     </FORM>
   </li>
 
-  <jsp:useBean id="OrdserMasterSvc" scope="page" class="web.order.model.OrderMasterService" />
+  <jsp:useBean id="OrdserMasterSVC" scope="page" class="web.order.model.OrderMasterService" />
    
   <li>
      <FORM METHOD="post" ACTION="/JoyLease/OrderMasterServlet" >
        <b>¿ï¾Ü­q³æ½s¸¹:</b>
        <select size="1" name="ordID">
-         <c:forEach var="OrderMasterVO" items="${OrdserMasterSvc.all}" > 
+         <c:forEach var="OrderMasterVO" items="${OrdserMasterSVC.all}" > 
           <option value="${OrderMasterVO.ordID}">${OrderMasterVO.ordID}
          </c:forEach>   
        </select>

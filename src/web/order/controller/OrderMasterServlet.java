@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import web.order.model.OrderMasterDAOImpl;
 import web.order.model.OrderMasterService;
 import web.order.model.OrderMasterVO;
+import web.product.model.BookingDAO;
+import web.product.model.BookingVO;
 
 @WebServlet("/OrderMasterServlet")
 public class OrderMasterServlet extends HttpServlet {
@@ -31,7 +33,7 @@ public class OrderMasterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-
+		
 		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -233,6 +235,10 @@ public class OrderMasterServlet extends HttpServlet {
 			}
 		}
 
+		if("submit_order".equals(action)) {	// 來自addOrderMaster.jsp的請求
+			
+		}
+		
 	}
 
 }

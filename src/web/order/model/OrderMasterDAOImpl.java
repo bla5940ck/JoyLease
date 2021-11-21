@@ -17,19 +17,17 @@ import util.Util;
 
 public class OrderMasterDAOImpl implements OrderMasterDAO_interface {
 
-	private static final String INSERT_STMT = 
-			"INSERT INTO ORDER_MASTER"
-			+ "(RENT_ID, LEASE_ID, PAY_ID, COUPON_ID,"
+	private static final String INSERT_STMT = "INSERT INTO ORDER_MASTER" + "(RENT_ID, LEASE_ID, PAY_ID, COUPON_ID,"
 			+ "ORD_DATE, STORE_CODE ,EST_START, EST_END, RENT_DAYS, PROD_PRICE, SHIP_FEE, ORD_PRICE)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String UPDATE = "UPDATE ORDER_MASTER SET "
 			+ "SHIP_STATUS = ?, ORD_STATUS = ?, PAY_STATUS = ?, SHIP_CODE = ?, RETURN_CODE = ?, "
 			+ "SHIP_DATE = ?, ARRIVAL_DATE = ?, RETURN_DATE = ?, RENT_RANK = ?, LEASE_RANK = ?, "
 			+ "RENT_COMT = ?, LEASE_COMT = ?, RENT_COMTDATE = ?, LEASE_COMTDATE = ? WHERE (ORD_ID = ?)";
-	private static final String FIND_BY_PK = 
-			"SELECT * FROM ORDER_MASTER WHERE ORD_ID = ?";
-	private static final String GET_ALL = 
-			"SELECT * FROM ORDER_MASTER";
+	private static final String FIND_BY_PK = "SELECT * FROM ORDER_MASTER WHERE ORD_ID = ?";
+	private static final String GET_ALL = "SELECT * FROM ORDER_MASTER";
+	private static final String GET_ALL_OML = "SELECT OM.ORD_ID, OM.ORD_STATUS, OM.EST_START , OM.EST_END, OL.PROD_ID FROM ORDER_MASTER OM "
+			+ "JOIN ORDER_LIST OL ON OM.ORD_ID = OL.LIST_ID";
 
 	static {
 		try {
@@ -51,7 +49,7 @@ public class OrderMasterDAOImpl implements OrderMasterDAO_interface {
 			pstmt.setInt(1, orderMaster.getRentID());
 			pstmt.setInt(2, orderMaster.getLeaseID());
 			pstmt.setInt(3, orderMaster.getPayID());
-			if(orderMaster.getCouponID() == null) {
+			if (orderMaster.getCouponID() == null) {
 //				pstmt.setObject(4, orderMaster.getCouponID());
 				pstmt.setNull(4, Types.NULL);
 			} else {
@@ -97,7 +95,7 @@ public class OrderMasterDAOImpl implements OrderMasterDAO_interface {
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
-			
+
 			pstmt.setInt(1, orderMaster.getShipStatus());
 			pstmt.setInt(2, orderMaster.getOrdStatus());
 			pstmt.setInt(3, orderMaster.getPayStatus());
@@ -289,6 +287,7 @@ public class OrderMasterDAOImpl implements OrderMasterDAO_interface {
 		return list;
 	}
 
+	
 	public static void main(String[] args) {
 		OrderMasterDAO_interface omdao = new OrderMasterDAOImpl();
 

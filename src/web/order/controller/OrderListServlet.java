@@ -1,6 +1,7 @@
 package web.order.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import web.order.model.OrderListDAOImpl;
 import web.order.model.OrderListVO;
+import web.product.model.BookingDAO;
+import web.product.model.BookingVO;
 
 @WebServlet("/OrderListServlet")
 public class OrderListServlet extends HttpServlet {
@@ -28,6 +31,22 @@ public class OrderListServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
+//		BookingDAO bodao = new BookingDAO();
+//		
+//		BookingVO boVO = bodao.findBookingByPK(1);
+//		
+//		List<BookingVO> listBK = bodao.getAll();
+//		for(BookingVO bk : listBK) {
+//			Integer prodID = bk.getProdID();
+//			Date estStart = bk.getEstStart();
+//			Date estEnd = bk.getEstEnd();
+//			System.out.println(prodID);
+//			System.out.println(estStart);
+//			System.out.println(estEnd);
+//		}
+//				
+//		req.getSession().setAttribute("BookingVO", boVO);
+		
 		if ("getOne_For_Display".equals(action)) { // ¨Ó¦ÛlistAllOrderList.jsp
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
