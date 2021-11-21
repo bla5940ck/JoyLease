@@ -15,7 +15,14 @@
 	List<PaymentOptionsVO> list = podao.getAllPaymentOptions();
 	for (PaymentOptionsVO po : list) {
 		out.print(po);
+		
+	
 	}
+	
+	ProdDAO productDao = new ProdDAO();
+// 	ProdVO product = productDao.findProductByPK(Integer.parseInt(request.getParameter("picno")));
+	ProdVO product = productDao.findProductByPK(1);
+	out.print(product.getProdName());	
 %>
 
 <html>
@@ -187,8 +194,9 @@ th, td {
 					<h3>確認以下資訊</h3>
 					<li><a href="#">返回購物車</a></li>
 					<tr>
-						<td>商品名稱 : <%=prodVO.getProdName()%></td>
-						<td><button type="button" name="prodName" value="#"></button></td>
+						<td>商品名稱 :</td>
+						<td><a href="<%=request.getContextPath()%>/product_view/productDetail.jsp?picno=1"><%=prodVO.getProdName()%></a></td>
+<%-- 						<td><button type="button" name="prodName" value="#"><%=prodVO.getProdName()%></button></td> --%>
 					</tr>
 					<tr>
 						<td>日期</td>
