@@ -2,31 +2,26 @@ package web.promo.model;
 
 import java.util.*;
 import java.sql.*;
-import util.Util;
 
-public class PromoDAO implements Promo_impl{
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
-//	private static DataSource ds = null;
-//	static {
-//		try {
-//			Context ctx = new InitialContext();
-//			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JoyLease");
-//		} catch (NamingException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
+
+public class PromoDAO implements Promo_interface{
+
+	private static DataSource ds = null;
 	static {
 		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JoyLease");
+		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
-		// promo
-		// promo_id, promo_name, promo_start, promo_end, promo_text, status
-		private static final String INSERT_STMT = 
+	
+	private static final String INSERT_STMT = 
 			"INSERT INTO promo (promo_name, promo_start, promo_end, promo_text, status) VALUES (?, ?, ?, ?, ?);";
 		private static final String GET_ALL_STMT = 
 			"SELECT promo_id, promo_name, promo_start, promo_end, promo_text, status FROM promo order by promo_id";
@@ -44,8 +39,7 @@ public class PromoDAO implements Promo_impl{
 
 		try {
 
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, promoVO.getPromo_name());
@@ -88,8 +82,7 @@ public class PromoDAO implements Promo_impl{
 
 		try {
 
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, promoVO.getPromo_name());
@@ -132,8 +125,7 @@ public class PromoDAO implements Promo_impl{
 
 		try {
 
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, promo_id);
@@ -174,8 +166,7 @@ public class PromoDAO implements Promo_impl{
 
 		try {
 
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, promo_id);
@@ -183,7 +174,7 @@ public class PromoDAO implements Promo_impl{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ï¿½]ï¿½Ù¬ï¿½ Domain objects
+				// empVo ¤]ºÙ¬° Domain objects
 				promoVO = new PromoVO();
 				promoVO.setPromo_id(rs.getInt("Promo_id"));
 				promoVO.setPromo_name(rs.getString("promo_name"));
@@ -228,7 +219,6 @@ public class PromoDAO implements Promo_impl{
 	public List<PromoVO> getAll() {
 		List<PromoVO> list = new ArrayList<PromoVO>();
 		PromoVO promoVO = null;
-		
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -236,13 +226,12 @@ public class PromoDAO implements Promo_impl{
 		
 		try {
 
-//			con = ds.getConnection();
-			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// promoVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
+				// promoVO ¤]ºÙ¬° Domain objects
 				promoVO = new PromoVO();
 				promoVO.setPromo_id(rs.getInt("Promo_id"));
 				promoVO.setPromo_name(rs.getString("promo_name"));
