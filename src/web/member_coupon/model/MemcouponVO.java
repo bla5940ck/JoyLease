@@ -2,7 +2,7 @@ package web.member_coupon.model;
 
 import java.sql.Date;
 
-public class MemcouponVO {
+public class MemcouponVO implements java.io.Serializable{
 	private Integer mem_coupon_id;
 	private Integer member_id;
 	private Integer coupon_id; 
