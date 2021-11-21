@@ -1,6 +1,8 @@
 package web.promo_list.model;
 
-public class PromolistVO {
+import java.sql.Date;
+
+public class PromolistVO implements java.io.Serializable{
 	private Integer coupon_id;
 	private Integer promo_id; 
 	private Integer category_id; 
@@ -8,10 +10,12 @@ public class PromolistVO {
 	private Double discount; 
 	private Integer amount; 
 	private Integer used;
+	private Date start_date;
+	private Date end_date;
 	
-	
+
 	public PromolistVO(Integer coupon_id, Integer promo_id, Integer category_id, String coupon_name, Double discount,
-			Integer amount, Integer used) {
+			Integer amount, Integer used, Date start_date, Date end_date) {
 		super();
 		this.coupon_id = coupon_id;
 		this.promo_id = promo_id;
@@ -20,6 +24,8 @@ public class PromolistVO {
 		this.discount = discount;
 		this.amount = amount;
 		this.used = used;
+		this.start_date = start_date;
+		this.end_date = end_date;
 	}
 	
 	
@@ -27,7 +33,7 @@ public class PromolistVO {
 		super();
 	}
 
-
+	
 	public Integer getCoupon_id() {
 		return coupon_id;
 	}
@@ -70,7 +76,18 @@ public class PromolistVO {
 	public void setUsed(Integer used) {
 		this.used = used;
 	}
+	public Date getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+	public Date getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
 	
 	
-
 }
