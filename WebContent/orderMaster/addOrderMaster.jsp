@@ -1,3 +1,5 @@
+<%@page import="web.member.model.DefAddressVO"%>
+<%@page import="web.member.model.DefAddressJDBCDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="web.order.model.PaymentOptionsVO"%>
 <%@page import="web.order.model.PaymentOptionsDAOImpl"%>
@@ -11,18 +13,23 @@
 	ProdVO prodVO = prodDAO.findProductByPK(1);
 	// 	out.print(prodVO.getProdName());
 
-	PaymentOptionsDAOImpl podao = new PaymentOptionsDAOImpl();
-	List<PaymentOptionsVO> list = podao.getAllPaymentOptions();
-	for (PaymentOptionsVO po : list) {
-		out.print(po);
-		
-	
-	}
-	
+// 	PaymentOptionsDAOImpl podao = new PaymentOptionsDAOImpl();
+// 	List<PaymentOptionsVO> list = podao.getAllPaymentOptions();
+// 	for (PaymentOptionsVO po : list) {
+// 		out.print(po);
+// 	}
+
 	ProdDAO productDao = new ProdDAO();
-// 	ProdVO product = productDao.findProductByPK(Integer.parseInt(request.getParameter("picno")));
+	// 	ProdVO product = productDao.findProductByPK(Integer.parseInt(request.getParameter("picno")));
 	ProdVO product = productDao.findProductByPK(1);
-	out.print(product.getProdName());	
+	out.print(product.getProdName());
+	
+// 	DefAddressJDBCDAO dadao = new DefAddressJDBCDAO();
+// 	List<DefAddressVO> list2 = dadao.getAll();
+// 	for(DefAddressVO da : list2){
+// 		out.print(da.getName711());
+// 	}
+	
 %>
 
 <html>
@@ -192,15 +199,11 @@ th, td {
 
 				<table id="table-1">
 					<h3>確認以下資訊</h3>
+					<p id="today">日期</p>
 					<li><a href="#">返回購物車</a></li>
 					<tr>
 						<td>商品名稱 :</td>
 						<td><a href="<%=request.getContextPath()%>/product_view/productDetail.jsp?picno=1"><%=prodVO.getProdName()%></a></td>
-<%-- 						<td><button type="button" name="prodName" value="#"><%=prodVO.getProdName()%></button></td> --%>
-					</tr>
-					<tr>
-						<td>日期</td>
-						<td><p id="today"></p></td>
 					</tr>
 					<tr>
 						<td>預定租借起日:</td>
@@ -211,17 +214,23 @@ th, td {
 						<td><p id="estEnd"></p></td>
 					</tr>
 					<tr>
-						<td>收件人:</td>
-						<td><p id="name"></p></td>
+						<td>收件人姓名:</td>
+						<td><input type="text" id="recipient"></td>
 					</tr>
 					<tr>
 						<td>收件人電話:</td>
-						<td><p id="phoneNum"></p></td>
+						<td><input type="text" id="recptPhone"></td>
 					</tr>
+					
+					
+						<jsp:useBean id="daDAO"
+						class="web.member.model.DefAddressJDBCDAO" />
 					<tr>
-						<td>選擇711收件門市</td>
-						<td><select size="1" name="defAddress">
-
+						<td>選擇711收件門市:</td>
+						<td><select size="1" name="name711">
+								<c:forEach var="daVO" items="${daDAO.getAll()}">
+									<option value="${daVO.code711}">${daVO.name711}
+								</c:forEach>
 						</select></td>
 					</tr>
 
@@ -259,8 +268,8 @@ th, td {
 						<td><p id="ordPrice"></p></td>
 					</tr>
 				</table>
-				<input type="hidden" name="action" value="submit_order"> 
-				<input type="submit" value="送出訂單 !">
+				<input type="hidden" name="action" value="submit_order"> <input
+					type="submit" value="送出訂單 !">
 			</main>
 		</div>
 		<footer class="footer"> footer區域 </footer>
