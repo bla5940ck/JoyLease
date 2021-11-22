@@ -1,3 +1,4 @@
+<%@page import="web.promo_list.model.PromolistVO"%>
 <%@page import="web.member_coupon.model.MemcouponVO"%>
 <%@page import="web.member_coupon.model.MemcouponDAO"%>
 <%@page import="web.promo_list.model.PromolistDAO"%>
@@ -16,31 +17,35 @@
 	ProdVO prodVO = prodDAO.findProductByPK(1);
 	// 	out.print(prodVO.getProdName());
 
-// 	PaymentOptionsDAOImpl podao = new PaymentOptionsDAOImpl();
-// 	List<PaymentOptionsVO> list = podao.getAllPaymentOptions();
-// 	for (PaymentOptionsVO po : list) {
-// 		out.print(po);
-// 	}
+	// 	PaymentOptionsDAOImpl podao = new PaymentOptionsDAOImpl();
+	// 	List<PaymentOptionsVO> list = podao.getAllPaymentOptions();
+	// 	for (PaymentOptionsVO po : list) {
+	// 		out.print(po);
+	// 	}
 
 	ProdDAO productDao = new ProdDAO();
 	// 	ProdVO product = productDao.findProductByPK(Integer.parseInt(request.getParameter("picno")));
 	ProdVO product = productDao.findProductByPK(1);
 	out.print(product.getProdName());
-	
-// 	DefAddressJDBCDAO dadao = new DefAddressJDBCDAO();
-// 	List<DefAddressVO> list2 = dadao.getAll();
-// 	for(DefAddressVO da : list2){
-// 		out.print(da.getName711());
-// 	}
-	
+
+	// 	DefAddressJDBCDAO dadao = new DefAddressJDBCDAO();
+	// 	List<DefAddressVO> list2 = dadao.getAll();
+	// 	for(DefAddressVO da : list2){
+	// 		out.print(da.getName711());
+	// 	}
+
 	MemcouponDAO mcdao = new MemcouponDAO();
 	List<MemcouponVO> list = mcdao.getAll();
-	for(MemcouponVO mc : list){
-		if(mc.getMember_id() == 1){
+
+	for (MemcouponVO mc : list) {
+		if (mc.getMember_id() == 1) {
 			out.println(mc.getMem_coupon_id());
+
 		}
 	}
-	
+
+	PromolistDAO pldao = new PromolistDAO();
+	PromolistVO plVO = pldao.findByPrimaryKey(1001);
 %>
 
 <html>
@@ -214,7 +219,8 @@ th, td {
 					<li><a href="#">返回購物車</a></li>
 					<tr>
 						<td>商品名稱 :</td>
-						<td><a href="<%=request.getContextPath()%>/product_view/productDetail.jsp?picno=1"><%=prodVO.getProdName()%></a></td>
+						<td><a
+							href="<%=request.getContextPath()%>/product_view/productDetail.jsp?picno=1"><%=prodVO.getProdName()%></a></td>
 					</tr>
 					<tr>
 						<td>預定租借起日:</td>
@@ -232,17 +238,16 @@ th, td {
 						<td>收件人電話:</td>
 						<td><input type="text" id="recptPhone"></td>
 					</tr>
-					
-					
-						<jsp:useBean id="daDAO"
-						class="web.member.model.DefAddressJDBCDAO" />
+
+
+					<jsp:useBean id="daDAO" class="web.member.model.DefAddressJDBCDAO" />
 					<tr>
 						<td>選擇711收件門市:</td>
 						<td><select size="1" name="name711">
-									<option value="0">面交
-								<c:forEach var="daVO" items="${daDAO.getAll()}">
-									<option value="${daVO.code711}">${daVO.name711}
-								</c:forEach>
+								<option value="0">面交
+									<c:forEach var="daVO" items="${daDAO.getAll()}">
+										<option value="${daVO.code711}">${daVO.name711}
+									</c:forEach>
 						</select></td>
 					</tr>
 
@@ -262,7 +267,7 @@ th, td {
 						<td><select size="1" name="couponName">
 
 						</select></td>
-					</tr>					
+					</tr>
 					<tr>
 						<td>商品小計:</td>
 						<td><p id="price"></p></td>
