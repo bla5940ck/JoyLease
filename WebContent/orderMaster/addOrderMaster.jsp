@@ -34,15 +34,15 @@
 	// 		out.print(da.getName711());
 	// 	}
 
-	MemcouponDAO mcdao = new MemcouponDAO();
-	List<MemcouponVO> list = mcdao.getAll();
+// 	MemcouponDAO mcdao = new MemcouponDAO();
+// 	List<MemcouponVO> list = mcdao.getAll();
 
-	for (MemcouponVO mc : list) {
-		if (mc.getMember_id() == 1) {
-			out.println(mc.getMem_coupon_id());
+// 	for (MemcouponVO mc : list) {
+// 		if (mc.getMember_id() == 1) {
+// 			out.println(mc.getMem_coupon_id());
 
-		}
-	}
+// 		}
+// 	}
 
 	PromolistDAO pldao = new PromolistDAO();
 	PromolistVO plVO = pldao.findByPrimaryKey(1001);
