@@ -1,3 +1,5 @@
+<%@page import="web.product.model.BookingVO"%>
+<%@page import="web.product.model.BookingDAO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,6 +10,12 @@
 	OrderListService olSVC = new OrderListService();
 	List<OrderListVO> list = olSVC.getAll();
 	pageContext.setAttribute("list", list);
+	BookingDAO bodao = new BookingDAO();
+	BookingVO boVO = (BookingVO)session.getAttribute("BookingVO");
+	
+	out.print(boVO.getEstStart());
+
+
 %>
 
 <html>
@@ -153,7 +161,7 @@ th, td {
 		<main class="main">
 			<div>
 			
-			<FORM METHOD="post" ACTION="/JoyLease/OrderListServlet">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/OrderListServlet">
 					<b>輸入訂單明細編號 (如1):</b> 
 					<input type="text" name="listID"> 
 					<input type="hidden" name="action" value="getOne_For_Display">
@@ -162,7 +170,7 @@ th, td {
 			
 			<jsp:useBean id="OrdserListSvc" scope="page" class="web.order.model.OrderListService" />
 				
-			<FORM METHOD="post" ACTION="/JoyLease/OrderListServlet">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/OrderListServlet">
 				<b>選擇訂單明細編號:</b> 
 				<select size="1" name="listID">
 					<c:forEach var="OrderListVO" items="${OrdserListSvc.all}">
@@ -180,6 +188,9 @@ th, td {
 					<th>商品編號</th>
 					<th>訂單編號</th>
 					<th>訂單金額</th>
+					<th>預計開始日期</th>
+					<th>預計結束日期</th>
+					
 				</tr>
 				<%@ include file="page1.file"%>
 				<c:forEach var="olVO" items="${list}" begin="<%=pageIndex%>"
@@ -189,6 +200,7 @@ th, td {
 						<td>${olVO.prodID}</td>
 						<td>${olVO.ordID}</td>
 						<td>${olVO.price}</td>
+						<td><%=boVO.getEstStart()%></td>
 						<td>
 							<FORM METHOD="post"
 								ACTION="<%=request.getContextPath()%>/OrderMasterServlet"

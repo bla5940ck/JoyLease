@@ -1,3 +1,5 @@
+<%@page import="web.product.model.BookingDAO"%>
+<%@page import="web.product.model.BookingVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -238,7 +240,6 @@ th, td {
 						<td>${omVO.prodPrice}</td>
 						<td>${omVO.shipFee}</td>
 						<td>${omVO.ordPrice}</td>
-
 						<td>
 							<FORM METHOD="post"
 								ACTION="<%=request.getContextPath()%>/OrderMasterServlet"

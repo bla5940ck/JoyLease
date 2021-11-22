@@ -1,17 +1,25 @@
 package web.order.model;
 
-public class PaymentOptionsVO {
+import java.io.Serializable;
+
+public class PaymentOptionsVO implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private Integer payID;
 	private String payName;
+	
+	
+	public PaymentOptionsVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	public PaymentOptionsVO(Integer payID, String payName) {
 		super();
 		this.payID = payID;
 		this.payName = payName;
 	}
-	public PaymentOptionsVO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	public Integer getPayID() {
 		return payID;
 	}
