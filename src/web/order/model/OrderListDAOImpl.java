@@ -12,7 +12,7 @@ import util.Util;
 public class OrderListDAOImpl implements OrderListDAO_interface {
 
 	private static final String INSERT_STMT = 
-			"INSERT INTO ORDER_LIST(LIST_ID, PROD_ID, ORD_ID, PRICE) VALUES (?, ?, ?, ?)";
+			"INSERT INTO ORDER_LIST(LIST_ID, PROD_ID, ORD_ID, PRICE, STATUS, EST_START, EST_END) VALUES (? ,?, ?, ?, ?, ?)";
 	private static final String FIND_BY_PK = 
 			"SELECT * FROM ORDER_LIST WHERE LIST_ID = ?";
 	private static final String GET_ALL = 
@@ -39,7 +39,10 @@ public class OrderListDAOImpl implements OrderListDAO_interface {
 			pstmt.setInt(2, orderList.getProdID());
 			pstmt.setInt(3, orderList.getOrdID());
 			pstmt.setInt(4, orderList.getPrice());
-
+			pstmt.setInt(5, orderList.getStatus());
+			pstmt.setDate(6, orderList.getEstStart());
+			pstmt.setDate(7, orderList.getEstEnd());
+			
 			pstmt.executeUpdate();
 
 		} catch (SQLException se) {
@@ -82,7 +85,9 @@ public class OrderListDAOImpl implements OrderListDAO_interface {
 				orderListVO.setProdID(rs.getInt("PROD_ID"));
 				orderListVO.setOrdID(rs.getInt("ORD_ID"));
 				orderListVO.setPrice(rs.getInt("PRICE"));
-
+				orderListVO.setStatus(rs.getInt("STATUS"));
+				orderListVO.setEstStart(rs.getDate("EST_START"));
+				orderListVO.setEstEnd(rs.getDate("EST_END"));
 			}
 
 		} catch (SQLException se) {
@@ -134,6 +139,10 @@ public class OrderListDAOImpl implements OrderListDAO_interface {
 				orderListVO.setProdID(rs.getInt("PROD_ID"));
 				orderListVO.setOrdID(rs.getInt("ORD_ID"));
 				orderListVO.setPrice(rs.getInt("PRICE"));
+				orderListVO.setStatus(rs.getInt("STATUS"));
+				orderListVO.setEstStart(rs.getDate("EST_START"));
+				orderListVO.setEstEnd(rs.getDate("EST_END"));
+				
 				list.add(orderListVO);
 
 			}

@@ -1,18 +1,26 @@
 package web.order.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class OrderListVO implements Serializable {
 	private Integer listID;
 	private Integer prodID;
 	private Integer ordID;
-	private Integer price;		//商品金額
-	public OrderListVO(Integer listID, Integer prodID, Integer ordID, Integer price) {
+	private Integer price;	//商品金額
+	private Integer status;
+	private Date estStart;
+	private Date estEnd;
+
+	public OrderListVO(Integer listID, Integer prodID, Integer ordID, Integer price, Integer status, Date estStart, Date estEnd) {
 		super();
 		this.listID = listID;
 		this.prodID = prodID;
 		this.ordID = ordID;
 		this.price = price;
+		this.status = status;
+		this.estStart = estStart;
+		this.estEnd = estEnd;
 	}
 	public OrderListVO() {
 		super();
@@ -42,9 +50,28 @@ public class OrderListVO implements Serializable {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public Date getEstStart() {
+		return estStart;
+	}
+	public void setEstStart(Date estStart) {
+		this.estStart = estStart;
+	}
+	public Date getEstEnd() {
+		return estEnd;
+	}
+	public void setEstEnd(Date estEnd) {
+		this.estEnd = estEnd;
+	}
 	@Override
 	public String toString() {
-		return "OrderListVO [listID=" + listID + ", prodID=" + prodID + ", ordID=" + ordID + ", price=" + price + "]";
+		return "OrderListVO [listID=" + listID + ", prodID=" + prodID + ", ordID=" + ordID + ", price=" + price
+				+ ", status=" + status + ", estStart=" + estStart + ", estEnd=" + estEnd + "]";
 	}
-	
 }

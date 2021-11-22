@@ -1,3 +1,6 @@
+<%@page import="web.member_coupon.model.MemcouponVO"%>
+<%@page import="web.member_coupon.model.MemcouponDAO"%>
+<%@page import="web.promo_list.model.PromolistDAO"%>
 <%@page import="web.member.model.DefAddressVO"%>
 <%@page import="web.member.model.DefAddressJDBCDAO"%>
 <%@page import="java.util.List"%>
@@ -29,6 +32,14 @@
 // 	for(DefAddressVO da : list2){
 // 		out.print(da.getName711());
 // 	}
+	
+	MemcouponDAO mcdao = new MemcouponDAO();
+	List<MemcouponVO> list = mcdao.getAll();
+	for(MemcouponVO mc : list){
+		if(mc.getMember_id() == 1){
+			out.println(mc.getMem_coupon_id());
+		}
+	}
 	
 %>
 
@@ -228,6 +239,7 @@ th, td {
 					<tr>
 						<td>選擇711收件門市:</td>
 						<td><select size="1" name="name711">
+									<option value="0">面交
 								<c:forEach var="daVO" items="${daDAO.getAll()}">
 									<option value="${daVO.code711}">${daVO.name711}
 								</c:forEach>
@@ -250,7 +262,7 @@ th, td {
 						<td><select size="1" name="couponName">
 
 						</select></td>
-					</tr>
+					</tr>					
 					<tr>
 						<td>商品小計:</td>
 						<td><p id="price"></p></td>

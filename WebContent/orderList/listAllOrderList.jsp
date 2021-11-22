@@ -10,10 +10,10 @@
 	OrderListService olSVC = new OrderListService();
 	List<OrderListVO> list = olSVC.getAll();
 	pageContext.setAttribute("list", list);
-	BookingDAO bodao = new BookingDAO();
-	BookingVO boVO = (BookingVO)session.getAttribute("BookingVO");
+// 	BookingDAO bodao = new BookingDAO();
+// 	BookingVO boVO = (BookingVO)session.getAttribute("BookingVO");
 	
-	out.print(boVO.getEstStart());
+// 	out.print(boVO.getEstStart());
 
 
 %>
@@ -190,6 +190,7 @@ th, td {
 					<th>訂單金額</th>
 					<th>預計開始日期</th>
 					<th>預計結束日期</th>
+					<th>狀態</th>
 					
 				</tr>
 				<%@ include file="page1.file"%>
@@ -200,7 +201,10 @@ th, td {
 						<td>${olVO.prodID}</td>
 						<td>${olVO.ordID}</td>
 						<td>${olVO.price}</td>
-						<td><%=boVO.getEstStart()%></td>
+						<td>${olVO.estStart}</td>
+						<td>${olVO.estEnd}</td>
+						<td>${olVO.status}</td>
+						
 						<td>
 							<FORM METHOD="post"
 								ACTION="<%=request.getContextPath()%>/OrderMasterServlet"

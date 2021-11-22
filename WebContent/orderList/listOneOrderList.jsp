@@ -5,7 +5,7 @@
 <%@ page import="web.order.model.*"%>
 <%
 	OrderListVO olVO = (OrderListVO) request.getAttribute("OrderListVO");
-	out.print(olVO);
+// 	out.print(olVO);
 %>
 <html>
 <head>
@@ -158,6 +158,9 @@ th, td {
 						<th>商品編號</th>
 						<th>訂單編號</th>
 						<th>訂單金額</th>
+						<th>預計開始日期</th>
+						<th>預計結束日期</th>
+						<th>狀態</th>
 					</tr>
 
 					<tr>
@@ -165,6 +168,9 @@ th, td {
 						<td><%=olVO.getProdID()%></td>
 						<td><%=olVO.getOrdID()%></td>
 						<td><%=olVO.getPrice()%></td>
+						<td><%=olVO.getEstStart()%></td>
+						<td><%=olVO.getEstEnd()%></td>
+						<td><%=olVO.getStatus()%></td>
 						
 					</tr>
 				</table>

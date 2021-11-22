@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import web.order.model.OrderListDAOImpl;
 import web.order.model.OrderListVO;
-import web.product.model.BookingDAO;
-import web.product.model.BookingVO;
 
 @WebServlet("/OrderListServlet")
 public class OrderListServlet extends HttpServlet {
@@ -30,22 +28,6 @@ public class OrderListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-
-//		BookingDAO bodao = new BookingDAO();
-//		
-//		BookingVO boVO = bodao.findBookingByPK(1);
-//		
-//		List<BookingVO> listBK = bodao.getAll();
-//		for(BookingVO bk : listBK) {
-//			Integer prodID = bk.getProdID();
-//			Date estStart = bk.getEstStart();
-//			Date estEnd = bk.getEstEnd();
-//			System.out.println(prodID);
-//			System.out.println(estStart);
-//			System.out.println(estEnd);
-//		}
-//				
-//		req.getSession().setAttribute("BookingVO", boVO);
 		
 		if ("getOne_For_Display".equals(action)) { // 來自listAllOrderList.jsp
 			List<String> errorMsgs = new LinkedList<String>();
@@ -79,7 +61,7 @@ public class OrderListServlet extends HttpServlet {
 				/**************** 2.開始查詢資料 ****************/
 
 				OrderListDAOImpl oldao = new OrderListDAOImpl();
-				OrderListVO olVO = oldao.findOrderListByPK(listID);
+				OrderListVO olVO = oldao.findOrderListByPK(listID);	
 
 				if (olVO == null) {
 					errorMsgs.add("查無資料");
