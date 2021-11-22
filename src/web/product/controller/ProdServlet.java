@@ -2,9 +2,19 @@ package web.product.controller;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.google.gson.Gson;
 
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import web.order.model.OrderListDAOImpl;
+import web.order.model.OrderListVO;
+import web.order.model.OrderMasterDAOImpl;
+import web.order.model.OrderMasterVO;
 import web.product.model.BookingDAO;
+import web.product.model.BookingService;
 import web.product.model.BookingVO;
+import web.product.model.CartVO;
 import web.product.model.ProdCategoryDAO;
 import web.product.model.ProdDAO;
 import web.product.model.ProdService;
@@ -15,6 +25,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -44,11 +58,13 @@ public class ProdServlet extends HttpServlet {
 		TimerTask task = new TimerTask() {
 
 			public void run() {
+				
+				
 				BookingDAO bkDao = new BookingDAO();
 				List<BookingVO> list = bkDao.getAll();
-				// 找到booking清單裡 預計歸還時間比現在時間還要小 代表已歸還 狀態改成 已歸還 可以繼續租借
+				//在現在時間大於歸還時間的三天後(緩衝時間) 代表已歸還
 				for (BookingVO bk : list) {
-					if (bk.getEstEnd().getTime() < new Date().getTime()) {
+					if ((bk.getEstEnd().getTime() + 24*60*60*1000) < new Date().getTime()) {
 						bk.setStatus(2);
 						bkDao.update(bk);
 
@@ -60,8 +76,13 @@ public class ProdServlet extends HttpServlet {
 		};
 
 		timer.scheduleAtFixedRate(task, 1000, 30 * 1000);
+		
+		
+		
+		
 	}
 
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		doPost(req, res);
 	}
@@ -73,7 +94,7 @@ public class ProdServlet extends HttpServlet {
 		BookingDAO bkDao = new BookingDAO();
 
 ////////////////////////建立商品/////////////////////////////
-
+	
 		if ("upload".equals(req.getParameter("action"))) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -231,7 +252,7 @@ public class ProdServlet extends HttpServlet {
 			if (price <= 0) {
 				errorMsgs.add("商品損壞金請大於0元");
 			}
-
+			
 			String cot = req.getParameter("product_cot");
 
 			if (cot == null || (cot.trim().length() == 0)) {
@@ -285,13 +306,139 @@ public class ProdServlet extends HttpServlet {
 		
 			//////////////購物車/////////////////////////////
 			if("cart".equals(req.getParameter("action"))) {
-				System.out.println("點到");
+				System.out.println("點到購物車");
+
+				Integer prodID = Integer.valueOf(req.getParameter("prodID"));
+				String estStart = req.getParameter("startDate");
+				String estEnd = req.getParameter("endDate");
+//				Integer status = 0;
+				java.sql.Date sdate = null;
+				java.sql.Date edate =null;
+				Integer memberID = (Integer)req.getSession().getAttribute("id");
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+					sdate = new java.sql.Date(df.parse(estStart).getTime());
+					edate = new java.sql.Date(df.parse(estEnd).getTime());
+				} catch (ParseException e) {
+					System.out.println("日期格式錯誤");
+				}
+				CartVO cartVO = new CartVO();
+//				BookingVO bk = new BookingVO();
+				cartVO.setProdID(prodID);
+//				bk.setStatus(status);
+				cartVO.setEstStart(sdate);
+				cartVO.setEstEnd(edate);
+			
+				JedisPool pool = JedisPoolUtil.getJedisPool();
+				Jedis jedis = null;
+				jedis = pool.getResource();
+				
+				Gson gson = new Gson();
+				String jsonString = gson.toJson(cartVO);
+			
+//				jedis.set("prod"+req.getParameter("prodID"),jsonString);
+				List<String> cart = jedis.lrange("member"+memberID, 0, jedis.llen("member"+memberID));
+				boolean flag = true;
+				for(String item : cart) {
+					CartVO cartVO1 = gson.fromJson(item, CartVO.class);
+					if(prodID == cartVO1.getProdID()) {
+						flag = false;
+						res.getWriter().print("<script language='javascript'>alert('商品重複，請確認購物車');</script>");
+						System.out.println("重複商品");
+					
+					}
+				}
+				
+				if(flag) {
+					jedis.rpush("member"+memberID,jsonString);
+					System.out.println("購物車加入了: "+jsonString);
+
+				}
+								
+			
+				
+				System.out.println();
+				
+				jedis.close(); 
+				
+			
 				
 				
+			}
+			
+			
+			/////////////結帳////////////////////
+			if("checkout".equals(req.getParameter("action"))) {
+				System.out.println("點到結帳");
+				
+				
+				List<String> errorMsgs = new LinkedList<String>();
+				req.setAttribute("errorMsgs", errorMsgs);
+				
+				Integer prodID= Integer.valueOf(req.getParameter("prodID"));
+				
+				String startDate = req.getParameter("startDate");
+				String endDate =  req.getParameter("endDate");
+				System.out.println(startDate);
+				System.out.println(endDate);
+				System.out.println("---------");
+				java.sql.Date sdate = null;
+				java.sql.Date edate = null;
+				BookingVO bk = new BookingVO();
+				//日期空白驗證
+				if(startDate.trim().length()==0) {
+					errorMsgs.add("請輸入開始租借日期");
+				}
+				
+				if(endDate.trim().length()==0) {
+					errorMsgs.add("請輸入結束租借日期");
+				}
+				
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+					//日期錯誤格式驗證
+					sdate = new java.sql.Date(df.parse(startDate).getTime());
+					edate = new java.sql.Date(df.parse(endDate).getTime());
+				} catch (Exception e) {
+					
+					errorMsgs.add("日期格式為yyyy-MM-DD");
+				}
+				
+			
+				System.out.println(prodID);
+				System.out.println(sdate);
+				System.out.println(endDate);
+				
+				
+				BookingService bkService = new BookingService();
+				bk.setProdID(prodID);
+				
+				
+				
+				
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("bk",bk);
+					RequestDispatcher failureView = req.getRequestDispatcher("/product_view/productDetail.jsp");
+					failureView.forward(req, res);
+					return;
+
+				}
+				//資料存入預約資料庫
+				bkService.addBk(prodID, 1, sdate, edate);
 			}
 
 	}
 	
 	
+	public static java.sql.Date StringFormatDate(String date){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		java.sql.Date sqlDate=null;
+		try {
+			sqlDate = new java.sql.Date(df.parse(date).getTime());
+		} catch (ParseException e) {
+			
 	
+		}
+		return sqlDate;
+	}
 }
