@@ -185,12 +185,12 @@ public class PromoDAO implements Promo_impl{
 			while (rs.next()) {
 				// empVo �]�٬� Domain objects
 				promoVO = new PromoVO();
-				promoVO.setPromo_id(rs.getInt("Promo_id"));
+				promoVO.setPromo_id(rs.getInt("promo_id"));
 				promoVO.setPromo_name(rs.getString("promo_name"));
 				promoVO.setPromo_start(rs.getDate("promo_start"));
-				promoVO.setPromo_end(rs.getDate("Promo_end"));
-				promoVO.setPromo_text(rs.getString("Promo_text"));
-				promoVO.setStatus(rs.getInt("Status"));
+				promoVO.setPromo_end(rs.getDate("promo_end"));
+				promoVO.setPromo_text(rs.getString("promo_text"));
+				promoVO.setStatus(rs.getInt("status"));
 			}
 
 			// Handle any driver errors
@@ -244,12 +244,12 @@ public class PromoDAO implements Promo_impl{
 			while (rs.next()) {
 				// promoVO �]�٬� Domain objects
 				promoVO = new PromoVO();
-				promoVO.setPromo_id(rs.getInt("Promo_id"));
+				promoVO.setPromo_id(rs.getInt("promo_id"));
 				promoVO.setPromo_name(rs.getString("promo_name"));
 				promoVO.setPromo_start(rs.getDate("promo_start"));
-				promoVO.setPromo_end(rs.getDate("Promo_end"));
-				promoVO.setPromo_text(rs.getString("Promo_text"));
-				promoVO.setStatus(rs.getInt("Status"));
+				promoVO.setPromo_end(rs.getDate("promo_end"));
+				promoVO.setPromo_text(rs.getString("promo_text"));
+				promoVO.setStatus(rs.getInt("status"));
 				list.add(promoVO); // Store the row in the list
 			}
 
