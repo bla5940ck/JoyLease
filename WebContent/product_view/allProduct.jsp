@@ -10,8 +10,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>商品列表頁面</title>
+<% session.setAttribute("id", 1); //測試用    %>
 <header> <div id= "userView">
 <a href="memberData.jsp" title="測試超連結"><img   src="https://img.ltn.com.tw/Upload/ent/page/800/2021/03/14/phpJc0Acy.jpg"  width="60px"></a>
+	
+	
 	會員編號<%=session.getAttribute("id")%>
 	</div></header>
 <style type="text/css">

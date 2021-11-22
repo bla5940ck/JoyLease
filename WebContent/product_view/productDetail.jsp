@@ -11,6 +11,7 @@
 <%@page import="web.product.model.ProdVO"%>
 <%@page import="web.product.model.ProdDAO"%>
 <%@page import="java.util.ArrayList"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="prod" class="web.product.model.ProdVO" />
@@ -33,8 +34,22 @@
 <%
 	String path = request.getContextPath();
 	ProdDAO productDao = new ProdDAO();
-	ProdVO product = productDao.findProductByPK(Integer.parseInt(request.getParameter("picno")));
+	ProdVO product = null;
 	BookingVO bk = new BookingVO();
+	Integer prodID = null;
+
+	if (request.getParameter("picno") != null) {
+		prodID = Integer.parseInt(request.getParameter("picno"));
+		product = productDao.findProductByPK(prodID);
+
+	}
+
+	else if (request.getAttribute("bk") != null) {
+		bk = (BookingVO) request.getAttribute("bk");
+		prodID = bk.getProdID();
+		product = productDao.findProductByPK(prodID);
+	}
+
 	BookingService bkDao = new BookingService();
 
 	int picAmount = 0;
@@ -47,26 +62,52 @@
 		if (product.getPic3() != null)
 			picAmount++;
 	}
+	List<BookingVO> list = null;
+	if (product != null) {
+		list = bkDao.findDateByProdID(product.getProdID());
 
-	List<BookingVO> list = bkDao.findDateByProdID(product.getProdID());
+	}
 %>
-
-	<script>
-	function selflog_show(id){ 
-// 		       $("#dialog" ).dialog();
-			console.log($("#startDate").val());
-		
-				
-		       
-		   };
-		
-		
-	  
+<script>
 	
-
-
-
+	  /// //加入購物車///////
+	   function selflog_show(id){ 
+		 $.ajax({
+		    	url:"<%=path%>/ProdServlet",
+		    	cache : false,
+		    	type: "POST",
+		    	async: false,
+		    	data: {
+		    		action: "cart",
+		    		prodID: id,
+		    		startDate:$("#startDate").val(),
+		    		endDate :$("#endDate").val()
+		    		
+		    	},
+		    	error : function(request) {
+					alert("傳送請求失敗！");
+				},
+		    	success: function(data){
+		    		$("#ajaxlabel").html(data);
+		    	},
+		    });
+		 };
 	
+	
+	
+	
+	
+// 	function selflog_show(id){ 
+// // 		       $("#dialog" ).dialog();
+
+// 			var startDate = $("#startDate").val();
+// 			var endDate = $("#endDate").val();
+
+<%-- 			location.href = "<%=path%>/ProdServlet?action=checkout&prodID=" + id +"&startDate=" + startDate + "&endDate=" + endDate ; --%> 
+<%-- 			location.href = "<%=path%>/ProdServlet?action=cart&prodID=" + id +"&startDate=" + startDate + "&endDate=" + endDate ; --%> 
+				   
+// 		   };
+		
 	var disableddates = new Array();
 <%for (int i = 0; i < list.size(); i++) {
 				long k = (list.get(i).getEstEnd().getTime() - list.get(i).getEstStart().getTime()) / 86400000;
@@ -150,7 +191,6 @@ div #cart {
 	text-align: right;
 }
 
-
 a {
 	text-decoration: none;
 }
@@ -187,10 +227,23 @@ a {
 </style>
 </head>
 <body>
-<!-- <div id ="dialog" title="加入購物車成功"> -->
-<!-- 		<p>12222</p> -->
-<!-- 		</div> -->
-		
+
+
+	<!-- <div id ="dialog" title="加入購物車成功"> -->
+	<!-- 		<p>12222</p> -->
+	<!-- 		</div> -->
+	<label id="ajaxlabel"></label>
+	<c:if test="${not empty errorMsgs}">
+		<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
+
+
+
 	<div id="userView">
 		<a href="memberData.jsp" title="測試超連結"><img
 			src="https://img.ltn.com.tw/Upload/ent/page/800/2021/03/14/phpJc0Acy.jpg"
@@ -217,7 +270,7 @@ a {
 							<div class="box">
 								<div id='show_L'>
 									<img
-										src="<%=path%>/ProdServlet?action=detail&picNo=<%=request.getParameter("picno")%>&no=1"
+										src="<%=path%>/ProdServlet?action=detail&picNo=<%=prodID%>&no=1"
 										alt="">
 								</div>
 								<div class="all_img" id="all_img"></div>
@@ -241,22 +294,23 @@ a {
 							</td>
 						</tr>
 						<tr>
-							<td>金額試算: <label id="subtotal" style="color:red"></label>元<input type="button"
-								value="試算" id="subtotal_btn">
+							<td>金額試算: <label id="subtotal" style="color: red"></label>元<input
+								type="button" value="試算" id="subtotal_btn">
 
 							</td>
 						</tr>
-							<tr>
-							<td>商品內容: <label id="pro_cot"  style="color:blue"><%=product.getProdCot()%></label>
+						<tr>
+							<td>商品內容: <label id="pro_cot" style="color: blue"><%=product.getProdCot()%></label>
 
 							</td>
 						</tr>
 					</table>
 					<div id="cart">
-						 <a href="javascript:selflog_show(<%=product.getProdID()%>)"> <img
+						<a href="javascript:selflog_show(<%=product.getProdID()%>)"> <%-- 						 <a href="<%=path%>/ProdServlet?action=checkout&prodID=<%=product.getProdID()%>"> --%>
+							<img
 							src="http://ae01.alicdn.com/kf/H7c4a2878bd1840ab8c1b7a51bdf9c770P.jpg"
 							width="60"></a>
-						
+
 					</div>
 				</td>
 
@@ -282,6 +336,7 @@ a {
 							minDate : new Date(startDate),
 							
 						});
+						
 					});
 
 					$("#endDate").change(
@@ -293,7 +348,7 @@ a {
 									
 									maxDate : new Date(endDate)
 								});
-
+								
 							});
 
 					$("#subtotal_btn").click(function() {
@@ -317,7 +372,7 @@ a {
 						for (var i = 1; i <= picAmount; i++) {
 							//取得圖片編號對應1 2 3
 							var query =
-				<%=request.getParameter("picno")%>
+				<%=prodID%>
 					+ "&no=" + i;
 
 							$('div.all_img').append(
@@ -331,4 +386,10 @@ a {
 								});
 					}
 					window.addEventListener('load', init);
+					
+					
+				
+					
+					
+					
 				</script>

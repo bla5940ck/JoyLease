@@ -174,7 +174,7 @@ input.submit_btn1:hover{
 	    <c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
 		</c:forEach>
-	</ul>
+	</ul> 
 </c:if>
 	
 	
