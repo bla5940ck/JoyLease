@@ -26,26 +26,24 @@
 	ProdDAO productDao = new ProdDAO();
 	// 	ProdVO product = productDao.findProductByPK(Integer.parseInt(request.getParameter("picno")));
 	ProdVO product = productDao.findProductByPK(1);
-	out.print(product.getProdName());
+	// 	out.print(product.getProdName());
 
-	// 	DefAddressJDBCDAO dadao = new DefAddressJDBCDAO();
-	// 	List<DefAddressVO> list2 = dadao.getAll();
-	// 	for(DefAddressVO da : list2){
-	// 		out.print(da.getName711());
+	DefAddressJDBCDAO dadao = new DefAddressJDBCDAO();
+	List<DefAddressVO> list2 = dadao.getAll();
+	for (DefAddressVO da : list2) {
+		// 		out.print(da.getName711());
+	}
+
+	MemcouponDAO mcdao = new MemcouponDAO();
+	List<MemcouponVO> list = mcdao.getAll();
+	// 	PromolistDAO pldao = new PromolistDAO();
+	// 	PromolistVO plVO = pldao.findByPrimaryKey();
+
+	// 	for (PromolistVO pl : list3) {
+	// 		// 		out.println(pl.getCoupon_name());
+	// 		// 		out.println(pl.getCoupon_id());
+
 	// 	}
-
-// 	MemcouponDAO mcdao = new MemcouponDAO();
-// 	List<MemcouponVO> list = mcdao.getAll();
-
-// 	for (MemcouponVO mc : list) {
-// 		if (mc.getMember_id() == 1) {
-// 			out.println(mc.getMem_coupon_id());
-
-// 		}
-// 	}
-
-	PromolistDAO pldao = new PromolistDAO();
-	PromolistVO plVO = pldao.findByPrimaryKey(1001);
 %>
 
 <html>
@@ -238,8 +236,16 @@ th, td {
 						<td>收件人電話:</td>
 						<td><input type="text" id="recptPhone"></td>
 					</tr>
-
-
+					<jsp:useBean id="poDAO"
+						class="web.order.model.PaymentOptionsDAOImpl" />
+					<tr>
+						<td>選擇付款方式:</td>
+						<td><select size="1" name="payID">
+								<c:forEach var="poVO" items="${poDAO.getAllPaymentOptions()}">
+									<option value="${poVO.payID}">${poVO.payName}
+								</c:forEach>
+						</select></td>
+					</tr>
 					<jsp:useBean id="daDAO" class="web.member.model.DefAddressJDBCDAO" />
 					<tr>
 						<td>選擇711收件門市:</td>
@@ -250,22 +256,25 @@ th, td {
 									</c:forEach>
 						</select></td>
 					</tr>
-
-					<jsp:useBean id="poDAO"
-						class="web.order.model.PaymentOptionsDAOImpl" />
 					<tr>
-						<td>選擇付款方式:</td>
-						<td><select size="1" name="payID">
-								<c:forEach var="poVO" items="${poDAO.getAllPaymentOptions()}">
-									<option value="${poVO.payID}">${poVO.payName}
-								</c:forEach>
-						</select></td>
-
-					</tr>
-					<tr>
-						<td>選擇折扣碼</td>
-						<td><select size="1" name="couponName">
-
+						<td>選擇折扣碼:</td>
+						<td><select size="1" name="Coupon_name">
+								<%
+									for (int i = 0; i < list.size(); i++) {
+										MemcouponVO mcVO = list.get(i);
+										if (mcVO.getMember_id() == 1) {
+											// 								out.println(mcVO.getCoupon_id());
+											PromolistDAO pldao = new PromolistDAO();
+											PromolistVO plVO = pldao.findByPrimaryKey(mcVO.getCoupon_id());
+											// 								String name = plVO.getCoupon_name();
+											// 								out.print(name);
+								%>
+								<option value="<%=mcVO.getCoupon_id()%>"><%=plVO.getCoupon_name()%><br>
+									<%
+										}
+										}
+									%>
+								
 						</select></td>
 					</tr>
 					<tr>
