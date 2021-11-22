@@ -17,11 +17,11 @@ public class PromolistDAO implements Promolist_impl{
 		// promo_list
 		// coupon_id, promo_id, category_id, coupon_name, discount, amount, used, start_date, end_date
 		private static final String INSERT_STMT = 
-			"INSERT INTO promo_list (coupon_id, promo_id, category_id, coupon_name, discount, amount, used, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+			"INSERT INTO promo_list (promo_id, category_id, coupon_name, discount, amount, used, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		private static final String GET_ALL_STMT = 
-			"SELECT coupon_id, promo_id, category_id, coupon_name, discount, amount, used, start_date, end_date FROM promo order by coupon_id";
+			"SELECT coupon_id, promo_id, category_id, coupon_name, discount, amount, used, start_date, end_date FROM promo_list order by coupon_id";
 		private static final String GET_ONE_STMT = 
-			"SELECT coupon_id, promo_id, category_id, coupon_name, discount, amount, used, start_date, end_date FROM promo where coupon_id = ?";
+			"SELECT coupon_id, promo_id, category_id, coupon_name, discount, amount, used, start_date, end_date FROM promo_list where coupon_id = ?";
 		private static final String DELETE = 
 			"DELETE FROM promo_list where coupon_id = ?";
 		private static final String UPDATE = 
