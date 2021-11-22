@@ -39,22 +39,22 @@ public class OrderMasterServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		if ("getOne_For_Display".equals(action)) { // ¨Ó¦Ûselect_page.jspªº½Ğ¨D
+		if ("getOne_For_Display".equals(action)) { // ä¾†è‡ªselect_page.jspçš„è«‹æ±‚
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
-				/*************************** 1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z **********************/
+				/*************************** 1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç† **********************/
 				String str = req.getParameter("ordID");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J­û¤u½s¸¹");
+					errorMsgs.add("ï¿½Ğ¿ï¿½Jï¿½ï¿½ï¿½uï¿½sï¿½ï¿½");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
 					failureView.forward(req, res);
-					return;// µ{¦¡¤¤Â_
+					return;// ç¨‹å¼ä¸­æ–·
 				}
 
 				Integer ordID = null;
@@ -62,15 +62,15 @@ public class OrderMasterServlet extends HttpServlet {
 				try {
 					ordID = new Integer(str);
 				} catch (Exception e) {
-					errorMsgs.add("®æ¦¡¤£¥¿½T");
+					errorMsgs.add("æ ¼å¼ä¸æ­£ç¢º");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
 					failureView.forward(req, res);
-					return;// µ{¦¡¤¤Â_
+					return;// ç¨‹å¼ä¸­æ–·
 				}
-				/*************************** 2.¶}©l¬d¸ß¸ê®Æ *****************************************/
+				/*************************** 2.é–‹å§‹æŸ¥è©¢è³‡æ–™ ****************************/
 //				OrderMasterService omSVC = new OrderMasterService();
 //				OrderMasterVO omVO = omSVC.getOneOrderMaster(ordID);
 
@@ -78,29 +78,28 @@ public class OrderMasterServlet extends HttpServlet {
 				OrderMasterVO omVO = omdao.findOrderMasterByPK(ordID);
 
 				if (omVO == null) {
-					errorMsgs.add("¬dµL¸ê®Æ");
+					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
 					failureView.forward(req, res);
-					return;// µ{¦¡¤¤Â_
+					return;// ç¨‹å¼ä¸­æ–·
 				}
 
-				/*************************** 3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view) *************/
-				req.setAttribute("OrderMasterVO", omVO); // ¸ê®Æ®w¨ú¥XªºempVOª«¥ó,¦s¤Jreq
-				String url = "/orderMaster/listOneOrderMaster.jsp";
+				/*************************** 3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view) *************/				req.setAttribute("OrderMasterVO", omVO); // ï¿½ï¿½Æ®wï¿½ï¿½ï¿½Xï¿½ï¿½empVOï¿½ï¿½ï¿½ï¿½,ï¿½sï¿½Jreq
+				String url = "/orderMaster/listOneOrderMaster.jsp"; // è³‡æ–™åº«å–å‡ºçš„empVOç‰©ä»¶,å­˜å…¥req
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
-				/*************************** ¨ä¥L¥i¯àªº¿ù»~³B²z *************************************/
+				/*************************** å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç† *************************************/
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ï¿½Lï¿½kï¿½ï¿½ï¿½oï¿½ï¿½ï¿½:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
 
-		if ("getOne_For_Update".equals(action)) { // ¨Ó¦ÛlistAllOrderMaster.jspªº½Ğ¨D
+		if ("getOne_For_Update".equals(action)) { // ä¾†è‡ªlistAllOrderMaster.jspçš„è«‹æ±‚
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -108,50 +107,50 @@ public class OrderMasterServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
-				/*************************** 1.±µ¦¬½Ğ¨D°Ñ¼Æ ****************************************/
+				/*************************** 1.æ¥æ”¶è«‹æ±‚åƒæ•¸ *****************************/
 				Integer ordID = new Integer(req.getParameter("ordID"));
 
-				/*************************** 2.¶}©l¬d¸ß¸ê®Æ ****************************************/
+				/*************************** 2.é–‹å§‹æŸ¥è©¢è³‡æ–™ *****************************/
 				OrderMasterService omSVC = new OrderMasterService();
 				OrderMasterVO omVO = omSVC.getOneOrderMaster(ordID);
 
-				/*************************** 3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view) ************/
-				req.setAttribute("OrderMasterVO", omVO); // ¸ê®Æ®w¨ú¥XªºomVOª«¥ó,¦s¤Jreq
+				/***************** 3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view) ***********/
+				req.setAttribute("OrderMasterVO", omVO); // è³‡æ–™åº«å–å‡ºçš„omVOç‰©ä»¶,å­˜å…¥req
 				String url = "/orderMaster/updateOrderMasterInput.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// ¦¨¥\Âà¥æ update_emp_input.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url);//æˆåŠŸè½‰äº¤
 				successView.forward(req, res);
 
-				/*************************** ¨ä¥L¥i¯àªº¿ù»~³B²z **********************************/
+				/*************************** å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç† **************************/
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o­n­×§ïªº¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è¦ä¿®æ”¹çš„è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/updateOrderMasterInput.jsp");
 				failureView.forward(req, res);
 			}
 		}
 
-		if ("update".equals(action)) { // ¨Ó¦ÛupdateOrderMasterInput.jspªº½Ğ¨D
+		if ("update".equals(action)) { // ä¾†è‡ªupdateOrderMasterInput.jspçš„è«‹æ±‚
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
-				/*************************** 1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z **********************/
+				/*************************** 1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç† **********************/
 				Integer ordID = new Integer(req.getParameter("ordID").trim());
 
 				Integer shipStatus = new Integer(req.getParameter("shipStatus").trim());
 
 				if (shipStatus == 0) {
-					req.setAttribute("shipStatus", "«İ¥X³f");
+					req.setAttribute("shipStatus", "å¾…å‡ºè²¨");
 				} else {
-					req.setAttribute("shipStatus", "¤w¥X³f");
+					req.setAttribute("shipStatus", "å·²å‡ºè²¨");
 				}
 
 				Integer ordStatus = new Integer(req.getParameter("payStatus").trim());
 				Integer payStatus = new Integer(req.getParameter("ordStatus").trim());
 				String shipCode = req.getParameter("shipCode").trim();
 				if (shipCode == null || shipCode.trim().length() == 0) {
-					errorMsgs.add("¥X³f¥N½X½Ğ¤ÅªÅ¥Õ");
+					errorMsgs.add("å‡ºè²¨ä»£ç¢¼è«‹å‹¿ç©ºç™½");
 				}
 
 				String returnCode = req.getParameter("returnCode").trim();
@@ -205,44 +204,41 @@ public class OrderMasterServlet extends HttpServlet {
 				System.out.println(omVO);
 
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("OrderMasterVO", omVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºomVOª«¥ó,¤]¦s¤Jreq
+					req.setAttribute("OrderMasterVO", omVO); //å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„omVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 
-					System.out.println("¿ù¤F¶Ü?????????????");
+					System.out.println("éŒ¯äº†å—?????????????");
 
 					RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/updateOrderMasterInput.jsp");
 					failureView.forward(req, res);
-					return; // µ{¦¡¤¤Â_
+					return; // ç¨‹å¼ä¸­æ–·
 				}
-				/*************************** 2.¶}©l­×§ï¸ê®Æ *****************************************/
-
+				/*************************** 2.é–‹å§‹ä¿®æ”¹è³‡æ–™ ****************************/
 				OrderMasterDAOImpl omdao = new OrderMasterDAOImpl();
 				omdao.updateOrderMaster(omVO);
 
-				/***************************
-				 * NEW­×§ï«áªºVO
-				 *****************************************/
+				/**************************** NEWä¿®æ”¹å¾Œçš„VO ****************************/
 				OrderMasterVO omVO1 = omdao.findOrderMasterByPK(ordID);
 
-				/*************************** 3.­×§ï§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view) *************/
-				req.setAttribute("OrderMasterVO", omVO1); // ¸ê®Æ®wupdate¦¨¥\«á,¥¿½TªºªºordermasterVOª«¥ó,¦s¤Jreq
+				/******************** 3.ä¿®æ”¹å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view) *************/
+				req.setAttribute("OrderMasterVO", omVO1); // è³‡æ–™åº«updateæˆåŠŸå¾Œ,æ­£ç¢ºçš„çš„ordermasterVOç‰©ä»¶,å­˜å…¥req
 				String url = "/orderMaster/listOneOrderMaster.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ­×§ï¦¨¥\«á,Âà¥ælistOneOrderMaster.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); //  ä¿®æ”¹æˆåŠŸå¾Œ,è½‰äº¤listOneOrderMaster.jsp
 				successView.forward(req, res);
-				System.out.println("§¹¦¨");
+				System.out.println("å®Œæˆ");
 				System.out.println(omVO);
 				System.out.println(omVO1);
 				return;
 
-				/*************************** ¨ä¥L¥i¯àªº¿ù»~³B²z *************************************/
+				/*************************** å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç† ***************************/
 			} catch (Exception e) {
-				System.out.println("¥¢±Ñ");
-				errorMsgs.add("­×§ï¸ê®Æ¥¢±Ñ:" + e.getMessage());
+				System.out.println("å¤±æ•—");
+				errorMsgs.add("ä¿®æ”¹è³‡æ–™å¤±æ•—:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/updateOrderMasterInput.jsp");
 				failureView.forward(req, res);
 			}
 		}
 
-		if ("submit_order".equals(action)) { // ¨Ó¦ÛaddOrderMaster.jspªº½Ğ¨D
+		if ("submit_order".equals(action)) { // ä¾†è‡ªaddOrderMaster.jspçš„è«‹æ±‚
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -269,7 +265,7 @@ public class OrderMasterServlet extends HttpServlet {
 				String recipient = req.getParameter("recipient");
 				
 				
-				/*************¦s¤JVO**************/
+				/*************å­˜å…¥VO**************/
 				ProdVO prodVO = new ProdVO();
 				OrderMasterVO omVO = new OrderMasterVO();
 				MemberVO memVO = new MemberVO();

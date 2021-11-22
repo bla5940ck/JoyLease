@@ -26,8 +26,7 @@ public class OrderMasterDAOImpl implements OrderMasterDAO_interface {
 			+ "RENT_COMT = ?, LEASE_COMT = ?, RENT_COMTDATE = ?, LEASE_COMTDATE = ? WHERE (ORD_ID = ?)";
 	private static final String FIND_BY_PK = "SELECT * FROM ORDER_MASTER WHERE ORD_ID = ?";
 	private static final String GET_ALL = "SELECT * FROM ORDER_MASTER";
-	private static final String GET_ALL_OML = "SELECT OM.ORD_ID, OM.ORD_STATUS, OM.EST_START , OM.EST_END, OL.PROD_ID FROM ORDER_MASTER OM "
-			+ "JOIN ORDER_LIST OL ON OM.ORD_ID = OL.LIST_ID";
+	
 
 	static {
 		try {

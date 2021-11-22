@@ -1,10 +1,11 @@
-<%@page import="web.product.model.BookingDAO"%>
-<%@page import="web.product.model.BookingVO"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="web.order.model.*"%>
+
+<%@page import="web.product.model.BookingDAO"%>
+<%@page import="web.product.model.BookingVO"%>
 
 <%
 	OrderMasterService ordserMasterSvc = new OrderMasterService();
@@ -14,7 +15,7 @@
 
 <html>
 <head>
-<title>�Ҧ��q���� - listAllOrderMaster.jsp</title>
+<title>所有訂單資料 - listAllOrderMaster.jsp</title>
 <style>
 * {
 	box-sizing: border-box;
@@ -69,7 +70,7 @@ div.main_content {
 	}
 }
 
-/*-------------------aside�ϰ�------------------- */
+/*-------------------aside區域------------------- */
 aside.aside {
 	background-color: #ddd;
 	width: 200px;
@@ -80,7 +81,7 @@ aside.aside {
 	border: 1px solid #999;
 }
 
-/*--------------------main�ϰ�-------------------- */
+/*--------------------main區域-------------------- */
 main.main {
 	background-color: #ddd;
 	width: calc(100% - 200px - 10px);
@@ -123,7 +124,7 @@ footer.footer {
 	}
 }
 
-/*--------------------table�ϰ�-------------------- */
+/*--------------------table區域-------------------- */
 table {
 	width: 100%;
 	background-color: white;
@@ -143,14 +144,14 @@ th, td {
 
 </head>
 <body bgcolor='white'>
-	<header class="header"> header�ϰ� </header>
+	<header class="header"> header區域 </header>
 	<div class="main_content">
 		<aside class="aside">
 			<nav class="nav">
-				<h1>�X���̱M��</h1>
+				<h1>出租者專區</h1>
 				<ul class="nav_list">
-					<li><a href="listAllOrderMaster.jsp">�����q��</a></li>
-					<li><a href="select_page.jsp">�q��d��</a></li>
+					<li><a href="listAllOrderMaster.jsp">全部訂單</a></li>
+					<li><a href="select_page.jsp">訂單查詢</a></li>
 				</ul>
 			</nav>
 		</aside>
@@ -159,49 +160,49 @@ th, td {
 				<jsp:useBean id="OrdserMasterSvc" scope="page"
 					class="web.order.model.OrderMasterService" />
 					<FORM METHOD="post" ACTION="/JoyLease/OrderMasterServlet">
-						<b>��ܭq��s��:</b> <select size="1" name="ordID">
+						<b>選擇訂單編號:</b> <select size="1" name="ordID">
 							<c:forEach var="OrderMasterVO" items="${OrdserMasterSvc.all}">
 								<option value="${OrderMasterVO.ordID}">${OrderMasterVO.ordID}
 							</c:forEach>
 						</select> <input type="hidden" name="action" value="getOne_For_Display">
-						<input type="submit" value="�e�X">
+						<input type="submit" value="送出">
 					</FORM>
 				
 					<FORM METHOD="post" ACTION="/JoyLease/OrderMasterServlet">
-						<b>��J�q��s�� (�p1):</b> <input type="text" name="ordID"> <input
+						<b>輸入訂單編號 (如1):</b> <input type="text" name="ordID"> <input
 							type="hidden" name="action" value="getOne_For_Display"> <input
-							type="submit" value="�e�X">
+							type="submit" value="送出">
 					</FORM>
 			</div>
 			<table id="table-1">
 				<tr>
-					<th>�q��s��</th>
-					<th>�ӯ��̽s��</th>
-					<th>�X���̽s��</th>
-					<th>����覡�s�X</th>
-					<th>�����s��</th>
-					<th>�B�e���A</th>
-					<th>�I�ڪ��A</th>
-					<th>�q�檬�A</th>
-					<th>�q����</th>
-					<th>�X�f�N�X</th>
-					<th>�k�٥N�X</th>
-					<th>�W�ӥN�X</th>
-					<th>�w�p���ɰ_��</th>
-					<th>�w�p���ɰW��</th>
-					<th>��ڥX�f���</th>
-					<th>��ڨ�f���</th>
-					<th>����k�٤��</th>
-					<th>�ӯ��Ѽ�</th>
-					<th>�ӯ��̵���</th>
-					<th>�X���̵���</th>
-					<th>�ӯ��̵���</th>
-					<th>�X���̵���</th>
-					<th>�ӯ��̵��פ��</th>
-					<th>�X���̵��פ��</th>
-					<th>�ӫ~�p�p</th>
-					<th>�B�O</th>
-					<th>�q����B</th>
+					<th>訂單編號</th>
+					<th>承租者編號</th>
+					<th>出租者編號</th>
+					<th>交易方式編碼</th>
+					<th>折價券編號</th>
+					<th>運送狀態</th>
+					<th>付款狀態</th>
+					<th>訂單狀態</th>
+					<th>訂單日期</th>
+					<th>出貨代碼</th>
+					<th>歸還代碼</th>
+					<th>超商代碼</th>
+					<th>預計租借起日</th>
+					<th>預計租借訖日</th>
+					<th>實際出貨日期</th>
+					<th>實際到貨日期</th>
+					<th>實際歸還日期</th>
+					<th>承租天數</th>
+					<th>承租者評分</th>
+					<th>出租者評分</th>
+					<th>承租者評論</th>
+					<th>出租者評論</th>
+					<th>承租者評論日期</th>
+					<th>出租者評論日期</th>
+					<th>商品小計</th>
+					<th>運費</th>
+					<th>訂單金額</th>
 				</tr>
 				<%@ include file="page1.file"%>
 				<c:forEach var="omVO" items="${list}" begin="<%=pageIndex%>"
@@ -244,7 +245,7 @@ th, td {
 							<FORM METHOD="post"
 								ACTION="<%=request.getContextPath()%>/OrderMasterServlet"
 								style="margin-bottom: 0px;">
-								<input type="submit" value="�ק�"> <input type="hidden"
+								<input type="submit" value="修改"> <input type="hidden"
 									name="ordID" value="${omVO.ordID}"> <input
 									type="hidden" name="action" value="getOne_For_Update">
 							</FORM>
@@ -255,6 +256,6 @@ th, td {
 			<%@ include file="page2.file"%>
 		</main>
 	</div>
-	<footer class="footer"> footer�ϰ� </footer>
+	<footer class="footer"> footer區域 </footer>
 </body>
 </html>

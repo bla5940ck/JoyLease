@@ -32,7 +32,7 @@ public class ShelfServlet extends HttpServlet {
 		
 		
 		
-		System.out.println("更新成功");
+		System.out.println();
 	}
 
 }

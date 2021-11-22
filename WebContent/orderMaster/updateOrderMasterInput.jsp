@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="web.order.model.*"%>
 
@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>­q³æ¸ê®Æ§ó·s:</title>
+<title>è¨‚å–®è³‡æ–™æ›´æ–°:</title>
 
 <style>
 * {
@@ -65,7 +65,7 @@ div.main_content {
 	}
 }
 
-/*-------------------aside°Ï°ì------------------- */
+/*-------------------asideå€åŸŸ------------------- */
 aside.aside {
 	background-color: #ddd;
 	width: 200px;
@@ -76,7 +76,7 @@ aside.aside {
 	border: 1px solid #999;
 }
 
-/*--------------------main°Ï°ì-------------------- */
+/*--------------------mainå€åŸŸ-------------------- */
 main.main {
 	background-color: #ddd;
 	width: calc(100% - 200px - 10px);
@@ -143,75 +143,75 @@ th, td {
 </head>
 
 <body bgcolor='white'>
-	<%-- ¿ù»~ªí¦C --%>
+	<%-- éŒ¯èª¤è¡¨åˆ— --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">½Ð­×¥¿¥H¤U¿ù»~:</font>
+		<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
 			</c:forEach>
 		</ul>
 	</c:if>
-	<header class="header"> header°Ï°ì </header>
+	<header class="header"> headerå€åŸŸ </header>
 	<FORM METHOD="post" ACTION="/JoyLease/OrderMasterServlet" name="form1">
 
 		<div class="main_content">
 			<aside class="aside">
 				<nav class="nav">
-					<h1>¥X¯²ªÌ±M°Ï</h1>
+					<h1>å‡ºç§Ÿè€…å°ˆå€</h1>
 					<ul class="nav_list">
-						<li><a href="orderMaster/listAllOrderMaster.jsp">¥þ³¡­q³æ</a></li>
-						<li><a href="orderMaster/select_page.jsp">­q³æ¬d¸ß</a></li>
+						<li><a href="orderMaster/listAllOrderMaster.jsp">å…¨éƒ¨è¨‚å–®</a></li>
+						<li><a href="orderMaster/select_page.jsp">è¨‚å–®æŸ¥è©¢</a></li>
 					</ul>
 				</nav>
 			</aside>
 			<main class="main">
 				<div>
-					<h3>§ó·s­q³æ</h3>
+					<h3>æ›´æ–°è¨‚å–®</h3>
 					<h3>
-						­q³æ½s¸¹ :<%=omVO.getOrdID()%></h3>
+						è¨‚å–®ç·¨è™Ÿ :<%=omVO.getOrdID()%></h3>
 				</div>
 				<table id="table-1">
 					<tr>
-						<th>¹B°eª¬ºA :</th>
+						<th>é‹é€ç‹€æ…‹ :</th>
 						<td><p id="shipS"><%=omVO.getShipStatus()%></p></td>
 						<td><select name="shipStatus" size="1" id="s">
-								<option value="0">«Ý¥X³f</option>
-								<option value="1">¤w¥X³f</option>
-								<option value="2">«Ý¨ú³f</option>
-								<option value="3">¨ú³f§¹¦¨</option>
-								<option value="9">°Ó«~¿ò¥¢</option>
+								<option value="0">å¾…å‡ºè²¨</option>
+								<option value="1">å·²å‡ºè²¨</option>
+								<option value="2">å¾…å–è²¨</option>
+								<option value="3">å–è²¨å®Œæˆ</option>
+								<option value="9">å•†å“éºå¤±</option>
 						</select></td>
 					</tr>
 					<tr>
-						<th>¥I´Úª¬ºA :</th>
+						<th>ä»˜æ¬¾ç‹€æ…‹ :</th>
 						<td><p id="payS"><%=omVO.getPayStatus()%></p></td>
 						<td><select name="payStatus" size="1">
-								<option value="0">«Ý¥I´Ú</option>
-								<option value="1">¤w¥I´Ú</option>
+								<option value="0">å¾…ä»˜æ¬¾</option>
+								<option value="1">å·²ä»˜æ¬¾</option>
 						</select></td>
 					</tr>
 					<tr>
-						<th>­q³æª¬ºA :</th>
+						<th>è¨‚å–®ç‹€æ…‹ :</th>
 						<td><p id="ordS"><%=omVO.getOrdStatus()%></p></td>
 						<td><select name="ordStatus" size="1">
-								<option value="0">¤w¦¨¥ß</option>
-								<option value="1">«ÝÂkÁÙ</option>
-								<option value="2">¤w§¹¦¨</option>
-								<option value="3">¤w¨ú®ø</option>
+								<option value="0">å·²æˆç«‹</option>
+								<option value="1">å¾…æ­¸é‚„</option>
+								<option value="2">å·²å®Œæˆ</option>
+								<option value="3">å·²å–æ¶ˆ</option>
 						</select></td>
 					</tr>
 				</table>
 				<table>
 					<tr>
-						<th>¥X³f¥N½X</th>
+						<th>å‡ºè²¨ä»£ç¢¼</th>
 						<td><input type="TEXT" name="shipCode" size="20"
 							value="${OrderMasterVO.shipCode}"></td>
 
 					</tr>
 
 					<tr>
-						<th>ÂkÁÙ¥N½X</th>
+						<th>æ­¸é‚„ä»£ç¢¼</th>
 						<td><input type="TEXT" name="returnCode" size="20"
 							value="${OrderMasterVO.returnCode}" /></td>
 					</tr>
@@ -219,24 +219,24 @@ th, td {
 				</table>
 				<table>
 					<tr>
-						<th>¥X³f¤é´Á</th>
+						<th>å‡ºè²¨æ—¥æœŸ</th>
 						<td><input name="shipDate" type="TEXT" value="<%=omVO.getShipDate()%>"></td>
 					</tr>
 					<tr>
-						<th>¹ê»Ú¨ì³f¤é´Á</th>
+						<th>å¯¦éš›åˆ°è²¨æ—¥æœŸ</th>
 						<td><input type="TEXT" name="arrivalDate" value="<%=omVO.getArrivalDate()%>"></td>
 					</tr>
 					<tr>
-						<th>¹ê»ÚÂkÁÙ¤é´Á</th>
+						<th>å¯¦éš›æ­¸é‚„æ—¥æœŸ</th>
 						<td><input type="TEXT" name="returnDate" value="<%=omVO.getReturnDate()%>"></td>
 					</tr>
 				</table>
 				<table>
 					<tr>
-						<th>©Ó¯²¤èµû»ù</th>
+						<th>æ‰¿ç§Ÿæ–¹è©•åƒ¹</th>
 						<td><p id="rr"><%=omVO.getRentRank()%></p></td>
 						<td><select name="rentRank" size="1">
-								<option value="${OrderMasterVO.rentRank}">µû»ù</option>
+								<option value="${OrderMasterVO.rentRank}">è©•åƒ¹</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -245,10 +245,10 @@ th, td {
 						</select></td>
 					</tr>
 					<tr>
-						<th>¥X¯²¤èµû»ù</th>
+						<th>å‡ºç§Ÿæ–¹è©•åƒ¹</th>
 						<td><p id="rr"><%=omVO.getLeaseRank()%></p></td>
 						<td><select name="leaseRank" size="1">
-								<option value="${OrderMasterVO.leaseRank}">µû»ù</option>
+								<option value="${OrderMasterVO.leaseRank}">è©•åƒ¹</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -257,30 +257,30 @@ th, td {
 						</select></td>
 					</tr>
 					<tr>
-						<th>©Ó¯²¤èµû½×</th>
+						<th>æ‰¿ç§Ÿæ–¹è©•è«–</th>
 						<td><p id="rc"><%=omVO.getRentComt()%></p></td>
 						<td><select name="rentComt">
-								<option value="${OrderMasterVO.rentComt}">½Ð¿ï¾Ü</option>
-								<option value="¥X³f§Ö !">¥X³f§Ö !</option>
-								<option value="»ù®æ¦X²z !">»ù®æ¦X²z !</option>
-								<option value="·¾³q¨}¦n !">·¾³q¨}¦n !</option>
-								<option value="ºA«×¤£¨Î !">ºA«×¤£¨Î !</option>
-								<option value="¥X³f³t«×ºC !">¥X³f³t«×ºC !</option>
-								<option value="»P·Ó¤ù¤£²Å !">»P·Ó¤ù¤£²Å !</option>
+								<option value="${OrderMasterVO.rentComt}">è«‹é¸æ“‡</option>
+								<option value="å‡ºè²¨å¿« !">å‡ºè²¨å¿« !</option>
+								<option value="åƒ¹æ ¼åˆç† !">åƒ¹æ ¼åˆç† !</option>
+								<option value="æºé€šè‰¯å¥½ !">æºé€šè‰¯å¥½ !</option>
+								<option value="æ…‹åº¦ä¸ä½³ !">æ…‹åº¦ä¸ä½³ !</option>
+								<option value="å‡ºè²¨é€Ÿåº¦æ…¢ !">å‡ºè²¨é€Ÿåº¦æ…¢ !</option>
+								<option value="èˆ‡ç…§ç‰‡ä¸ç¬¦ !">èˆ‡ç…§ç‰‡ä¸ç¬¦ !</option>
 								
 						</select></td>
 					</tr>
 					<tr>
-						<th>¥X¯²¤èµû½×</th>
+						<th>å‡ºç§Ÿæ–¹è©•è«–</th>
 						<td><p id="lc"><%=omVO.getLeaseComt()%></p></td>
 						<td><select name="leaseComt">
-								<option value="${OrderMasterVO.leaseComt}">½Ð¿ï¾Ü</option>
-								<option value="¥X³f§Ö !">ÂkÁÙ§Ö³t !</option>
-								<option value="»ù®æ¦X²z !">´r§Öªº¥æ©ö !</option>
-								<option value="·¾³q¨}¦n !">·¾³q¨}¦n !</option>
-								<option value="ºA«×¤£¨Î !">ºA«×¤£¨Î !</option>
-								<option value="¥X³f³t«×ºC !">ÁÙ³f³t«×ºC !</option>
-								<option value="¤£·R±¤ª««~ !">¤£·R±¤ª««~ !</option>
+								<option value="${OrderMasterVO.leaseComt}">è«‹é¸æ“‡</option>
+								<option value="å‡ºè²¨å¿« !">æ­¸é‚„å¿«é€Ÿ !</option>
+								<option value="åƒ¹æ ¼åˆç† !">æ„‰å¿«çš„äº¤æ˜“ !</option>
+								<option value="æºé€šè‰¯å¥½ !">æºé€šè‰¯å¥½ !</option>
+								<option value="æ…‹åº¦ä¸ä½³ !">æ…‹åº¦ä¸ä½³ !</option>
+								<option value="å‡ºè²¨é€Ÿåº¦æ…¢ !">é‚„è²¨é€Ÿåº¦æ…¢ !</option>
+								<option value="ä¸æ„›æƒœç‰©å“ !">ä¸æ„›æƒœç‰©å“ !</option>
 						</select></td>
 					</tr>
 				</table>
@@ -288,10 +288,10 @@ th, td {
 				<input type="hidden" name="ordID" value="<%=omVO.getOrdID()%>">
 				<input type="hidden" name="rentComtdate" value="${OrderMasterVO.rentComtdate}">
 				<input type="hidden" name="leaseComtdate" value="${OrderMasterVO.leaseComtdate}">
-				<input type="submit" value="½T»{§ó·s">
+				<input type="submit" value="ç¢ºèªæ›´æ–°">
 			</main>
 		</div>
-		<footer class="footer"> footer°Ï°ì </footer>
+		<footer class="footer"> footerå€åŸŸ </footer>
 	</FORM>
 </body>
 
@@ -301,60 +301,60 @@ th, td {
 
 
 
-	/*=====¹B°eª¬ºA=====*/
+	/*=====é‹é€ç‹€æ…‹=====*/
 
 	var shipS = $("#shipS");
 	if (
 <%=omVO.getShipStatus()%>
 	== 0) {
-		shipS.text("«Ý¥X³f");
+		shipS.text("å¾…å‡ºè²¨");
 	} else if (
 <%=omVO.getShipStatus()%>
 	== 1) {
-		shipS.text("¤w¥X³f");
+		shipS.text("å·²å‡ºè²¨");
 	} else if (
 <%=omVO.getShipStatus()%>
 	== 2) {
-		shipS.text("«Ý¨ú³f");
+		shipS.text("å¾…å–è²¨");
 	} else if (
 <%=omVO.getShipStatus()%>
 	== 3) {
-		shipS.text("¨ú³f§¹¦¨");
+		shipS.text("å–è²¨å®Œæˆ");
 	} else {
-		shipS.text("°Ó«~¿ò¥¢");
+		shipS.text("å•†å“éºå¤±");
 	};
 
-	/*=====¥I´Úª¬ºA=====*/
+	/*=====ä»˜æ¬¾ç‹€æ…‹=====*/
 
 	var payS = $("#payS");
 	if (
 <%=omVO.getPayStatus()%>
 	== 0) {
-		payS.text("«Ý¥I´Ú");
+		payS.text("å¾…ä»˜æ¬¾");
 	} else {
-		payS.text("¤w¥I´Ú");
+		payS.text("å·²ä»˜æ¬¾");
 	};
 
-	/*=====­q³æª¬ºA=====*/
+	/*=====è¨‚å–®ç‹€æ…‹=====*/
 
 	var ordS = $("#ordS");
 	if (
 <%=omVO.getOrdStatus()%>
 	== 0) {
-		ordS.text("¤w¦¨¥ß");
+		ordS.text("å·²æˆç«‹");
 	} else if (
 <%=omVO.getOrdStatus()%>
 	== 1) {
-		ordS.text("«ÝÂkÁÙ");
+		ordS.text("å¾…æ­¸é‚„");
 	} else if (
 <%=omVO.getOrdStatus()%>
 	== 2) {
-		ordS.text("¤w§¹¦¨");
+		ordS.text("å·²å®Œæˆ");
 	} else {
-		ordS.text("¤w¨ú®ø");
+		ordS.text("å·²å–æ¶ˆ");
 	};
 	
-	/*=====©Ó¯²¤èµû¯Å=====*/
+	/*=====æ‰¿ç§Ÿæ–¹è©•ç´š=====*/
 	var rr = $("#rr");
 	if(<%=omVO.getRentRank()%> == 1){
 		rr.text("1");
@@ -367,7 +367,7 @@ th, td {
 	}else{
 		rr.text("5");
 	};
-	/*=====¥X¯²¤èµû¯Å=====*/
+	/*=====å‡ºç§Ÿæ–¹è©•ç´š=====*/
 	var lr = $("#rr");
 	if(<%=omVO.getLeaseRank()%> == 1){
 		lr.text("1");
@@ -381,7 +381,7 @@ th, td {
 		lr.text("5");
 	};
 	
-	/*=====©Ó¯²¤èµû½×=====*/
+	/*=====æ‰¿ç§Ÿæ–¹è©•è«–=====*/
 
 	
 </script>

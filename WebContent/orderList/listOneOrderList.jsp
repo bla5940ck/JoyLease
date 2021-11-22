@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="BIG5">
-<title>³æµ§­q³æ©ú²Ó­¶­±</title>
+<title>å–®ç­†è¨‚å–®æ˜ç´°é é¢</title>
 <style>
 * {
 	box-sizing: border-box;
@@ -65,7 +65,7 @@ div.main_content {
 	}
 }
 
-/*-------------------aside°Ï°ì------------------- */
+/*-------------------asideå€åŸŸ------------------- */
 aside.aside {
 	background-color: #ddd;
 	width: 200px;
@@ -76,7 +76,7 @@ aside.aside {
 	border: 1px solid #999;
 }
 
-/*--------------------main°Ï°ì-------------------- */
+/*--------------------mainå€åŸŸ-------------------- */
 main.main {
 	background-color: #ddd;
 	width: calc(100% - 200px - 10px);
@@ -137,30 +137,30 @@ th, td {
 </style>
 </head>
 <body bgcolor="white">
-	<header class="header"> header°Ï°ì </header>
+	<header class="header"> headerå€åŸŸ </header>
 	<FORM METHOD="post" ACTION="/JoyLease/OrderListServlet" name="form1">
 		<div class="main_content">
 			<aside class="aside">
 				<nav class="nav">
 					<ul class="nav_list">
-						<h1>¥X¯²ªÌ±M°Ï</h1>
-						<li><a href="/JoyLease/orderList/listAllOrderList.jsp">¥ş³¡­q³æ©ú²Ó</a></li>
+						<h1>å‡ºç§Ÿè€…å°ˆå€</h1>
+						<li><a href="/JoyLease/orderList/listAllOrderList.jsp">å…¨éƒ¨è¨‚å–®æ˜ç´°</a></li>
 					</ul>
 				</nav>
 			</aside>
 
 			<main class="main">
-				<h3>­q³æ©ú²Ó</h3>
+				<h3>è¨‚å–®æ˜ç´°</h3>
 
 				<table id="table-1">
 					<tr>
-						<th>­q³æ©ú²Ó½s¸¹</th>
-						<th>°Ó«~½s¸¹</th>
-						<th>­q³æ½s¸¹</th>
-						<th>­q³æª÷ÃB</th>
-						<th>¹w­p¶}©l¤é´Á</th>
-						<th>¹w­pµ²§ô¤é´Á</th>
-						<th>ª¬ºA</th>
+						<th>è¨‚å–®æ˜ç´°ç·¨è™Ÿ</th>
+						<th>å•†å“ç·¨è™Ÿ</th>
+						<th>è¨‚å–®ç·¨è™Ÿ</th>
+						<th>è¨‚å–®é‡‘é¡</th>
+						<th>é è¨ˆé–‹å§‹æ—¥æœŸ</th>
+						<th>é è¨ˆçµæŸæ—¥æœŸ</th>
+						<th>ç‹€æ…‹</th>
 					</tr>
 
 					<tr>
@@ -177,7 +177,7 @@ th, td {
 
 			</main>
 		</div>
-		<footer class="footer"> footer°Ï°ì </footer>
+		<footer class="footer"> footerå€åŸŸ </footer>
 	</FORM>
 </body>
 </html>

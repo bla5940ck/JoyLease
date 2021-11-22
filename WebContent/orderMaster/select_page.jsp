@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
@@ -17,11 +17,11 @@
 
 <p>This is the Home page for JoyLease: Home</p>
 
-<h3>­q³æ¬d¸ß:</h3>
+<h3>è¨‚å–®æŸ¥è©¢:</h3>
 	
-<%-- ¿ù»~ªí¦C --%>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+	<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 	<ul>
 	    <c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
@@ -35,10 +35,10 @@
   
   <li>
     <FORM METHOD="post" ACTION="/JoyLease/OrderMasterServlet" >
-        <b>¿é¤J­q³æ½s¸¹ (¦p1):</b>
+        <b>è¼¸å…¥è¨‚å–®ç·¨è™Ÿ (å¦‚1):</b>
         <input type="text" name="ordID">
         <input type="hidden" name="action" value="getOne_For_Display">
-        <input type="submit" value="°e¥X">
+        <input type="submit" value="é€å‡º">
     </FORM>
   </li>
 
@@ -46,19 +46,19 @@
    
   <li>
      <FORM METHOD="post" ACTION="/JoyLease/OrderMasterServlet" >
-       <b>¿ï¾Ü­q³æ½s¸¹:</b>
+       <b>é¸æ“‡è¨‚å–®ç·¨è™Ÿ:</b>
        <select size="1" name="ordID">
          <c:forEach var="OrderMasterVO" items="${OrdserMasterSVC.all}" > 
           <option value="${OrderMasterVO.ordID}">${OrderMasterVO.ordID}
          </c:forEach>   
        </select>
        <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="°e¥X">
+       <input type="submit" value="é€å‡º">
     </FORM>
   </li>
   
 
-<!-- <h3>­û¤uºŞ²z</h3> -->
+<!-- <h3>å“¡å·¥ç®¡ç†</h3> -->
 
 <!-- <ul> -->
 <!--   <li><a href='addEmp.jsp'>Add</a> a new Emp.</li> -->

@@ -29,7 +29,7 @@ public class OrderListServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		
-		if ("getOne_For_Display".equals(action)) { // ¨Ó¦ÛlistAllOrderList.jsp
+		if ("getOne_For_Display".equals(action)) { // ä¾†è‡ªlistAllOrderList.jsp
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
@@ -37,43 +37,43 @@ public class OrderListServlet extends HttpServlet {
 
 				String str = req.getParameter("listID");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J­q³æ©ú²Ó½s¸¹");
+					errorMsgs.add("è«‹è¼¸å…¥è¨‚å–®æ˜ç´°ç·¨è™Ÿ");
 				}
 
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
 					failureView.forward(req, res);
-					return;// µ{¦¡¤¤Â_
+					return;// ç¨‹å¼ä¸­æ–·
 				}
 
 				Integer listID = null;
 				try {
 					listID = new Integer(str);
 				} catch (Exception e) {
-					errorMsgs.add("®æ¦¡¤£¥¿½T");
+					errorMsgs.add("æ ¼å¼ä¸æ­£ç¢º");
 				}
 
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
 					failureView.forward(req, res);
-					return;// µ{¦¡¤¤Â_
+					return;// ç¨‹å¼ä¸­æ–·
 				}
-				/**************** 2.¶}©l¬d¸ß¸ê®Æ ****************/
+				/**************** 2.é–‹å§‹æŸ¥è©¢è³‡æ–™ ****************/
 
 				OrderListDAOImpl oldao = new OrderListDAOImpl();
 				OrderListVO olVO = oldao.findOrderListByPK(listID);	
 
 				if (olVO == null) {
-					errorMsgs.add("¬dµL¸ê®Æ");
+					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
 					failureView.forward(req, res);
-					return;// µ{¦¡¤¤Â_
+					return;// ç¨‹å¼ä¸­æ–·
 				}
 
-				/************** 3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ *************/
+				/************** 3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤ *************/
 				req.setAttribute("OrderListVO", olVO);
 				System.out.println(req.getAttribute("OrderListVO"));
 				String url = "/orderList/listOneOrderList.jsp";
@@ -81,7 +81,7 @@ public class OrderListServlet extends HttpServlet {
 				successView.forward(req, res);
 
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
 				failureView.forward(req, res);
 			}

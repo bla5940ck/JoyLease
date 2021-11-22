@@ -1,14 +1,14 @@
-<%@page import="web.promo_list.model.PromolistVO"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.List"%>
 <%@page import="web.member_coupon.model.MemcouponVO"%>
 <%@page import="web.member_coupon.model.MemcouponDAO"%>
+<%@page import="web.promo_list.model.PromolistVO"%>
 <%@page import="web.promo_list.model.PromolistDAO"%>
 <%@page import="web.member.model.DefAddressVO"%>
 <%@page import="web.member.model.DefAddressJDBCDAO"%>
-<%@page import="java.util.List"%>
 <%@page import="web.order.model.PaymentOptionsVO"%>
 <%@page import="web.order.model.PaymentOptionsDAOImpl"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="web.order.model.PaymentOptionsService"%>
 <%@ page import="web.product.model.*"%>
 <%
@@ -48,7 +48,7 @@
 
 <html>
 <head>
-<title>µ²±b :</title>
+<title>çµå¸³ :</title>
 
 <style>
 * {
@@ -104,7 +104,7 @@ div.main_content {
 	}
 }
 
-/*-------------------aside°Ï°ì------------------- */
+/*-------------------asideå€åŸŸ------------------- */
 aside.aside {
 	background-color: #ddd;
 	width: 200px;
@@ -115,7 +115,7 @@ aside.aside {
 	border: 1px solid #999;
 }
 
-/*--------------------main°Ï°ì-------------------- */
+/*--------------------mainå€åŸŸ-------------------- */
 main.main {
 	background-color: #ddd;
 	width: calc(100% - 200px - 10px);
@@ -182,9 +182,9 @@ th, td {
 </head>
 
 <body bgcolor='white'>
-	<%-- ¿ù»~ªí¦C --%>
+	<%-- éŒ¯èª¤è¡¨åˆ— --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+		<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
@@ -193,53 +193,53 @@ th, td {
 	</c:if>
 
 
-	<header class="header"> header°Ï°ì </header>
+	<header class="header"> headerå€åŸŸ </header>
 	<FORM METHOD="post" ACTION="/JoyLease/OrderMasterServlet" name="form1">
 		<div class="main_content">
 			<aside class="aside">
 				<nav class="nav">
-					<h1>¼ĞÃD</h1>
+					<h1>æ¨™é¡Œ</h1>
 					<ul class="nav_list">
-						<li><a href="#">³sµ²</a></li>
-						<li><a href="#">³sµ²</a></li>
+						<li><a href="#">é€£çµ</a></li>
+						<li><a href="#">é€£çµ</a></li>
 					</ul>
 				</nav>
 			</aside>
 			<main class="main">
 				<div>
-					<h3>µ²±b­¶­±</h3>
+					<h3>çµå¸³é é¢</h3>
 				</div>
 
 
 				<table id="table-1">
-					<h3>½T»{¥H¤U¸ê°T</h3>
-					<p id="today">¤é´Á</p>
-					<li><a href="#">ªğ¦^ÁÊª«¨®</a></li>
+					<h3>ç¢ºèªä»¥ä¸‹è³‡è¨Š</h3>
+					<p id="today">æ—¥æœŸ</p>
+					<li><a href="#">è¿”å›è³¼ç‰©è»Š</a></li>
 					<tr>
-						<td>°Ó«~¦WºÙ :</td>
+						<td>å•†å“åç¨± :</td>
 						<td><a
 							href="<%=request.getContextPath()%>/product_view/productDetail.jsp?picno=1"><%=prodVO.getProdName()%></a></td>
 					</tr>
 					<tr>
-						<td>¹w©w¯²­É°_¤é:</td>
+						<td>é å®šç§Ÿå€Ÿèµ·æ—¥:</td>
 						<td><p id="estStart"></p></td>
 					</tr>
 					<tr>
-						<td>¹w©w¯²­É°W¤é:</td>
+						<td>é å®šç§Ÿå€Ÿè¨–æ—¥:</td>
 						<td><p id="estEnd"></p></td>
 					</tr>
 					<tr>
-						<td>¦¬¥ó¤H©m¦W:</td>
+						<td>æ”¶ä»¶äººå§“å:</td>
 						<td><input type="text" id="recipient"></td>
 					</tr>
 					<tr>
-						<td>¦¬¥ó¤H¹q¸Ü:</td>
+						<td>æ”¶ä»¶äººé›»è©±:</td>
 						<td><input type="text" id="recptPhone"></td>
 					</tr>
 					<jsp:useBean id="poDAO"
 						class="web.order.model.PaymentOptionsDAOImpl" />
 					<tr>
-						<td>¿ï¾Ü¥I´Ú¤è¦¡:</td>
+						<td>é¸æ“‡ä»˜æ¬¾æ–¹å¼:</td>
 						<td><select size="1" name="payID">
 								<c:forEach var="poVO" items="${poDAO.getAllPaymentOptions()}">
 									<option value="${poVO.payID}">${poVO.payName}
@@ -248,58 +248,72 @@ th, td {
 					</tr>
 					<jsp:useBean id="daDAO" class="web.member.model.DefAddressJDBCDAO" />
 					<tr>
-						<td>¿ï¾Ü711¦¬¥óªù¥«:</td>
+						<td>é¸æ“‡711æ”¶ä»¶é–€å¸‚:</td>
 						<td><select size="1" name="name711">
-								<option value="0">­±¥æ
+								<option value="0">é¢äº¤
 									<c:forEach var="daVO" items="${daDAO.getAll()}">
 										<option value="${daVO.code711}">${daVO.name711}
 									</c:forEach>
 						</select></td>
 					</tr>
 					<tr>
-						<td>¿ï¾Ü§é¦©½X:</td>
-						<td><select size="1" name="Coupon_name">
+						<td>é¸æ“‡æŠ˜æ‰£ç¢¼:</td>
+						<td><select size="1" name="couponName" id="cpn">
 								<%
 									for (int i = 0; i < list.size(); i++) {
 										MemcouponVO mcVO = list.get(i);
 										if (mcVO.getMember_id() == 1) {
-											// 								out.println(mcVO.getCoupon_id());
+											// out.println(mcVO.getCoupon_id());
 											PromolistDAO pldao = new PromolistDAO();
 											PromolistVO plVO = pldao.findByPrimaryKey(mcVO.getCoupon_id());
-											// 								String name = plVO.getCoupon_name();
-											// 								out.print(name);
+											// String name = plVO.getCoupon_name();
+											// out.print(name);
+										
 								%>
-								<option value="<%=mcVO.getCoupon_id()%>"><%=plVO.getCoupon_name()%><br>
-									<%
+								<option id="disc" value="<%=mcVO.getCoupon_id()%>"><%=plVO.getCoupon_name()%><br></option>
+									<% 
 										}
 										}
 									%>
-								
 						</select></td>
 					</tr>
 					<tr>
-						<td>°Ó«~¤p­p:</td>
+						<td>å•†å“å°è¨ˆ:</td>
 						<td><p id="price"></p></td>
 					</tr>
 					<tr>
-						<td>§é¦©:</td>
-						<td><p id="discount"></p></td>
+						<td>æŠ˜æ‰£:</td>
+						<td><p id="discount">
+								
+							</p></td>
 					</tr>
 					<tr>
-						<td>¹B¶O:</td>
+						<td>é‹è²»:</td>
 						<td><p id="shipFee"></p></td>
 					</tr>
 					<tr>
-						<td>­q³æª÷ÃB:</td>
+						<td>è¨‚å–®é‡‘é¡:</td>
 						<td><p id="ordPrice"></p></td>
 					</tr>
 				</table>
 				<input type="hidden" name="action" value="submit_order"> <input
-					type="submit" value="°e¥X­q³æ !">
+					type="submit" value="é€å‡ºè¨‚å–® !">
 			</main>
 		</div>
-		<footer class="footer"> footer°Ï°ì </footer>
+		<footer class="footer"> footerå€åŸŸ </footer>
 	</FORM>
 </head>
 </body>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+$("#cpn").change(function(){
+	alert(($("#cpn")).val());
+	
+	$("discount").text($("#cpn").val());
+});
+
+
+</script>
 </html>
