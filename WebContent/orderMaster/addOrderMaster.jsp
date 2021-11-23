@@ -256,7 +256,7 @@ th, td {
 									<%
 									for (int i = 0; i < list.size(); i++) {
 										MemcouponVO mcVO = list.get(i);
-										if (mcVO.getMember_id() == 1) {
+										if (mcVO.getMember_id() == 3) {
 											// out.println(mcVO.getCoupon_id());
 											PromolistDAO pldao = new PromolistDAO();
 											PromolistVO plVO = pldao.findByPrimaryKey(mcVO.getCoupon_id());
@@ -324,10 +324,10 @@ th, td {
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-	// $("#cpn").change(function(){
-	// 	alert(($("#cpn")).val());
-	// 	$("#discount").text($("#cpn").val());
-	// });
+	$("#cpn").change(function(){
+		alert(($("#cpn")).val());
+		$("#discount").text($("#cpn").val());
+	});
 </script>
 
 </html>
