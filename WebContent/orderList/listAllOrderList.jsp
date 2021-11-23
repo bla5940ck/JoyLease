@@ -3,8 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="web.order.model.*"%>
-<%@page import="web.product.model.BookingVO"%>
-<%@page import="web.product.model.BookingDAO"%>
+<%@page import="web.product.model.*"%>
 
 <%
 	OrderListService olSVC = new OrderListService();

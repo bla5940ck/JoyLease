@@ -48,7 +48,7 @@ public class OrderMasterServlet extends HttpServlet {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String str = req.getParameter("ordID");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("�п�J���u�s��");
+					errorMsgs.add("請輸入訂單編號");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -93,7 +93,7 @@ public class OrderMasterServlet extends HttpServlet {
 				successView.forward(req, res);
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
-				errorMsgs.add("�L�k���o���:" + e.getMessage());
+				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
 				failureView.forward(req, res);
 			}

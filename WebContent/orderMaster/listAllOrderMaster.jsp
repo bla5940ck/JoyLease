@@ -3,9 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="web.order.model.*"%>
+<%@page import="web.product.model.*"%>
 
-<%@page import="web.product.model.BookingDAO"%>
-<%@page import="web.product.model.BookingVO"%>
 
 <%
 	OrderMasterService ordserMasterSvc = new OrderMasterService();
@@ -159,7 +158,7 @@ th, td {
 			<div>
 				<jsp:useBean id="OrdserMasterSvc" scope="page"
 					class="web.order.model.OrderMasterService" />
-					<FORM METHOD="post" ACTION="/JoyLease/OrderMasterServlet">
+					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/OrderMasterServlet">
 						<b>選擇訂單編號:</b> <select size="1" name="ordID">
 							<c:forEach var="OrderMasterVO" items="${OrdserMasterSvc.all}">
 								<option value="${OrderMasterVO.ordID}">${OrderMasterVO.ordID}
@@ -168,7 +167,7 @@ th, td {
 						<input type="submit" value="送出">
 					</FORM>
 				
-					<FORM METHOD="post" ACTION="/JoyLease/OrderMasterServlet">
+					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/OrderMasterServlet">
 						<b>輸入訂單編號 (如1):</b> <input type="text" name="ordID"> <input
 							type="hidden" name="action" value="getOne_For_Display"> <input
 							type="submit" value="送出">

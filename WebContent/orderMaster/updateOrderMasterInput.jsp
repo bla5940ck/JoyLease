@@ -160,8 +160,8 @@ th, td {
 				<nav class="nav">
 					<h1>出租者專區</h1>
 					<ul class="nav_list">
-						<li><a href="orderMaster/listAllOrderMaster.jsp">全部訂單</a></li>
-						<li><a href="orderMaster/select_page.jsp">訂單查詢</a></li>
+						<li><a href="<%=request.getContextPath()%>/listAllOrderMaster.jsp">全部訂單</a></li>
+						<li><a href="<%=request.getContextPath()%>/select_page.jsp">訂單查詢</a></li>
 					</ul>
 				</nav>
 			</aside>
