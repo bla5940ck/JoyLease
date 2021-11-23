@@ -239,6 +239,10 @@ public class OrderMasterServlet extends HttpServlet {
 		}
 
 		if ("submit_order".equals(action)) { // 來自addOrderMaster.jsp的請求
+			
+			System.out.println("進來了");
+			
+			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -247,36 +251,63 @@ public class OrderMasterServlet extends HttpServlet {
 			try {
 				String prodName = req.getParameter("prodName");
 				
+			System.out.println("商品名稱 : " + prodName);				
+				
 				Date date = new Date();
 				long ord = date.getTime();
 				Timestamp ordDate = new Timestamp(ord);
-				System.out.println(ordDate);
-				
-				String strES = req.getParameter("estStart");
-				java.sql.Date estStart = java.sql.Date.valueOf(strES);
-				
-				String strEE = req.getParameter("estEnd");
-				java.sql.Date estEnd = java.sql.Date.valueOf(strEE);
-				
-				String name = req.getParameter("name");
-				
-				String phoneNum = req.getParameter("phoneNum");
+			
+			System.out.println("訂單日期 : " + ordDate);
+					
+//				String strES = req.getParameter("estStart");
+//				java.sql.Date estStart = java.sql.Date.valueOf(strES);
+//				
+//			System.out.println(estStart);
+//				
+//				String strEE = req.getParameter("estEnd");
+//				java.sql.Date estEnd = java.sql.Date.valueOf(strEE);
+//			
+//			System.out.println(estEnd);		
 				
 				String recipient = req.getParameter("recipient");
+			
+			System.out.println("收件人姓名 : " + recipient);
 				
+				String recptPhone = req.getParameter("recptPhone");
+			
+			System.out.println("收件人電話 : " + recptPhone);
+	
+				Integer payID = new Integer (req.getParameter("payID"));
+				
+			System.out.println("付款方式編碼 : " + payID);
+							
+				String code711 = req.getParameter("code711");
+				
+			System.out.println("超商代碼 : " + code711);
+			
+				String couponID = req.getParameter("couponID");
+				
+			System.out.println("折價券編碼 : " + couponID);
+			
+				Integer shipFee = new Integer(req.getParameter("shipFee"));
+				
+			System.out.println("訂單金額 : " + shipFee);
+			
+				Integer s = new Integer(req.getParameter("s"));
+				System.out.println(s);
 				
 				/*************存入VO**************/
 				ProdVO prodVO = new ProdVO();
 				OrderMasterVO omVO = new OrderMasterVO();
 				MemberVO memVO = new MemberVO();
-				
+				DefAddressVO daVO = new DefAddressVO();
 				
 				prodVO.setProdName(prodName);
 				omVO.setOrdDate(ordDate);
-				omVO.setEstStart(estStart);
-				omVO.setEstEnd(estEnd);
-				memVO.setName(name);
-				memVO.setPhoneNum(phoneNum);
+				daVO.setRecipient(recipient);
+				daVO.setRecptPhone(recptPhone);
+				
+				
 				
 			
 				

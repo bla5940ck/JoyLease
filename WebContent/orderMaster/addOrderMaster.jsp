@@ -1,3 +1,5 @@
+<%@page import="web.member.model.MemberJDBCDAO"%>
+<%@page import="web.member.model.MemberVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.List"%>
@@ -27,12 +29,25 @@
 	// 	ProdVO product = productDao.findProductByPK(Integer.parseInt(request.getParameter("picno")));
 	ProdVO product = productDao.findProductByPK(1);
 	// 	out.print(product.getProdName());
-
+	
+	
+	
 	DefAddressJDBCDAO dadao = new DefAddressJDBCDAO();
 	List<DefAddressVO> list2 = dadao.getAll();
-	for (DefAddressVO da : list2) {
-		// 		out.print(da.getName711());
-	}
+	
+	DefAddressVO daVO = new DefAddressVO();
+	
+	MemberJDBCDAO medao = new MemberJDBCDAO();
+	MemberVO meVO = medao.findByPrimaryKey(1);
+// 	Integer id = meVO.getMemberId();
+	
+// 	out.print(id);
+	
+// 	for (DefAddressVO da : list2) {
+// 		if(da.getMemberId() == id && da.getStatus() == 1){
+// 			out.print(da.getDef711());
+// 		}
+// 	}
 
 	MemcouponDAO mcdao = new MemcouponDAO();
 	List<MemcouponVO> list = mcdao.getAll();
@@ -44,6 +59,7 @@
 	// 		// 		out.println(pl.getCoupon_id());
 
 	// 	}
+	
 %>
 
 <html>
@@ -213,28 +229,27 @@ th, td {
 
 				<table id="table-1">
 					<h3>確認以下資訊</h3>
-					<p id="today">日期</p>
 					<li><a href="#">返回購物車</a></li>
 					<tr>
 						<td>商品名稱 :</td>
-						<td><a
+						<td><a id="prodName"
 							href="<%=request.getContextPath()%>/product_view/productDetail.jsp?picno=1"><%=prodVO.getProdName()%></a></td>
 					</tr>
-					<tr>
-						<td>預定租借起日:</td>
-						<td><p id="estStart"></p></td>
-					</tr>
-					<tr>
-						<td>預定租借訖日:</td>
-						<td><p id="estEnd"></p></td>
-					</tr>
+					<!-- 					<tr> -->
+					<!-- 						<td>預定租借起日:</td> -->
+					<!-- 						<td><p id="estStart"></p></td> -->
+					<!-- 					</tr> -->
+					<!-- 					<tr> -->
+					<!-- 						<td>預定租借訖日:</td> -->
+					<!-- 						<td><p id="estEnd"></p></td> -->
+					<!-- 					</tr> -->
 					<tr>
 						<td>收件人姓名:</td>
-						<td><input type="text" id="recipient"></td>
+						<td><input type="text" name="recipient"></td>
 					</tr>
 					<tr>
 						<td>收件人電話:</td>
-						<td><input type="text" id="recptPhone"></td>
+						<td><input type="text" name="recptPhone"></td>
 					</tr>
 					<jsp:useBean id="poDAO"
 						class="web.order.model.PaymentOptionsDAOImpl" />
@@ -246,20 +261,11 @@ th, td {
 								</c:forEach>
 						</select></td>
 					</tr>
-					<jsp:useBean id="daDAO" class="web.member.model.DefAddressJDBCDAO" />
-					<tr>
-						<td>選擇711收件門市:</td>
-						<td><select size="1" name="name711">
-								<option value="0">面交
-									<c:forEach var="daVO" items="${daDAO.getAll()}">
-										<option value="${daVO.code711}">${daVO.name711}
-									</c:forEach>
-						</select></td>
-					</tr>
 					<tr>
 						<td>選擇折扣碼:</td>
-						<td><select size="1" name="couponName" id="cpn">
-								<%
+						<td><select size="1" name="couponID" id="cpn">
+								<option>使用折價券
+									<%
 									for (int i = 0; i < list.size(); i++) {
 										MemcouponVO mcVO = list.get(i);
 										if (mcVO.getMember_id() == 1) {
@@ -268,52 +274,76 @@ th, td {
 											PromolistVO plVO = pldao.findByPrimaryKey(mcVO.getCoupon_id());
 											// String name = plVO.getCoupon_name();
 											// out.print(name);
-										
 								%>
-								<option id="disc" value="<%=mcVO.getCoupon_id()%>"><%=plVO.getCoupon_name()%><br></option>
-									<% 
-										}
-										}
-									%>
+								
+								<option id="disc" value="<%=mcVO.getCoupon_id()%>">!!<%=plVO.getCoupon_name()%>!!
+									 可折扣 :
+									<%=Math.round(plVO.getDiscount())%>元<br>
+								</option>
+								<%
+									}
+									}
+								%>
 						</select></td>
 					</tr>
+					
+					<tr>
+						<td>預設物流:</td>
+						<td><select size="1" name="code711" id="cpn">
+								<option>我的超商選項
+									<%									
+									Integer id = meVO.getMemberId();
+									for(int i = 0; i < list2.size(); i++){
+										DefAddressVO daVO1 = list2.get(i);
+										if(daVO1.getMemberId() == id){
+								%>			
+								<option id="def711" value="<%=daVO1.getCode711()%>"><%=daVO1.getName711()%><br>
+								</option>
+								<%
+										}
+									}
+								%>
+						</select></td>
+					</tr>
+					
+					
+					
+					
 					<tr>
 						<td>商品小計:</td>
-						<td><p id="price"></p></td>
+						<td><input type="hidden" name="price" value="100">100</td>
 					</tr>
 					<tr>
 						<td>折扣:</td>
-						<td><p id="discount">
-								
-							</p></td>
+						<td><p id="discount"></p></td>
 					</tr>
 					<tr>
 						<td>運費:</td>
-						<td><p id="shipFee"></p></td>
+						<td><input type="hidden" name="shipFee" value="60">60</td>
 					</tr>
 					<tr>
 						<td>訂單金額:</td>
 						<td><p id="ordPrice"></p></td>
 					</tr>
 				</table>
-				<input type="hidden" name="action" value="submit_order"> <input
-					type="submit" value="送出訂單 !">
+				<input type="hidden" name="action" value="submit_order"> 
+				<input
+					type="hidden" name="prodName" value="<%=prodVO.getProdName()%>">
+
+				<input type="submit" value="送出訂單 !">
 			</main>
 		</div>
 		<footer class="footer"> footer區域 </footer>
 	</FORM>
-</head>
+	</head>
 </body>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-
-
-$("#cpn").change(function(){
-	alert(($("#cpn")).val());
-	
-	$("discount").text($("#cpn").val());
-});
-
-
+	// $("#cpn").change(function(){
+	// 	alert(($("#cpn")).val());
+	// 	$("#discount").text($("#cpn").val());
+	// });
 </script>
+
 </html>
