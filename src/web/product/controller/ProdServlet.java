@@ -92,7 +92,7 @@ public class ProdServlet extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		ProdDAO prodDao = new ProdDAO();
 		BookingDAO bkDao = new BookingDAO();
-
+		Gson gson = new Gson();
 ////////////////////////建立商品/////////////////////////////
 	
 		if ("upload".equals(req.getParameter("action"))) {
@@ -185,8 +185,12 @@ public class ProdServlet extends HttpServlet {
 		//////////////////////// 進入商品細圖/////////////////////////////
 
 		if ("detail".equals(req.getParameter("action"))) {
-
-			int prodID = Integer.parseInt(req.getParameter("picNo"));
+			int prodID =0; 
+			if(req.getParameter("picNo")!=null)
+				prodID = Integer.parseInt(req.getParameter("picNo"));
+			else if(req.getParameter("prodID")!=null) {
+				prodID = Integer.parseInt(req.getParameter("prodID"));
+			}
 			ProdVO prod = prodDao.findProductByPK(prodID);
 
 			OutputStream os = res.getOutputStream();
@@ -304,13 +308,16 @@ public class ProdServlet extends HttpServlet {
 
 		}
 		
-			//////////////購物車/////////////////////////////
+			//////////////加入購物車/////////////////////////////
 			if("cart".equals(req.getParameter("action"))) {
 				System.out.println("點到購物車");
 
 				Integer prodID = Integer.valueOf(req.getParameter("prodID"));
 				String estStart = req.getParameter("startDate");
 				String estEnd = req.getParameter("endDate");
+				String prodName = req.getParameter("prodName");
+				Integer rent = Integer.valueOf(req.getParameter("rent"));
+				Integer tatolPrice = Integer.valueOf(req.getParameter("tatolPrice"));
 //				Integer status = 0;
 				java.sql.Date sdate = null;
 				java.sql.Date edate =null;
@@ -328,12 +335,16 @@ public class ProdServlet extends HttpServlet {
 //				bk.setStatus(status);
 				cartVO.setEstStart(sdate);
 				cartVO.setEstEnd(edate);
+				cartVO.setProdName(prodName);
+				cartVO.setRent(rent);
+				cartVO.setTatolPrice(tatolPrice);
+				
 			
 				JedisPool pool = JedisPoolUtil.getJedisPool();
 				Jedis jedis = null;
 				jedis = pool.getResource();
 				
-				Gson gson = new Gson();
+				
 				String jsonString = gson.toJson(cartVO);
 			
 //				jedis.set("prod"+req.getParameter("prodID"),jsonString);
@@ -357,14 +368,36 @@ public class ProdServlet extends HttpServlet {
 								
 			
 				
-				System.out.println();
-				
 				jedis.close(); 
 				
 			
 				
 				
 			}
+			
+			if("delete".equals(req.getParameter("action"))) {
+				System.out.println("點到刪除");
+				Integer memberID = (Integer)req.getSession().getAttribute("id");
+				Integer prodID = Integer.valueOf(req.getParameter("prodID"));
+				
+				JedisPool pool = JedisPoolUtil.getJedisPool();
+				Jedis jedis = null;
+				jedis = pool.getResource();
+				
+				
+				
+				//找到點到的prodID 等於 資料庫裡面的prod 就刪除
+				List<String> cart = jedis.lrange("member"+memberID, 0, jedis.llen("member"+memberID));
+				for(String item : cart) {
+					CartVO cartVO1 = gson.fromJson(item, CartVO.class);
+					if(cartVO1.getProdID()==prodID) {
+						jedis.lrem("member"+memberID, 1, item);
+					}
+				}
+				
+				jedis.close();
+			}
+			
 			
 			
 			/////////////結帳////////////////////
@@ -429,16 +462,7 @@ public class ProdServlet extends HttpServlet {
 
 	}
 	
-	
-	public static java.sql.Date StringFormatDate(String date){
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		java.sql.Date sqlDate=null;
-		try {
-			sqlDate = new java.sql.Date(df.parse(date).getTime());
-		} catch (ParseException e) {
-			
-	
-		}
-		return sqlDate;
-	}
+
+
+
 }

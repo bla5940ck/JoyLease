@@ -72,6 +72,12 @@
 	
 	  /// //加入購物車///////
 	   function selflog_show(id){ 
+		  	
+			var myStartDate = new Date(startDate);
+			var myEndDate = new Date(endDate);
+			var date_dif = (myEndDate - myStartDate) / 86400000;
+		  console.log(date_dif);
+		  
 		 $.ajax({
 		    	url:"<%=path%>/ProdServlet",
 		    	cache : false,
@@ -81,7 +87,10 @@
 		    		action: "cart",
 		    		prodID: id,
 		    		startDate:$("#startDate").val(),
-		    		endDate :$("#endDate").val()
+		    		endDate :$("#endDate").val(),
+		    		rent :<%=product.getProdRent()%>,
+		    		tatolPrice: date_dif * <%=product.getProdRent()%>,
+		    		prodName:"<%=product.getProdName()%>",
 		    		
 		    	},
 		    	error : function(request) {
@@ -108,7 +117,7 @@
 				   
 // 		   };
 		
-	var disableddates = new Array();
+	var disableddates = new Array();  
 <%for (int i = 0; i < list.size(); i++) {
 				long k = (list.get(i).getEstEnd().getTime() - list.get(i).getEstStart().getTime()) / 86400000;
 
