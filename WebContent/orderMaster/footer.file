@@ -1,0 +1,100 @@
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<head>
+<meta content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+ <footer id="aa-footer">
+    <!-- footer bottom -->
+    <div class="aa-footer-top">
+     <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+          <div class="aa-footer-top-area">
+            <div class="row">
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <h3>全部分類</h3>
+                  <ul class="aa-footer-nav">
+                    <li><a href="#">Nintendo</a></li>
+                    <li><a href="#">PlayStation</a></li>
+                    <li><a href="#">XBOX</a></li>
+                    <li><a href="#">其他遊戲主機</a></li>                                                
+                    <li><a href="#">電腦遊戲</a></li>
+                    <li><a href="#">桌遊</a></li>
+                    <li><a href="#">拼圖</a></li>
+                    <li><a href="#">其他</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <div class="aa-footer-widget">
+                    <h3>關於我們</h3>
+                    <ul class="aa-footer-nav">
+                      <li><a href="#">網站理念</a></li>
+                      <li><a href="#">團隊介紹</a></li>
+                      <!-- <li><a href="#">Services</a></li>
+                      <li><a href="#">Discount</a></li>
+                      <li><a href="#">Special Offer</a></li> -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <div class="aa-footer-widget">
+                    <h3>使用須知</h3>
+                    <ul class="aa-footer-nav">
+                      <li><a href="#">服務條款</a></li>
+                      <!-- <li><a href="#">Search</a></li>
+                      <li><a href="#">Advanced Search</a></li>
+                      <li><a href="#">Suppliers</a></li>
+                      <li><a href="#">FAQ</a></li> -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <div class="aa-footer-widget">
+                    <h3>聯絡我們</h3>
+                    <address>
+                      <p> 104台北市中山區南京東路三段219號5樓</p>
+                      <p><span class="fa fa-phone"></span>02-2712-0589</p>
+                      <p><span class="fa fa-envelope"></span>JoyLease@gmail.com</p>
+                    </address>
+                    <div class="aa-footer-social">
+                      <a href="#"><span class="fa fa-facebook"></span></a>
+                      <a href="#"><span class="fa fa-twitter"></span></a>
+                      <a href="#"><span class="fa fa-google-plus"></span></a>
+                      <a href="#"><span class="fa fa-youtube"></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+    <!-- footer-bottom -->
+    <div class="aa-footer-bottom">
+      <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+          <div class="aa-footer-bottom-area">
+            <!-- <p>Designed by <a href="http://www.markups.io/">MarkUps.io</a></p> -->
+            <div class="aa-footer-payment">
+              <span class="fa fa-cc-mastercard"></span>
+              <span class="fa fa-cc-visa"></span>
+              <span class="fa fa-paypal"></span>
+              <span class="fa fa-cc-discover"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </footer>

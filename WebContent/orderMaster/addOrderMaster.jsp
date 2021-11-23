@@ -1,17 +1,12 @@
-<%@page import="web.member.model.MemberJDBCDAO"%>
-<%@page import="web.member.model.MemberVO"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.List"%>
-<%@page import="web.member_coupon.model.MemcouponVO"%>
-<%@page import="web.member_coupon.model.MemcouponDAO"%>
-<%@page import="web.promo_list.model.PromolistVO"%>
-<%@page import="web.promo_list.model.PromolistDAO"%>
-<%@page import="web.member.model.DefAddressVO"%>
-<%@page import="web.member.model.DefAddressJDBCDAO"%>
-<%@page import="web.order.model.PaymentOptionsVO"%>
-<%@page import="web.order.model.PaymentOptionsDAOImpl"%>
-<%@ page import="web.order.model.PaymentOptionsService"%>
+<%@page import="web.member.model.*"%>
+<%@page import="web.member_coupon.model.*"%>
+<%@page import="web.promo_list.model.*"%>
+<%@page import="web.member.model.*"%>
+<%@page import="web.order.model.*"%>
+<%@ page import="web.order.model.*"%>
 <%@ page import="web.product.model.*"%>
 <%
 	// 	ProdVO prodVO = (ProdVO) request.getAttribute("prodVO");
@@ -173,11 +168,7 @@ footer.footer {
 		width: 100%;
 	}
 }
-</style>
 
-
-
-<style>
 table {
 	width: 100%;
 	background-color: white;
@@ -186,7 +177,7 @@ table {
 }
 
 table, th, td {
-	border: 1px solid #CCCCFF;
+	border: 1px solid black;	
 }
 
 th, td {
@@ -225,7 +216,6 @@ th, td {
 				<div>
 					<h3>結帳頁面</h3>
 				</div>
-
 
 				<table id="table-1">
 					<h3>確認以下資訊</h3>
@@ -326,7 +316,8 @@ th, td {
 				<input type="submit" value="送出訂單 !">
 			</main>
 		</div>
-		<footer class="footer"> footer區域 </footer>
+		<%@ include file="footer.file" %>
+<!-- 		<footer class="footer"> footer區域 </footer> -->
 	</FORM>
 	</head>
 </body>

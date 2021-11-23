@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
 <meta content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,11 +53,11 @@
               </div>
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                  <li><a href="account copy.html">�|���b��</a></li>
-                  <li class="hidden-xs"><a href="account copy.html">�ڭn�X��</a></li>
-                  <li class="hidden-xs"><a href="cart copy.html">�ʪ���</a></li>
+                  <li><a href="account copy.html">會員帳戶</a></li>
+                  <li class="hidden-xs"><a href="account copy.html">我要出租</a></li>
+                  <li class="hidden-xs"><a href="cart copy.html">購物車</a></li>
                   <!-- <li class="hidden-xs"><a href="checkout.html">Checkout</a></li> -->
-                  <li><a href="" data-toggle="modal" data-target="#login-modal">�|���n�J</a></li>
+                  <li><a href="" data-toggle="modal" data-target="#login-modal">會員登入</a></li>
                 </ul>
               </div>
             </div>
@@ -82,7 +81,7 @@
               <div class="aa-cartbox">
                 <a class="aa-cart-link" href="#">
                   <span class="fa fa-shopping-basket"></span>
-                  <span class="aa-cart-title">�ڪ��ʪ���</span>
+                  <span class="aa-cart-title">我的購物車</span>
                   <span class="aa-cart-notify">2</span>
                 </a>
                 <div class="aa-cartbox-summary">
@@ -98,28 +97,28 @@
                     <li>
                       <a class="aa-cartbox-img" href="#"><img src="img/woman-small-1.jpg" alt="img"></a>
                       <div class="aa-cartbox-info">
-                        <h4><a href="#">�������j�_�I</a></h4>
+                        <h4><a href="#">健身環大冒險</a></h4>
                         <p>1 x $250</p>
                       </div>
                       <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
                     </li>
                     <li>
                       <span class="aa-cartbox-total-title">
-                        �`�p
+                       總計
                       </span>
                       <span class="aa-cartbox-total-price">
                         $500
                       </span>
                     </li>
                   </ul>
-                  <a class="aa-cartbox-checkout aa-primary-btn" href="checkout copy.html">�ʪ������b</a>
+                  <a class="aa-cartbox-checkout aa-primary-btn" href="checkout copy.html">購物車結帳</a>
                 </div>
               </div>
               <!-- / cart box -->
               <!-- search box -->
               <div class="aa-search-box">
                 <form action="">
-                  <input type="text" name="" id="" placeholder="�������j�_�I">
+                  <input type="text" name="" id="" placeholder="健身環大冒險">
                   <button type="submit"><span class="fa fa-search"></span></button>
                 </form>
               </div>
@@ -148,19 +147,19 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav ">
-              <li><a href="#">�������� <span class="caret"></span></a>
+              <li><a href="#">全部分類<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Nintendo</a></li>
+                   <li><a href="#">Nintendo</a></li>
                   <li><a href="#">PlayStation</a></li>
                   <li><a href="#">XBOX</a></li>
-                  <li><a href="#">��L�C���D��</a></li>
-                  <li><a href="#">�q���C��</a></li>
-                  <li><a href="#">��C</a></li>
-                  <li><a href="#">����</a></li>
-                  <li><a href="#">��L</a></li>
+                  <li><a href="#">其他遊戲主機</a></li>
+                  <li><a href="#">電腦遊戲</a></li>
+                  <li><a href="#">桌遊</a></li>
+                  <li><a href="#">拼圖</a></li>
+                  <li><a href="#">其他</a></li>
                 </ul>
               </li>
-              <li><a href="#">�ϥαо�</a>
+              <li><a href="#">使用教學</a>
               </li>
               <li><a href="#">Q&A</a>
               </li>
