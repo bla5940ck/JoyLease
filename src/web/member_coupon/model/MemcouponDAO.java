@@ -11,13 +11,10 @@ public class MemcouponDAO implements Memcoupon_impl{
 		try {
 			Class.forName(Util.DRIVER);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-		// member_coupon
-	                  // mem_coupon_id, member_id, category_id, coupon_id, coupon_name, discount, status, start_date, end_date
-	
+		
 		private static final String INSERT_STMT = 
 			"INSERT INTO member_coupon (member_id, category_id, coupon_id, coupon_name, discount, status, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		private static final String GET_ALL_STMT = 
@@ -37,7 +34,6 @@ public class MemcouponDAO implements Memcoupon_impl{
 
 		try {
 
-//			con = ds.getConnection();
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
@@ -52,11 +48,11 @@ public class MemcouponDAO implements Memcoupon_impl{
 
 			pstmt.executeUpdate();
 
-			// Handle any SQL errors
+		
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-			// Clean up JDBC resources
+		
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -84,7 +80,6 @@ public class MemcouponDAO implements Memcoupon_impl{
 
 		try {
 
-//			con = ds.getConnection();
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
 
@@ -101,11 +96,11 @@ public class MemcouponDAO implements Memcoupon_impl{
 
 			pstmt.executeUpdate();
 
-			// Handle any SQL errors
+		
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-			// Clean up JDBC resources
+		
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -132,7 +127,6 @@ public class MemcouponDAO implements Memcoupon_impl{
 
 		try {
 
-//			con = ds.getConnection();
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(DELETE);
 
@@ -140,11 +134,11 @@ public class MemcouponDAO implements Memcoupon_impl{
 
 			pstmt.executeUpdate();
 
-			// Handle any SQL errors
+		
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-			// Clean up JDBC resources
+		
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -174,7 +168,6 @@ public class MemcouponDAO implements Memcoupon_impl{
 
 		try {
 
-//			con = ds.getConnection();
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
@@ -183,7 +176,6 @@ public class MemcouponDAO implements Memcoupon_impl{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo �]�٬� Domain objects
 				memcouponVO = new MemcouponVO();
 				memcouponVO.setMem_coupon_id(rs.getInt("mem_coupon_id"));
 				memcouponVO.setMember_id(rs.getInt("member_id"));
@@ -196,11 +188,11 @@ public class MemcouponDAO implements Memcoupon_impl{
 				memcouponVO.setEnd_date(rs.getDate("end_date"));
 			}
 
-			// Handle any driver errors
+		
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-			// Clean up JDBC resources
+		
 		} finally {
 			if (rs != null) {
 				try {
@@ -239,13 +231,11 @@ public class MemcouponDAO implements Memcoupon_impl{
 		
 		try {
 
-//			con = ds.getConnection();
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// promoVO �]�٬� Domain objects
 				memcouponVO = new MemcouponVO();
 				memcouponVO.setMem_coupon_id(rs.getInt("mem_coupon_id"));
 				memcouponVO.setMember_id(rs.getInt("member_id"));
@@ -256,14 +246,14 @@ public class MemcouponDAO implements Memcoupon_impl{
 				memcouponVO.setStatus(rs.getInt("status"));
 				memcouponVO.setStart_date(rs.getDate("start_date"));
 				memcouponVO.setEnd_date(rs.getDate("end_date"));
-				list.add(memcouponVO); // Store the row in the list
+				list.add(memcouponVO);
 			}
 
-			// Handle any driver errors
+		
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-			// Clean up JDBC resources
+		
 		} finally {
 			if (rs != null) {
 				try {

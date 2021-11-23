@@ -8,10 +8,12 @@ public class PromolistServive {
 	public PromolistServive() {
 		dao = new PromolistDAO();
 	}
+	
 	public PromolistVO insert(Integer promo_id, Integer category_id, String coupon_name, Double discount,
 			Integer amount, Integer used, java.sql.Date start_date, java.sql.Date end_date) {
 		PromolistVO promolistVO = new PromolistVO();
 		
+		promolistVO.setPromo_id(promo_id);
 		promolistVO.setCategory_id(category_id);
 		promolistVO.setCoupon_name(coupon_name);
 		promolistVO.setDiscount(discount);
@@ -28,6 +30,7 @@ public class PromolistServive {
 		PromolistVO promolistVO = new PromolistVO();
 
 		promolistVO.setCoupon_id(coupon_id);
+		promolistVO.setPromo_id(promo_id);
 		promolistVO.setCategory_id(category_id);
 		promolistVO.setCoupon_name(coupon_name);
 		promolistVO.setDiscount(discount);
