@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=Utf-8"
-    pageEncoding="Utf-8"%>
+	pageEncoding="Utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/ShelfServlet" method = "Post">
-		
-		<input type = "submit">
-	
+	<form action="<%=request.getContextPath()%>/ShelfServlet" method="Post">
+
+		<input type="submit">
+
 	</form>
 </body>
 </html>

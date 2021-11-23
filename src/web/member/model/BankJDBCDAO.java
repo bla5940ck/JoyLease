@@ -118,7 +118,6 @@ public class BankJDBCDAO implements BankDAO_interface {
 
 	@Override
 	public BankVO findByPrimaryKey(String code) {
-		// TODO Auto-generated method stub
 		BankVO bankVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -238,31 +237,31 @@ public class BankJDBCDAO implements BankDAO_interface {
 
 		BankJDBCDAO dao = new BankJDBCDAO();
 
-		// ·s¼W
+		// æ–°å¢ž
 //		BankVO bankVO1 = new BankVO();
 //		bankVO1.setCode("822");
-//		bankVO1.setChineseName("¤¤«H");
+//		bankVO1.setChineseName("ï¿½ï¿½ï¿½H");
 //
 //		dao.insert(bankVO1);
 
-		// ­×§ï
+		// ï¿½×§ï¿½
 		BankVO bankVO2 = new BankVO();
 		bankVO2.setCode("822");
-		bankVO2.setChineseName("¤¤°ê«H°U");
+		bankVO2.setChineseName("ï¿½ï¿½ï¿½ï¿½Hï¿½U");
 		bankVO2.setCode("822");
 		dao.update(bankVO2);
 		
-		// §R°£
+		// åˆªé™¤
 //		dao.delete(7014);
 
-		// ¬d¸ß
+		// å–®ä¸€æŸ¥è©¢
 //		BankVO bankVO3 = dao.findByPrimaryKey("822");
 //		System.out.print(bankVO3.getCode() + ",");
 //		System.out.print(bankVO3.getChineseName() );
 //
 //		System.out.println("---------------------");
 
-//		 ¬d¸ß
+//		 å…¨éƒ¨æŸ¥è©¢
 //		List<BankVO> list = dao.getAll();
 //		for (BankVO aBank : list) {
 //			System.out.print(aBank.getCode() + ",");

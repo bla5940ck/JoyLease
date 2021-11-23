@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//WebContent/member=UTF-8
+encoding//WebContent/member/login.jsp=UTF-8
 encoding//src/util/Util.java=UTF-8
+encoding//src/web/member=UTF-8
+encoding//src/web/member/controller/DefAddressServlet.java=UTF-8

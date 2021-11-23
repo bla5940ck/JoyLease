@@ -1,5 +1,7 @@
 package web.member.model;
 
+import java.util.List;
+
 public class DefAddressService {
 	
 	private DefAddressDAO_interface dao;
@@ -47,7 +49,11 @@ public class DefAddressService {
 		return dao.findByPrimaryKey(def711);
 	}
 	
-//	public void DefAddressVO updateDefaddress() {
-//		dao.update(defAddressVO);
-//	}
+	public  DefAddressVO getOneDefaddress(Integer def711) {
+		return dao.findByPrimaryKey(def711);
+	}
+	
+	public List<DefAddressVO> getAll(){
+		return dao.getAll();
+	}
 }

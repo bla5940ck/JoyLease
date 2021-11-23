@@ -150,7 +150,6 @@ public class DefAddressJDBCDAO implements DefAddressDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
 				defAddressVO = new DefAddressVO();
 				defAddressVO.setDef711(rs.getInt("def_711"));
 				defAddressVO.setMemberId(rs.getInt("member_Id"));
@@ -215,7 +214,7 @@ public class DefAddressJDBCDAO implements DefAddressDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// defAddressVO ¤]ºÙ¬° Domain objects
+				// defAddressVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				defAddressVO = new DefAddressVO();
 				defAddressVO.setDef711(rs.getInt("def_711"));
 				defAddressVO.setMemberId(rs.getInt("member_Id"));
@@ -266,30 +265,30 @@ public class DefAddressJDBCDAO implements DefAddressDAO_interface {
 	public static void main(String[] args) {
 		
 		DefAddressJDBCDAO dao = new DefAddressJDBCDAO();
-//		// ·s¼W
+//		// æ–°å¢ž
 //		DefAddressVO defAddressVO1 = new DefAddressVO();
 //		defAddressVO1.setMemberId(1);
 //		defAddressVO1.setCode711(193742);
-//		defAddressVO1.setName711("¥ÃÄËªù¥«");
-//		defAddressVO1.setAdd711("·s¥_¥«XXXXXXTEST");
+//		defAddressVO1.setName711("ï¿½ï¿½ï¿½Ëªï¿½ï¿½ï¿½");
+//		defAddressVO1.setAdd711("ï¿½sï¿½_ï¿½ï¿½XXXXXXTEST");
 //		defAddressVO1.setStatus(0);
-//		defAddressVO1.setRecipient("¥ð©ú");
+//		defAddressVO1.setRecipient("ï¿½ï¿½ï¿½");
 //		defAddressVO1.setRecptPhone("0988666777");
 //		dao.insert(defAddressVO1);
 		
-		// ­×§ï
+		// ä¿®æ”¹
 //		DefAddressVO defAddressVO2 = new DefAddressVO();
 //		defAddressVO2.setDef711(6);
 //		defAddressVO2.setMemberId(1);
 //		defAddressVO2.setCode711(193742);
-//		defAddressVO2.setName711("¥ÃÄËªù¥«");
-//		defAddressVO2.setAdd711("UPDATE·s¥_¥«XXXXXXTEST");
+//		defAddressVO2.setName711("ï¿½ï¿½ï¿½Ëªï¿½ï¿½ï¿½");
+//		defAddressVO2.setAdd711("UPDATEï¿½sï¿½_ï¿½ï¿½XXXXXXTEST");
 //		defAddressVO2.setStatus(1);
-//		defAddressVO2.setRecipient("¥ð©ú");
+//		defAddressVO2.setRecipient("ï¿½ï¿½ï¿½");
 //		defAddressVO2.setRecptPhone("0988666777");
 //		dao.update(defAddressVO2);
 		
-		// ¬d¸ß
+		// å–®ä¸€æŸ¥è©¢
 //		DefAddressVO defAddressVO2 = dao.findByPrimaryKey(6);
 //				System.out.print(defAddressVO2.getDef711() + ",");
 //				System.out.print(defAddressVO2.getMemberId() + ",");
@@ -301,7 +300,7 @@ public class DefAddressJDBCDAO implements DefAddressDAO_interface {
 //				System.out.println(defAddressVO2.getRecptPhone());
 //				System.out.println("---------------------");
 				
-		// ¬d¸ß
+		// å…¨éƒ¨æŸ¥è©¢
 		List<DefAddressVO> list = dao.getAll();
 			for (DefAddressVO aDefAddress : list) {
 				System.out.print(aDefAddress.getDef711() + ",");

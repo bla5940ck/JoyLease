@@ -152,26 +152,24 @@ th, td {
 		</aside>
 		<main class="main">
 			<div>
-			
-			<FORM METHOD="post" ACTION="/JoyLease/OrderListServlet">
-					<b>輸入訂單明細編號 (如1):</b> 
-					<input type="text" name="listID"> 
-					<input type="hidden" name="action" value="getOne_For_Display">
+
+				<FORM METHOD="post" ACTION="/JoyLease/OrderListServlet">
+					<b>輸入訂單明細編號 (如1):</b> <input type="text" name="listID"> <input
+						type="hidden" name="action" value="getOne_For_Display"> <input
+						type="submit" value="送出">
+				</FORM>
+
+				<jsp:useBean id="OrdserListSvc" scope="page"
+					class="web.order.model.OrderListService" />
+
+				<FORM METHOD="post" ACTION="/JoyLease/OrderListServlet">
+					<b>選擇訂單明細編號:</b> <select size="1" name="listID">
+						<c:forEach var="OrderListVO" items="${OrdserListSvc.all}">
+							<option value="${OrderListVO.listID}">${OrderListVO.listID}
+						</c:forEach>
+					</select> <input type="hidden" name="action" value="getOne_For_Display">
 					<input type="submit" value="送出">
-			</FORM>
-			
-			<jsp:useBean id="OrdserListSvc" scope="page" class="web.order.model.OrderListService" />
-				
-			<FORM METHOD="post" ACTION="/JoyLease/OrderListServlet">
-				<b>選擇訂單明細編號:</b> 
-				<select size="1" name="listID">
-					<c:forEach var="OrderListVO" items="${OrdserListSvc.all}">
-						<option value="${OrderListVO.listID}">${OrderListVO.listID}
-					</c:forEach>
-				</select> 
-				<input type="hidden" name="action" value="getOne_For_Display">
-				<input type="submit" value="送出">
-			</FORM>
+				</FORM>
 
 			</div>
 			<table id="table-1">
@@ -193,9 +191,9 @@ th, td {
 							<FORM METHOD="post"
 								ACTION="<%=request.getContextPath()%>/OrderMasterServlet"
 								style="margin-bottom: 0px;">
-								<input type="submit" value="查看明細"> 
-								<input type="hidden" name="ordID" value="${olVO.ordID}"> 
-								<input type="hidden" name="action" value="getOne_For_Display">
+								<input type="submit" value="查看明細"> <input type="hidden"
+									name="ordID" value="${olVO.ordID}"> <input
+									type="hidden" name="action" value="getOne_For_Display">
 							</FORM>
 						</td>
 					</tr>

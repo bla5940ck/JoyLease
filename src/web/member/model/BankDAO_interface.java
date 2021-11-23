@@ -8,6 +8,6 @@ public interface BankDAO_interface {
 //    public void delete(String code);
     public BankVO findByPrimaryKey(String code);
     public List<BankVO> getAll();
-    //¸U¥Î½Æ¦X¬d¸ß(¶Ç¤J°Ñ¼Æ«¬ºAMap)(¦^¶Ç List)
+    // //è¬ç”¨è¤‡åˆæŸ¥è©¢(å‚³å…¥åƒæ•¸å‹æ…‹Map)(å›å‚³ List)
 //  public List<BankVO> getAll(Map<String, String[]> map); 
 }

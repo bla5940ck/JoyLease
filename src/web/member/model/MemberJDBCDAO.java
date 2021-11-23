@@ -28,6 +28,10 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			"SELECT member_id,bank_code, email,login_id,idcn,phone_num,password,status,	name,	nickname,"
 			+ "birthday,	address,	bank_account,	account_name,	rent_score,	lease_score,	creat_date,	pic,	idc_f,	idc_b,	foul  "
 			+ "FROM member where member_id = ?";
+		private static final String GET_LOGIN_STMT = 
+				"SELECT member_id,bank_code, email,login_id,idcn,phone_num,password,status,	name,	nickname,"
+				+ "birthday,	address,	bank_account,	account_name,	rent_score,	lease_score,	creat_date,	pic,	idc_f,	idc_b,	foul  "
+				+ "FROM member where login_id = ?";
 //		private static final String DELETE = 
 //			"DELETE FROM member where member_id = ?";
 		private static final String UPDATE = 
@@ -253,7 +257,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// memberVO ¤]ºÙ¬° Domain objects
+				// memberVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				memberVO = new MemberVO();
 				memberVO.setMemberId(rs.getInt("member_id"));
 				memberVO.setBankCode(rs.getString("bank_code"));
@@ -319,7 +323,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 		MemberJDBCDAO dao = new MemberJDBCDAO();
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		
-		// ·s¼W
+		// æ–°å¢ž
 //				MemberVO memberVO1 = new MemberVO();
 //				memberVO1.setBankCode("700");
 //				memberVO1.setEmail("abc@gmail.com");
@@ -328,12 +332,12 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 //				memberVO1.setPhoneNum("0988567123");
 //				memberVO1.setPassword("123test");
 //				memberVO1.setStatus(0);
-//				memberVO1.setName("¦¨¤j¤Ñ");
-//				memberVO1.setNickName("¤Ñ¤Ñ");
+//				memberVO1.setName("ï¿½ï¿½ï¿½jï¿½ï¿½");
+//				memberVO1.setNickName("ï¿½Ñ¤ï¿½");
 //				memberVO1.setBirthday(java.sql.Date.valueOf("2002-01-01"));
-//				memberVO1.setAddress("¥x¥_¥«¤¤¤s°Ï«¬¨k¸ô1¸¹");
+//				memberVO1.setAddress("ï¿½xï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½Ï«ï¿½ï¿½kï¿½ï¿½1ï¿½ï¿½");
 //				memberVO1.setBankAccount("52525882");
-//				memberVO1.setAccountName("¦¨¤j¤Ñ");
+//				memberVO1.setAccountName("ï¿½ï¿½ï¿½jï¿½ï¿½");
 //				memberVO1.setRentScore(4.5);
 //				memberVO1.setLeaseScore(4.8);
 //				memberVO1.setCreatDate(now);
@@ -343,33 +347,33 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 //				memberVO1.setFoul(0);
 //				dao.insert(memberVO1);
 		
-		// ­×§ï
-		MemberVO memberVO2 = new MemberVO();
-		memberVO2.setBankCode("822");
-		memberVO2.setEmail("updateabc@gmail.com");
-		memberVO2.setLoginId("tibame");
-		memberVO2.setIdcn("A123456789");
-		memberVO2.setPhoneNum("0988567123");
-		memberVO2.setPassword("123test");
-		memberVO2.setStatus(0);
-		memberVO2.setName("¦¨¤j¤Ñ");
-		memberVO2.setNickName("¤Ñ¤Ñ");
-		memberVO2.setBirthday(java.sql.Date.valueOf("2002-01-01"));
-		memberVO2.setAddress("¥x¥_¥«¤¤¤s°Ï«¬¨k¸ô1¸¹");
-		memberVO2.setBankAccount("52525882");
-		memberVO2.setAccountName("¦¨¤j¤Ñ");
-		memberVO2.setRentScore(4.5);
-		memberVO2.setLeaseScore(4.8);
-		memberVO2.setCreatDate(now);
-		memberVO2.setPic(null);
-		memberVO2.setIdcF(null);
-		memberVO2.setIdcB(null);
-		memberVO2.setFoul(0);
-		memberVO2.setMemberId(8);
-		dao.update(memberVO2);
+		// ä¿®æ”¹
+//		MemberVO memberVO2 = new MemberVO();
+//		memberVO2.setBankCode("822");
+//		memberVO2.setEmail("updateabc@gmail.com");
+//		memberVO2.setLoginId("tibame");
+//		memberVO2.setIdcn("A123456789");
+//		memberVO2.setPhoneNum("0988567123");
+//		memberVO2.setPassword("123test");
+//		memberVO2.setStatus(0);
+//		memberVO2.setName("ï¿½ï¿½ï¿½jï¿½ï¿½");
+//		memberVO2.setNickName("ï¿½Ñ¤ï¿½");
+//		memberVO2.setBirthday(java.sql.Date.valueOf("2002-01-01"));
+//		memberVO2.setAddress("ï¿½xï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½Ï«ï¿½ï¿½kï¿½ï¿½1ï¿½ï¿½");
+//		memberVO2.setBankAccount("52525882");
+//		memberVO2.setAccountName("ï¿½ï¿½ï¿½jï¿½ï¿½");
+//		memberVO2.setRentScore(4.5);
+//		memberVO2.setLeaseScore(4.8);
+//		memberVO2.setCreatDate(now);
+//		memberVO2.setPic(null);
+//		memberVO2.setIdcF(null);
+//		memberVO2.setIdcB(null);
+//		memberVO2.setFoul(0);
+//		memberVO2.setMemberId(8);
+//		dao.update(memberVO2);
 		
 		
-		// ¬d¸ß
+		// å–®ä¸€æŸ¥è©¢
 //		MemberVO memberVO3 = dao.findByPrimaryKey(1);
 //		System.out.print(memberVO3.getMemberId() + ",");
 //		System.out.print(memberVO3.getBankCode() + ",");
@@ -394,8 +398,33 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 //		System.out.println(memberVO3.getFoul());
 //		System.out.println("---------------------");
 		
+
+		// å–®ä¸€æŸ¥è©¢loginid
+		MemberVO memberVO3 = dao.findLoginID("zxcas4d");
+		System.out.print(memberVO3.getMemberId() + ",");
+		System.out.print(memberVO3.getBankCode() + ",");
+		System.out.print(memberVO3.getEmail() + ",");
+		System.out.print(memberVO3.getLoginId() + ",");
+		System.out.print(memberVO3.getIdcn() + ",");
+		System.out.print(memberVO3.getPhoneNum() + ",");
+		System.out.print(memberVO3.getPassword() + ",");
+		System.out.print(memberVO3.getStatus() + ",");
+		System.out.print(memberVO3.getName() + ",");
+		System.out.print(memberVO3.getNickName() + ",");
+		System.out.print(memberVO3.getBirthday() + ",");
+		System.out.print(memberVO3.getAddress() + ",");
+		System.out.print(memberVO3.getBankAccount() + ",");
+		System.out.print(memberVO3.getAccountName() + ",");
+		System.out.print(memberVO3.getRentScore() + ",");
+		System.out.print(memberVO3.getLeaseScore() + ",");
+		System.out.print(memberVO3.getCreatDate() + ",");
+		System.out.print(memberVO3.getPic() + ",");
+		System.out.print(memberVO3.getIdcF() + ",");
+		System.out.print(memberVO3.getIdcB() + ",");
+		System.out.println(memberVO3.getFoul());
+		System.out.println("---------------------");		
 		
-				// ¬d¸ß
+				// å…¨éƒ¨æŸ¥è©¢
 //				List<MemberVO> list = dao.getAll();
 //				for (MemberVO aMember : list) {
 //					System.out.print(aMember.getMemberId() + ", ");
@@ -421,5 +450,81 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 //					System.out.print(aMember.getFoul());
 //					System.out.println();
 //				}
+	}
+
+	@Override
+	public MemberVO findLoginID(String loginId) {
+		MemberVO memberVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_LOGIN_STMT);
+
+			pstmt.setString(1, loginId);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				memberVO = new MemberVO();
+				memberVO.setMemberId(rs.getInt("member_id"));
+				memberVO.setBankCode(rs.getString("bank_code"));
+				memberVO.setEmail(rs.getString("email"));
+				memberVO.setLoginId(rs.getString("login_id"));
+				memberVO.setIdcn(rs.getString("idcn"));
+				memberVO.setPhoneNum(rs.getString("phone_num"));
+				memberVO.setPassword(rs.getString("password"));
+				memberVO.setStatus(rs.getInt("status"));
+				memberVO.setName(rs.getString("name"));
+				memberVO.setNickName(rs.getString("nickname"));
+				memberVO.setBirthday(rs.getDate("birthday"));
+				memberVO.setAddress(rs.getString("address"));
+				memberVO.setBankAccount(rs.getString("bank_account"));
+				memberVO.setRentScore(rs.getDouble("rent_score"));
+				memberVO.setLeaseScore(rs.getDouble("lease_score"));
+				memberVO.setCreatDate(rs.getTimestamp("creat_date"));
+				memberVO.setPic(rs.getBytes("pic"));
+				memberVO.setIdcF(rs.getBytes("idc_f"));
+				memberVO.setIdcB(rs.getBytes("idc_b"));
+				memberVO.setFoul(rs.getInt("foul"));
+			}
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return memberVO;
 	}
 }

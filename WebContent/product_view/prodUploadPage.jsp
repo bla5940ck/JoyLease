@@ -2,7 +2,7 @@
 <%@page import="web.product.model.ProdDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,18 +46,21 @@
 img.preview {
 	width: 100%;
 }
-input.submit_btn{border:0;
-  background-color:#003C9D;
-  color:#fff;
-  font-weight: bold;
-  border-radius:10px;
-  cursor:pointer;}
 
-input.submit_btn:hover{
-  color:black;
-  font-weight: bold;
-  background-color:red;
-  border:2px #003C9D solid;
+input.submit_btn {
+	border: 0;
+	background-color: #003C9D;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+input.submit_btn:hover {
+	color: black;
+	font-weight: bold;
+	background-color: red;
+	border: 2px #003C9D solid;
 }
 </style>
 </head>
@@ -71,33 +74,28 @@ input.submit_btn:hover{
 			<span class="text">商品圖</span>
 		</div>
 		<br> 商品類別
-		
-		
-<!-- 		動態加入商品類別 -->
-		<jsp:useBean id="cateDao" scope="page" class="web.product.model.ProdCategoryDAO" />
-		<select  id="cate_select" name="categorySelect">
-		<option>請選擇商品類別</option>
-		<c:forEach   varStatus="status" var="cateVO" items="${cateDao.allCategory}" >
-		
-		 <option  value="${cateVO.categoryID}">${cateVO.categoryName}
 
-		
-		</c:forEach> 
-		</select> 
-		
-		<br> 商品名稱<input type="text" name="product_name"
+
+		<!-- 		動態加入商品類別 -->
+		<jsp:useBean id="cateDao" scope="page"
+			class="web.product.model.ProdCategoryDAO" />
+		<select id="cate_select" name="categorySelect">
+			<option>請選擇商品類別</option>
+			<c:forEach varStatus="status" var="cateVO"
+				items="${cateDao.allCategory}">
+
+				<option value="${cateVO.categoryID}">${cateVO.categoryName}
+			</c:forEach>
+		</select> <br> 商品名稱<input type="text" name="product_name"
 			id="product_name"><br> 商品租金<input type="text"
 			name="product_rent" id="product_rent"><br> 商品損壞賠償金<input
 			type="text" name="product_price" id="product_price"><br>
 		商品內容<input type="text" style="padding: 90px" name="product_cot"
 			id="product_cot"><br> 備註<input type=text name="comt"
 			id="comt"><br> <input type=hidden id="fileCount"
-			name="fileCount"><br> 
-			
-			<input type = "hidden" name="action" value="upload">
-			
-			<input class="submit_btn" id="submit1" type="submit"
-			value="建立商品" style="width:100px;height:50px;">
+			name="fileCount"><br> <input type="hidden" name="action"
+			value="upload"> <input class="submit_btn" id="submit1"
+			type="submit" value="建立商品" style="width: 100px; height: 50px;">
 	</form>
 	<div id="userView">
 		<a href="memberData.jsp" title="測試超連結"><img

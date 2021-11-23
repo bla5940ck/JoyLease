@@ -165,7 +165,7 @@ th, td {
 						<td><%=olVO.getProdID()%></td>
 						<td><%=olVO.getOrdID()%></td>
 						<td><%=olVO.getPrice()%></td>
-						
+
 					</tr>
 				</table>
 

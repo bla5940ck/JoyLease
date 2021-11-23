@@ -51,7 +51,7 @@
 	List<BookingVO> list = bkDao.findDateByProdID(product.getProdID());
 %>
 
-	<script>
+<script>
 	function selflog_show(id){ 
 // 		       $("#dialog" ).dialog();
 			console.log($("#startDate").val());
@@ -150,7 +150,6 @@ div #cart {
 	text-align: right;
 }
 
-
 a {
 	text-decoration: none;
 }
@@ -187,10 +186,10 @@ a {
 </style>
 </head>
 <body>
-<!-- <div id ="dialog" title="加入購物車成功"> -->
-<!-- 		<p>12222</p> -->
-<!-- 		</div> -->
-		
+	<!-- <div id ="dialog" title="加入購物車成功"> -->
+	<!-- 		<p>12222</p> -->
+	<!-- 		</div> -->
+
 	<div id="userView">
 		<a href="memberData.jsp" title="測試超連結"><img
 			src="https://img.ltn.com.tw/Upload/ent/page/800/2021/03/14/phpJc0Acy.jpg"
@@ -241,22 +240,22 @@ a {
 							</td>
 						</tr>
 						<tr>
-							<td>金額試算: <label id="subtotal" style="color:red"></label>元<input type="button"
-								value="試算" id="subtotal_btn">
+							<td>金額試算: <label id="subtotal" style="color: red"></label>元<input
+								type="button" value="試算" id="subtotal_btn">
 
 							</td>
 						</tr>
-							<tr>
-							<td>商品內容: <label id="pro_cot"  style="color:blue"><%=product.getProdCot()%></label>
+						<tr>
+							<td>商品內容: <label id="pro_cot" style="color: blue"><%=product.getProdCot()%></label>
 
 							</td>
 						</tr>
 					</table>
 					<div id="cart">
-						 <a href="javascript:selflog_show(<%=product.getProdID()%>)"> <img
+						<a href="javascript:selflog_show(<%=product.getProdID()%>)"> <img
 							src="http://ae01.alicdn.com/kf/H7c4a2878bd1840ab8c1b7a51bdf9c770P.jpg"
 							width="60"></a>
-						
+
 					</div>
 				</td>
 

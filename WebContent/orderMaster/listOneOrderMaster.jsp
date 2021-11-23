@@ -128,7 +128,7 @@ footer.footer {
 					<h1>出租者專區</h1>
 					<li><a href="orderMaster/listAllOrderMaster.jsp">全部訂單</a></li>
 					<li><a href="orderMaster/select_page.jsp">訂單查詢</a></li>
-					
+
 				</ul>
 			</nav>
 		</aside>
@@ -234,15 +234,17 @@ footer.footer {
 
 			<h4>訂單金額 :</h4>
 			<p><%=omVO.getOrdPrice()%></p>
-			
-			<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/OrderMasterServlet"style="margin-bottom: 0px;">
-			<input type="submit" value="更新"> 
-			<input type="hidden"name="ordID" value="<%=omVO.getOrdID()%>">
-		    <input type="hidden" name="action" value="getOne_For_Update">
+
+			<FORM METHOD="post"
+				ACTION="<%=request.getContextPath()%>/OrderMasterServlet"
+				style="margin-bottom: 0px;">
+				<input type="submit" value="更新"> <input type="hidden"
+					name="ordID" value="<%=omVO.getOrdID()%>"> <input
+					type="hidden" name="action" value="getOne_For_Update">
 			</FORM>
-			
-			
-			
+
+
+
 		</main>
 	</div>
 	<footer class="footer"> footer區域 </footer>

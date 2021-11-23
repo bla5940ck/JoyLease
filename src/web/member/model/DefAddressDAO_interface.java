@@ -8,6 +8,6 @@ public interface DefAddressDAO_interface {
 //    public void delete( Integer def711);
     public DefAddressVO findByPrimaryKey(Integer def711);
     public List<DefAddressVO> getAll();
-    //¸U¥Î½Æ¦X¬d¸ß(¶Ç¤J°Ñ¼Æ«¬ºAMap)(¦^¶Ç List)
+    // //è¬ç”¨è¤‡åˆæŸ¥è©¢(å‚³å…¥åƒæ•¸å‹æ…‹Map)(å›å‚³ List)
 //  public List<DefAddressVO> getAll(Map<String, String[]> map); 
 }

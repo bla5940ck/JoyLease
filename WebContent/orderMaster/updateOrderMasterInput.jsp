@@ -220,15 +220,18 @@ th, td {
 				<table>
 					<tr>
 						<th>出貨日期</th>
-						<td><input name="shipDate" type="TEXT" value="<%=omVO.getShipDate()%>"></td>
+						<td><input name="shipDate" type="TEXT"
+							value="<%=omVO.getShipDate()%>"></td>
 					</tr>
 					<tr>
 						<th>實際到貨日期</th>
-						<td><input type="TEXT" name="arrivalDate" value="<%=omVO.getArrivalDate()%>"></td>
+						<td><input type="TEXT" name="arrivalDate"
+							value="<%=omVO.getArrivalDate()%>"></td>
 					</tr>
 					<tr>
 						<th>實際歸還日期</th>
-						<td><input type="TEXT" name="returnDate" value="<%=omVO.getReturnDate()%>"></td>
+						<td><input type="TEXT" name="returnDate"
+							value="<%=omVO.getReturnDate()%>"></td>
 					</tr>
 				</table>
 				<table>
@@ -267,7 +270,7 @@ th, td {
 								<option value="態度不佳 !">態度不佳 !</option>
 								<option value="出貨速度慢 !">出貨速度慢 !</option>
 								<option value="與照片不符 !">與照片不符 !</option>
-								
+
 						</select></td>
 					</tr>
 					<tr>
@@ -284,10 +287,11 @@ th, td {
 						</select></td>
 					</tr>
 				</table>
-				<input type="hidden" name="action" value="update"> 
-				<input type="hidden" name="ordID" value="<%=omVO.getOrdID()%>">
-				<input type="hidden" name="rentComtdate" value="${OrderMasterVO.rentComtdate}">
-				<input type="hidden" name="leaseComtdate" value="${OrderMasterVO.leaseComtdate}">
+				<input type="hidden" name="action" value="update"> <input
+					type="hidden" name="ordID" value="<%=omVO.getOrdID()%>"> <input
+					type="hidden" name="rentComtdate"
+					value="${OrderMasterVO.rentComtdate}"> <input type="hidden"
+					name="leaseComtdate" value="${OrderMasterVO.leaseComtdate}">
 				<input type="submit" value="確認更新">
 			</main>
 		</div>
@@ -296,7 +300,8 @@ th, td {
 </body>
 
 
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 

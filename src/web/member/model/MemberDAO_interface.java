@@ -7,7 +7,8 @@ public interface MemberDAO_interface {
     public void update(MemberVO memberVO);
 //    public void delete( Integer memberId);
     public MemberVO findByPrimaryKey(Integer memberId);
+    public MemberVO findLoginID(String loginId);
     public List<MemberVO> getAll();
-    //¸U¥Î½Æ¦X¬d¸ß(¶Ç¤J°Ñ¼Æ«¬ºAMap)(¦^¶Ç List)
+    // //è¬ç”¨è¤‡åˆæŸ¥è©¢(å‚³å…¥åƒæ•¸å‹æ…‹Map)(å›å‚³ List)
 //  public List<MemberVO> getAll(Map<String, String[]> map); 
 }
