@@ -208,8 +208,8 @@ th, td {
 		</ul>
 	</c:if>
 
-
-	<header class="header"> header區域 </header>
+<%@ include file="header.file" %>
+<!-- 	<header class="header"> header區域 </header> -->
 	<FORM METHOD="post" ACTION="/JoyLease/OrderMasterServlet" name="form1">
 		<div class="main_content">
 			<aside class="aside">
@@ -244,13 +244,11 @@ th, td {
 					<!-- 						<td><p id="estEnd"></p></td> -->
 					<!-- 					</tr> -->
 					<tr>
-						<td>收件人姓名:</td>
-						<td><input type="text" name="recipient"></td>
+						<td>您的姓名:</td>
+						<td><input type="hidden" name="memberID" value="<%=meVO.getMemberId()%>"><%=meVO.getName()%></td>
+<!-- 						<td><input type="text" name="recipient"></td> -->
 					</tr>
-					<tr>
-						<td>收件人電話:</td>
-						<td><input type="text" name="recptPhone"></td>
-					</tr>
+					
 					<jsp:useBean id="poDAO"
 						class="web.order.model.PaymentOptionsDAOImpl" />
 					<tr>
@@ -286,7 +284,6 @@ th, td {
 								%>
 						</select></td>
 					</tr>
-					
 					<tr>
 						<td>預設物流:</td>
 						<td><select size="1" name="code711" id="cpn">
@@ -297,18 +294,14 @@ th, td {
 										DefAddressVO daVO1 = list2.get(i);
 										if(daVO1.getMemberId() == id){
 								%>			
-								<option id="def711" value="<%=daVO1.getCode711()%>"><%=daVO1.getName711()%><br>
+								<option id="def711" value="<%=daVO1.getCode711()%>"><%=daVO1.getName711()%> / <%=daVO1.getRecipient()%> / <%=daVO1.getRecptPhone()%><br>
 								</option>
 								<%
 										}
 									}
 								%>
 						</select></td>
-					</tr>
-					
-					
-					
-					
+					</tr>				
 					<tr>
 						<td>商品小計:</td>
 						<td><input type="hidden" name="price" value="100">100</td>

@@ -269,14 +269,10 @@ public class OrderMasterServlet extends HttpServlet {
 //			
 //			System.out.println(estEnd);		
 				
-				String recipient = req.getParameter("recipient");
+				String memberID = req.getParameter("memberID");
 			
-			System.out.println("收件人姓名 : " + recipient);
-				
-				String recptPhone = req.getParameter("recptPhone");
+			System.out.println("承租者會員編號 : " + memberID);
 			
-			System.out.println("收件人電話 : " + recptPhone);
-	
 				Integer payID = new Integer (req.getParameter("payID"));
 				
 			System.out.println("付款方式編碼 : " + payID);
@@ -304,8 +300,7 @@ public class OrderMasterServlet extends HttpServlet {
 				
 				prodVO.setProdName(prodName);
 				omVO.setOrdDate(ordDate);
-				daVO.setRecipient(recipient);
-				daVO.setRecptPhone(recptPhone);
+				
 				
 				
 				
