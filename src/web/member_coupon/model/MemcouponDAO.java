@@ -16,17 +16,18 @@ public class MemcouponDAO implements Memcoupon_impl{
 		}
 	}
 		// member_coupon
-		// mem_coupon_id, member_id, coupon_id, status, start_date, end_date
+	                  // mem_coupon_id, member_id, category_id, coupon_id, coupon_name, discount, status, start_date, end_date
+	
 		private static final String INSERT_STMT = 
-			"INSERT INTO member_coupon (member_id, coupon_id, status, start_date, end_date) VALUES (?, ?, ?, ?, ?);";
+			"INSERT INTO member_coupon (member_id, category_id, coupon_id, coupon_name, discount, status, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		private static final String GET_ALL_STMT = 
-			"SELECT mem_coupon_id, member_id, coupon_id, status, start_date, end_date FROM member_coupon order by mem_coupon_id";
+			"SELECT mem_coupon_id, member_id, category_id, coupon_id, coupon_name, discount, status, start_date, end_date FROM member_coupon order by mem_coupon_id";
 		private static final String GET_ONE_STMT = 
-			"SELECT mem_coupon_id, member_id, coupon_id, status, start_date, end_date FROM member_coupon where mem_coupon_id = ?";
+			"SELECT mem_coupon_id, member_id, category_id, coupon_id, coupon_name, discount, status, start_date, end_date FROM member_coupon where mem_coupon_id = ?";
 		private static final String DELETE = 
 			"DELETE FROM member_coupon where mem_coupon_id = ?";
 		private static final String UPDATE = 
-			"UPDATE member_coupon set member_id=?, coupon_id=?, status=?, start_dat=?, end_date=? where mem_coupon_id = ?";
+			"UPDATE member_coupon set member_id=?, category_id=?, coupon_id=?, coupon_name=?, discount=?, status=?, start_date=?, end_date=? where mem_coupon_id = ?";
 	
 	
 	@Override
@@ -41,10 +42,13 @@ public class MemcouponDAO implements Memcoupon_impl{
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, memcouponVO.getMember_id());
-			pstmt.setInt(2, memcouponVO.getCoupon_id());
-			pstmt.setInt(3, memcouponVO.getStatus());
-			pstmt.setDate(4, memcouponVO.getStart_date());
-			pstmt.setDate(5, memcouponVO.getEnd_date());
+			pstmt.setInt(2, memcouponVO.getCategory_id());
+			pstmt.setInt(3, memcouponVO.getCoupon_id());
+			pstmt.setString(4, memcouponVO.getCoupon_name());
+			pstmt.setDouble(5, memcouponVO.getDiscount());		
+			pstmt.setInt(6, memcouponVO.getStatus());
+			pstmt.setDate(7, memcouponVO.getStart_date());
+			pstmt.setDate(8, memcouponVO.getEnd_date());
 
 			pstmt.executeUpdate();
 
@@ -84,12 +88,16 @@ public class MemcouponDAO implements Memcoupon_impl{
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, memcouponVO.getCoupon_id());
-			pstmt.setInt(2, memcouponVO.getMember_id());
+			
+			pstmt.setInt(1, memcouponVO.getMember_id());
+			pstmt.setInt(2, memcouponVO.getCategory_id());
 			pstmt.setInt(3, memcouponVO.getCoupon_id());
-			pstmt.setInt(4, memcouponVO.getStatus());
-			pstmt.setDate(5, memcouponVO.getStart_date());
-			pstmt.setDate(6, memcouponVO.getEnd_date());
+			pstmt.setString(4, memcouponVO.getCoupon_name());
+			pstmt.setDouble(5, memcouponVO.getDiscount());
+			pstmt.setInt(6, memcouponVO.getStatus());
+			pstmt.setDate(7, memcouponVO.getStart_date());
+			pstmt.setDate(8, memcouponVO.getEnd_date());
+			pstmt.setInt(9, memcouponVO.getMem_coupon_id());
 
 			pstmt.executeUpdate();
 
@@ -179,7 +187,10 @@ public class MemcouponDAO implements Memcoupon_impl{
 				memcouponVO = new MemcouponVO();
 				memcouponVO.setMem_coupon_id(rs.getInt("mem_coupon_id"));
 				memcouponVO.setMember_id(rs.getInt("member_id"));
+				memcouponVO.setCategory_id(rs.getInt("category_id"));
 				memcouponVO.setCoupon_id(rs.getInt("coupon_id"));
+				memcouponVO.setDiscount(rs.getDouble("discount"));
+				memcouponVO.setCoupon_name(rs.getString("coupon_name"));
 				memcouponVO.setStatus(rs.getInt("status"));
 				memcouponVO.setStart_date(rs.getDate("start_date"));
 				memcouponVO.setEnd_date(rs.getDate("end_date"));
@@ -238,7 +249,10 @@ public class MemcouponDAO implements Memcoupon_impl{
 				memcouponVO = new MemcouponVO();
 				memcouponVO.setMem_coupon_id(rs.getInt("mem_coupon_id"));
 				memcouponVO.setMember_id(rs.getInt("member_id"));
+				memcouponVO.setCategory_id(rs.getInt("category_id"));
 				memcouponVO.setCoupon_id(rs.getInt("coupon_id"));
+				memcouponVO.setDiscount(rs.getDouble("discount"));
+				memcouponVO.setCoupon_name(rs.getString("coupon_name"));
 				memcouponVO.setStatus(rs.getInt("status"));
 				memcouponVO.setStart_date(rs.getDate("start_date"));
 				memcouponVO.setEnd_date(rs.getDate("end_date"));
@@ -275,5 +289,6 @@ public class MemcouponDAO implements Memcoupon_impl{
 		}
 		return list;
 	}
+	
 
 }

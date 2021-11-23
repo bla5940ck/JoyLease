@@ -16,7 +16,7 @@ public class PromolistDAO implements Promolist_impl{
 		}
 	}
 		// promo_list
-		// coupon_id, promo_id, category_id, coupon_name, discount, amount, used, start_date, end_date
+		               // coupon_id, promo_id, category_id, coupon_name, discount, amount, used, start_date, end_date
 		private static final String INSERT_STMT = 
 			"INSERT INTO promo_list (promo_id, category_id, coupon_name, discount, amount, used, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		private static final String GET_ALL_STMT = 
@@ -26,7 +26,7 @@ public class PromolistDAO implements Promolist_impl{
 		private static final String DELETE = 
 			"DELETE FROM promo_list where coupon_id = ?";
 		private static final String UPDATE = 
-			"UPDATE promo_list set promo_id=?, category_id=?, coupon_name=?, discount=?, amount=? used=?, start_date=?, end_date=? where coupon_id = ?";
+			"UPDATE promo_list set promo_id=?, category_id=?, coupon_name=?, discount=?, amount=?, used=?, start_date=?, end_date=? where coupon_id = ?";
 	
 
 	@Override
@@ -42,10 +42,10 @@ public class PromolistDAO implements Promolist_impl{
 
 			pstmt.setInt(1, promolistVO.getPromo_id());
 			pstmt.setInt(2, promolistVO.getCategory_id());
-			pstmt.setString(2, promolistVO.getCoupon_name());
+			pstmt.setString(3, promolistVO.getCoupon_name());
 			pstmt.setDouble(4, promolistVO.getDiscount());
-			pstmt.setInt(5, promolistVO.getUsed());
-			pstmt.setInt(6, promolistVO.getAmount());
+			pstmt.setInt(5, promolistVO.getAmount());
+			pstmt.setInt(6, promolistVO.getUsed());
 			pstmt.setDate(7, promolistVO.getStart_date());
 			pstmt.setDate(8, promolistVO.getEnd_date());
 
@@ -87,15 +87,16 @@ public class PromolistDAO implements Promolist_impl{
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, promolistVO.getCoupon_id());
-			pstmt.setInt(2, promolistVO.getPromo_id());
-			pstmt.setInt(3, promolistVO.getCategory_id());
-			pstmt.setString(4, promolistVO.getCoupon_name());
-			pstmt.setDouble(5, promolistVO.getDiscount());
+			
+			pstmt.setInt(1, promolistVO.getPromo_id());
+			pstmt.setInt(2, promolistVO.getCategory_id());
+			pstmt.setString(3, promolistVO.getCoupon_name());
+			pstmt.setDouble(4, promolistVO.getDiscount());
+			pstmt.setInt(5, promolistVO.getAmount());
 			pstmt.setInt(6, promolistVO.getUsed());
-			pstmt.setInt(7, promolistVO.getAmount());
-			pstmt.setDate(8, promolistVO.getStart_date());
-			pstmt.setDate(9, promolistVO.getEnd_date());
+			pstmt.setDate(7, promolistVO.getStart_date());
+			pstmt.setDate(8, promolistVO.getEnd_date());
+			pstmt.setInt(9, promolistVO.getCoupon_id());
 			
 			pstmt.executeUpdate();
 
