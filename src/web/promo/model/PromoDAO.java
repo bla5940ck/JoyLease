@@ -6,26 +6,14 @@ import util.Util;
 
 public class PromoDAO implements Promo_impl{
 
-//	private static DataSource ds = null;
-//	static {
-//		try {
-//			Context ctx = new InitialContext();
-//			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JoyLease");
-//		} catch (NamingException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
 	static {
 		try {
 			Class.forName(Util.DRIVER);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-		// promo
-		// promo_id, promo_name, promo_start, promo_end, promo_text, status
+		
 		private static final String INSERT_STMT = 
 			"INSERT INTO promo (promo_name, promo_start, promo_end, promo_text, status) VALUES (?, ?, ?, ?, ?);";
 		private static final String GET_ALL_STMT = 
@@ -43,8 +31,7 @@ public class PromoDAO implements Promo_impl{
 		PreparedStatement pstmt = null;
 
 		try {
-
-//			con = ds.getConnection();
+			
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
@@ -56,11 +43,11 @@ public class PromoDAO implements Promo_impl{
 
 			pstmt.executeUpdate();
 
-			// Handle any SQL errors
+
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-			// Clean up JDBC resources
+			
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -88,7 +75,6 @@ public class PromoDAO implements Promo_impl{
 
 		try {
 
-//			con = ds.getConnection();
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
 
@@ -101,11 +87,11 @@ public class PromoDAO implements Promo_impl{
 
 			pstmt.executeUpdate();
 
-			// Handle any SQL errors
+		
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-			// Clean up JDBC resources
+		
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -132,7 +118,6 @@ public class PromoDAO implements Promo_impl{
 
 		try {
 
-//			con = ds.getConnection();
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(DELETE);
 
@@ -140,11 +125,11 @@ public class PromoDAO implements Promo_impl{
 
 			pstmt.executeUpdate();
 
-			// Handle any SQL errors
+		
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-			// Clean up JDBC resources
+		
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -174,7 +159,6 @@ public class PromoDAO implements Promo_impl{
 
 		try {
 
-//			con = ds.getConnection();
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
@@ -183,7 +167,6 @@ public class PromoDAO implements Promo_impl{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo �]�٬� Domain objects
 				promoVO = new PromoVO();
 				promoVO.setPromo_id(rs.getInt("promo_id"));
 				promoVO.setPromo_name(rs.getString("promo_name"));
@@ -193,11 +176,11 @@ public class PromoDAO implements Promo_impl{
 				promoVO.setStatus(rs.getInt("status"));
 			}
 
-			// Handle any driver errors
+	
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-			// Clean up JDBC resources
+		
 		} finally {
 			if (rs != null) {
 				try {
@@ -236,13 +219,11 @@ public class PromoDAO implements Promo_impl{
 		
 		try {
 
-//			con = ds.getConnection();
 			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// promoVO �]�٬� Domain objects
 				promoVO = new PromoVO();
 				promoVO.setPromo_id(rs.getInt("promo_id"));
 				promoVO.setPromo_name(rs.getString("promo_name"));
@@ -250,14 +231,14 @@ public class PromoDAO implements Promo_impl{
 				promoVO.setPromo_end(rs.getDate("promo_end"));
 				promoVO.setPromo_text(rs.getString("promo_text"));
 				promoVO.setStatus(rs.getInt("status"));
-				list.add(promoVO); // Store the row in the list
+				list.add(promoVO);
 			}
 
-			// Handle any driver errors
+		
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-			// Clean up JDBC resources
+		
 		} finally {
 			if (rs != null) {
 				try {
