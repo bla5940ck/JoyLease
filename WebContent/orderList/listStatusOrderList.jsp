@@ -3,19 +3,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="web.order.model.*"%>
-<%@page import="web.product.model.*"%>
 
 <%
-	OrderListService olSVC = new OrderListService();
-	List<OrderListVO> list = olSVC.getAll();
-	pageContext.setAttribute("list", list);	
+	OrderListDAOImpl oldao = new OrderListDAOImpl();
+	OrderListVO olVO = (OrderListVO) request.getAttribute("OrderListVO");
+	List<OrderListVO> list = oldao.findOrderListByStatus(olVO.getStatus());
+	pageContext.setAttribute("list", list);
 %>
 <jsp:useBean id="prodSVC" scope="page" class="web.product.model.ProdService" />
 
 <html>
 <head>
-<title>所有訂單明細</title>
-</head>
+<meta charset="UTF-8">
+<title>訂單狀態查詢</title>
 <style>
 * {
 	box-sizing: border-box;
@@ -146,6 +146,9 @@ th, td {
 	text-align: center;
 }
 </style>
+
+</head>
+
 <body bgcolor='white'>
 	<header class="header"> header區域 </header>
 	<div class="main_content">
@@ -153,7 +156,7 @@ th, td {
 			<nav class="nav">
 				<ul class="nav_list">
 					<h1>出租者專區</h1>
-					<li><a href="listAllOrderList.jsp">全部訂單明細</a></li>
+					<li><a href="orderList/listAllOrderList.jsp">全部訂單明細</a></li>
 				</ul>
 			</nav>
 		</aside>
@@ -165,28 +168,28 @@ th, td {
 						type="hidden" name="action" value="getOne_For_Display"> <input
 						type="submit" value="送出">
 				</FORM>
+
 				<jsp:useBean id="OrdserListSvc" scope="page"
 					class="web.order.model.OrderListService" />
+
 				<FORM METHOD="post"
 					ACTION="<%=request.getContextPath()%>/OrderListServlet">
 					<b>選擇訂單明細編號:</b> <select size="1" name="listID">
 						<c:forEach var="OrderListVO" items="${OrdserListSvc.all}">
 							<option value="${OrderListVO.listID}">${OrderListVO.listID}
 						</c:forEach>
-					</select> 
-					<input type="hidden" name="action" value="getOne_For_Display">
+					</select> <input type="hidden" name="action" value="getOne_For_Display">
 					<input type="submit" value="送出">
 				</FORM>
+
 				<FORM METHOD="post"
 					ACTION="<%=request.getContextPath()%>/OrderListServlet">
-					<b>選擇訂單狀態:</b> 
-					<select size="1" name="status">
+					<b>選擇訂單狀態:</b> <select size="1" name="status">
 						<option value="0">已成立
 						<option value="1">待歸還
 						<option value="2">已完成
 						<option value="9">已取消
-					</select> 
-					<input type="hidden" name="action" value="get_Status_Display">
+					</select> <input type="hidden" name="action" value="get_Status_Display">
 					<input type="submit" value="送出">
 				</FORM>
 			</div>
@@ -198,27 +201,26 @@ th, td {
 					</c:forEach>
 				</ul>
 			</c:if>
-			
 			<table id="table-1">
-			<div>
-				<FORM METHOD="post"
-					ACTION="<%=request.getContextPath()%>/OrderListServlet">
-				<tr>
-					<td><a href="listAllOrderList.jsp">全部</a></td>
-					<td><button name="status" value="0">已成立</button></td>	
-					<td><button name="status" value="1">待歸還</button></td>	
-					<td><button name="status" value="2">已完成</button></td>	
-					<td><button name="status" value="9">已取消</button></td>					
-				</tr>
-				<input type="hidden" name="action" value="get_Status_Display">
-				</FORM>
-			</div>
+				<div>
+					<FORM METHOD="post"
+						ACTION="<%=request.getContextPath()%>/OrderListServlet">
+						<tr>
+							<td><a href="orderList/listAllOrderList.jsp">全部</a></td>
+							<td><button name="status" value="0">已成立</button></td>
+							<td><button name="status" value="1">待歸還</button></td>
+							<td><button name="status" value="2">已完成</button></td>
+							<td><button name="status" value="9">已取消</button></td>
+						</tr>
+						<input type="hidden" name="action" value="get_Status_Display">
+					</FORM>
+				</div>
 			</table>	
 			<table id="table-1">
 				<tr>
 					<th>訂單明細編號</th>
 					<th>商品編號</th>
-					<th>商品名稱</th>					
+					<th>商品名稱</th>
 					<th>訂單編號</th>
 					<th>訂單金額</th>
 					<th>預計開始日期</th>
@@ -231,7 +233,7 @@ th, td {
 					<tr>
 
 						<td>${olVO.listID}</td>
-						<td>${olVO.prodID}</td>	
+						<td>${olVO.prodID}</td>
 						<td>
 							${prodSVC.findProductByPK(olVO.prodID).prodName}
 						</td>
@@ -239,38 +241,29 @@ th, td {
 						<td>${olVO.price}</td>
 						<td>${olVO.estStart}</td>
 						<td>${olVO.estEnd}</td>
+					
 						<c:choose>
 							<c:when test="${olVO.status == '0'}"><td>已成立</td></c:when>
 							<c:when test="${olVO.status == '1'}"><td>待歸還</td></c:when>							
 							<c:when test="${olVO.status == '2'}"><td>已完成</td></c:when>							
 							<c:otherwise><td>已取消</td></c:otherwise>							
 						</c:choose>
-
 						<td>
 							<FORM METHOD="post"
-								ACTION="<%=request.getContextPath()%>/OrderMasterServlet" style="margin-bottom: 0px;">
-								<input type="submit" value="查看明細"> 
-								<input type="hidden" name="ordID" value="${olVO.ordID}"> 
-								<input type="hidden" name="action" value="getOne_For_Display">
+								ACTION="<%=request.getContextPath()%>/OrderMasterServlet"
+								style="margin-bottom: 0px;">
+								<input type="submit" value="查看明細"> <input type="hidden"
+									name="ordID" value="${olVO.ordID}"> <input
+									type="hidden" name="action" value="getOne_For_Display">
 							</FORM>
 						</td>
-					</tr>
+					<tr>
 				</c:forEach>
+				<%@ include file="page2.file"%>
 			</table>
-			<%@ include file="page2.file"%>
 		</main>
 	</div>
 	<footer class="footer"> footer區域 </footer>
 </body>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript">
-	// if(${olVO.status eq(0)}){
-	// 	$("#n").text("已成立");
-	// } else if (${olVO.status eq(1)}){
-	// 	$("#n").text("已完成");
-	// } else {
-	// 	$("#n").text("已取消");
-	// }
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </html>

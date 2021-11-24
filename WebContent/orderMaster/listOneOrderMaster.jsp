@@ -8,6 +8,8 @@
 <%
 	OrderMasterVO omVO = (OrderMasterVO) request.getAttribute("OrderMasterVO");
 %>
+<jsp:useBean id="prodSVC" scope="page" class="web.product.model.ProdService" />
+
 <html>
 <head>
 <title>訂單資訊</title>
@@ -118,7 +120,25 @@ footer.footer {
 		width: 100%;
 	}
 }
+
+/*--------------------table區域-------------------- */
+table {
+	width: 70%;
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+table, th, td {
+	border: 1px solid #CCCCFF;
+}
+
+th, td {
+	padding: 5px;
+	text-align: center;
+}
 </style>
+
 </head>
 <body bgcolor="white">
 	<header class="header"> header區域 </header>
@@ -127,123 +147,138 @@ footer.footer {
 			<nav class="nav">
 				<ul class="nav_list">
 					<h1>出租者專區</h1>
-					<li><a href="orderMaster/listAllOrderMaster.jsp">全部訂單</a></li>
-					<li><a href="orderMaster/select_page.jsp">訂單查詢</a></li>
-					
+					<li><a href="orderList/listAllOrderList.jsp">全部訂單</a></li>
 				</ul>
 			</nav>
 		</aside>
 
 		<main class="main">
+
 			<h3>訂單資訊</h3>
-			<h4>訂單編號 :</h4>
-			<p><%=omVO.getOrdID()%></p>
-
-			<h4>承租者編號 :</h4>
-			<p><%=omVO.getRentID()%></p>
-
-			<h4>出租者編號 :</h4>
-			<p><%=omVO.getLeaseID()%></p>
-
-			<h4>交易方式編碼 :</h4>
-			<p><%=omVO.getPayID()%></p>
-
-			<h4>折價券編號 :</h4>
-			<p><%=omVO.getCouponID()%></p>
-
-			<h4>運送狀態 :</h4>
-			<p id="shipS">
-				運送狀態 :<%=omVO.getShipStatus()%></p>
-
-			<h4>付款狀態 :</h4>
-			<p id="payS"><%=omVO.getPayStatus()%></p>
-
-			<h4>訂單狀態 :</h4>
-			<p id="ordS"><%=omVO.getOrdStatus()%></p>
-
-			<h4>訂單日期 :</h4>
-			<p>
-				<fmt:formatDate value="<%=omVO.getOrdDate()%>"
-					pattern="yyyy-MM-dd HH:MM" />
-			</p>
-
-			<h4>出貨代碼 :</h4>
-			<p><%=omVO.getShipCode()%></p>
-
-			<h4>歸還代碼 :</h4>
-			<p><%=omVO.getReturnCode()%></p>
-
-			<h4>超商代碼 :</h4>
-			<p><%=omVO.getStoreCode()%></p>
-
-			<h4>預計租借起日 :</h4>
-			<p><%=omVO.getEstStart()%></p>
-
-			<h4>預計租借訖日 :</h4>
-			<p><%=omVO.getEstEnd()%></p>
-
-			<h4>實際出貨日期 :</h4>
-			<p>
-				<fmt:formatDate value="<%=omVO.getShipDate()%>"
-					pattern="yyyy-MM-dd HH:MM" />
-			</p>
-
-			<h4>實際到貨日期 :</h4>
-			<p>
-				<fmt:formatDate value="<%=omVO.getArrivalDate()%>"
-					pattern="yyyy-MM-dd HH:MM" />
-			</p>
-
-			<h4>實際歸還日期 :</h4>
-			<p>
-				<fmt:formatDate value="<%=omVO.getReturnDate()%>"
-					pattern="yyyy-MM-dd HH:MM" />
-			</p>
-
-			<h4>承租天數 :</h4>
-			<p><%=omVO.getRentDays()%></p>
-
-			<h4>承租者評分 :</h4>
-			<p><%=omVO.getRentRank()%></p>
-
-			<h4>出租者評分 :</h4>
-			<p><%=omVO.getLeaseRank()%></p>
-
-			<h4>承租者評論 :</h4>
-			<p><%=omVO.getRentComt()%></p>
-
-			<h4>出租者評論 :</h4>
-			<p><%=omVO.getLeaseComt()%></p>
-
-			<h4>承租者評論日期 :</h4>
-			<p>
-				<fmt:formatDate value="<%=omVO.getRentComtdate()%>"
-					pattern="yyyy-MM-dd" />
-			</p>
-
-			<h4>出租者評論日期 :</h4>
-			<p>
-				<fmt:formatDate value="<%=omVO.getLeaseComtdate()%>"
-					pattern="yyyy-MM-dd" />
-			</p>
-
-			<h4>商品小計 :</h4>
-			<p><%=omVO.getProdPrice()%></p>
-
-			<h4>運費 :</h4>
-			<p><%=omVO.getShipFee()%></p>
-
-			<h4>訂單金額 :</h4>
-			<p><%=omVO.getOrdPrice()%></p>
-			
-			<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/OrderMasterServlet"style="margin-bottom: 0px;">
-			<input type="submit" value="更新"> 
-			<input type="hidden"name="ordID" value="<%=omVO.getOrdID()%>">
-		    <input type="hidden" name="action" value="getOne_For_Update">
+			<h4>
+				訂單編號 :
+				<li><%=omVO.getOrdID()%></li>
+			</h4>
+			<FORM METHOD="post"vACTION="<%=request.getContextPath()%>/OrderMasterServlet" style="margin-bottom: 0px;">
+				<input type="submit" value="更新"> <input type="hidden" name="ordID" value="<%=omVO.getOrdID()%>">
+				<input type="hidden" name="action" value="getOne_For_Update">
 			</FORM>
-			
-			
-			
+			<table>
+				<tr>
+					<td>承租者編號</td>
+					<td>出租者編號</td>
+					<td>交易方式</td>
+					<td>訂單日期</td>
+				</tr>
+
+				<tr>
+					<td><%=omVO.getRentID()%></td>
+					<td><%=omVO.getLeaseID()%></td>
+					<td><p id="payID"><%=omVO.getPayID()%></p></td>
+					<td><fmt:formatDate value="<%=omVO.getOrdDate()%>"
+							pattern="yyyy-MM-dd HH:MM" /></td>
+				</tr>
+			</table>
+			<br>
+			<table>
+				<tr>
+					<td>運送狀態</td>
+					<td>付款狀態</td>
+					<td>訂單狀態</td>
+				</tr>
+				<tr>
+					<td><p id="shipS"><%=omVO.getShipStatus()%></p></td>
+					<td><p id="payS"><%=omVO.getPayStatus()%></p></td>
+					<td><p id="ordS"><%=omVO.getOrdStatus()%></p></td>
+				</tr>
+			</table>
+			<br>
+			<table>
+				<tr>
+					<td>出貨代碼</td>
+					<td>歸還代碼</td>
+					<td>超商代碼</td>
+				</tr>
+				<tr>
+					<td><%=omVO.getShipCode()%></td>
+					<td><%=omVO.getReturnCode()%></td>
+					<td><%=omVO.getStoreCode()%></td>
+				</tr>
+			</table>
+			<br>
+			<table>
+				<tr>
+					<td>預計租借起日</td>
+					<td><%=omVO.getEstStart()%></td>
+
+					<td>預計租借訖日</td>
+					<td><%=omVO.getEstEnd()%></td>
+
+					<td>承租天數</td>
+					<td><%=omVO.getRentDays()%></td>
+				</tr>
+			</table>
+			<br>
+			<table>
+				<tr>
+					<td>實際出貨日期</td>
+					<td><fmt:formatDate value="<%=omVO.getShipDate()%>"
+							pattern="yyyy-MM-dd HH:MM" /></td>
+				</tr>
+				<tr>
+					<td>實際到貨日期</td>
+					<td><fmt:formatDate value="<%=omVO.getArrivalDate()%>"
+							pattern="yyyy-MM-dd HH:MM" /></td>
+				</tr>
+				<tr>
+					<td>實際歸還日期</td>
+					<td><fmt:formatDate value="<%=omVO.getReturnDate()%>"
+							pattern="yyyy-MM-dd HH:MM" /></td>
+				</tr>
+			</table>
+			<br>
+			<table>
+				<tr>
+					<td>承租者評分</td>
+					<td><%=omVO.getRentRank()%></td>
+
+					<td>出租者評分</td>
+					<td><%=omVO.getLeaseRank()%></td>
+				</tr>
+				<tr>
+					<td>承租者評論</td>
+					<td><%=omVO.getRentComt()%></td>
+
+					<td>出租者評論</td>
+					<td><%=omVO.getLeaseComt()%></td>
+				</tr>
+				<tr>
+					<td>承租者評論日期</td>
+					<td><fmt:formatDate value="<%=omVO.getRentComtdate()%>" pattern="yyyy-MM-dd" /></td>
+
+					<td>出租者評論日期</td>
+					<td><fmt:formatDate value="<%=omVO.getLeaseComtdate()%>" pattern="yyyy-MM-dd" /></td>
+				</tr>
+			</table>
+			<br>
+			<table>
+				<tr>
+					<td>折價券編號</td>
+					<td><%=omVO.getCouponID()%></td>
+				</tr>
+				<tr>
+					<td>商品小計</td>
+					<td><%=omVO.getProdPrice()%></td>
+				</tr>
+				<tr>
+					<td>運費</td>
+					<td><%=omVO.getShipFee()%></td>
+				</tr>
+				<tr>
+					<td>訂單金額</td>
+					<td><%=omVO.getOrdPrice()%></td>
+				</tr>
+			</table>
 		</main>
 	</div>
 	<footer class="footer"> footer區域 </footer>
@@ -252,6 +287,14 @@ footer.footer {
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	/*=====運送狀態=====*/
+	var payID = $("#payID");
+	if (
+<%=omVO.getPayID()%>
+	== 1) {
+		payID.text("信用卡");
+	} else {
+		payID.text("面交");
+	}
 
 	var shipS = $("#shipS");
 	if (

@@ -158,21 +158,32 @@ th, td {
 			<div>
 				<jsp:useBean id="OrdserMasterSvc" scope="page"
 					class="web.order.model.OrderMasterService" />
-					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/OrderMasterServlet">
-						<b>選擇訂單編號:</b> <select size="1" name="ordID">
-							<c:forEach var="OrderMasterVO" items="${OrdserMasterSvc.all}">
-								<option value="${OrderMasterVO.ordID}">${OrderMasterVO.ordID}
-							</c:forEach>
-						</select> <input type="hidden" name="action" value="getOne_For_Display">
-						<input type="submit" value="送出">
-					</FORM>
-				
-					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/OrderMasterServlet">
-						<b>輸入訂單編號 (如1):</b> <input type="text" name="ordID"> <input
-							type="hidden" name="action" value="getOne_For_Display"> <input
-							type="submit" value="送出">
-					</FORM>
+				<FORM METHOD="post"
+					ACTION="<%=request.getContextPath()%>/OrderMasterServlet">
+					<b>選擇訂單編號:</b> <select size="1" name="ordID">
+						<c:forEach var="OrderMasterVO" items="${OrdserMasterSvc.all}">
+							<option value="${OrderMasterVO.ordID}">${OrderMasterVO.ordID}
+						</c:forEach>
+					</select> <input type="hidden" name="action" value="getOne_For_Display">
+					<input type="submit" value="送出">
+				</FORM>
+
+				<FORM METHOD="post"
+					ACTION="<%=request.getContextPath()%>/OrderMasterServlet">
+					<b>輸入訂單編號 (如1):</b> <input type="text" name="ordID"> <input
+						type="hidden" name="action" value="getOne_For_Display"> <input
+						type="submit" value="送出">
+				</FORM>
 			</div>
+			<c:if test="${not empty errorMsgs}">
+					<font style="color: red">請修正以下錯誤:</font>
+					<ul>
+						<c:forEach var="message" items="${errorMsgs}">
+							<li style="color: red">${message}</li>
+						</c:forEach>
+					</ul>
+				</c:if>
+			
 			<table id="table-1">
 				<tr>
 					<th>訂單編號</th>

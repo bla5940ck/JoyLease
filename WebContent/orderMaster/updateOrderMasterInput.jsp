@@ -160,12 +160,13 @@ th, td {
 				<nav class="nav">
 					<h1>出租者專區</h1>
 					<ul class="nav_list">
-						<li><a href="<%=request.getContextPath()%>/listAllOrderMaster.jsp">全部訂單</a></li>
-						<li><a href="<%=request.getContextPath()%>/select_page.jsp">訂單查詢</a></li>
+						<li><a href="orderList/listAllOrderList.jsp">全部訂單</a></li>
 					</ul>
 				</nav>
 			</aside>
 			<main class="main">
+			
+			
 				<div>
 					<h3>更新訂單</h3>
 					<h3>
@@ -304,24 +305,20 @@ th, td {
 	/*=====運送狀態=====*/
 
 	var shipS = $("#shipS");
-	if (
-<%=omVO.getShipStatus()%>
-	== 0) {
+	if (<%=omVO.getShipStatus()%>== 0) {
 		shipS.text("待出貨");
-	} else if (
-<%=omVO.getShipStatus()%>
-	== 1) {
+	} else if (<%=omVO.getShipStatus()%>== 1) {
 		shipS.text("已出貨");
-	} else if (
-<%=omVO.getShipStatus()%>
-	== 2) {
+	} else if (<%=omVO.getShipStatus()%>== 2) {
 		shipS.text("待取貨");
-	} else if (
-<%=omVO.getShipStatus()%>
-	== 3) {
+	} else if (<%=omVO.getShipStatus()%>== 3) {
 		shipS.text("取貨完成");
+	} else if (<%=omVO.getShipStatus()%>== 7) {
+		shipS.text("物流商品遺失");
+	} else if (<%=omVO.getShipStatus()%>== 8) {
+		shipS.text("未取貨");
 	} else {
-		shipS.text("商品遺失");
+		shipS.text("寄送異常");
 	};
 
 	/*=====付款狀態=====*/

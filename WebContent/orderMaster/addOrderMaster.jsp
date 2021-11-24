@@ -9,24 +9,10 @@
 <%@ page import="web.order.model.*"%>
 <%@ page import="web.product.model.*"%>
 <%
-	// 	ProdVO prodVO = (ProdVO) request.getAttribute("prodVO");
+
 	ProdDAO prodDAO = new ProdDAO();
 	ProdVO prodVO = prodDAO.findProductByPK(1);
-	// 	out.print(prodVO.getProdName());
 
-	// 	PaymentOptionsDAOImpl podao = new PaymentOptionsDAOImpl();
-	// 	List<PaymentOptionsVO> list = podao.getAllPaymentOptions();
-	// 	for (PaymentOptionsVO po : list) {
-	// 		out.print(po);
-	// 	}
-
-	ProdDAO productDao = new ProdDAO();
-	// 	ProdVO product = productDao.findProductByPK(Integer.parseInt(request.getParameter("picno")));
-	ProdVO product = productDao.findProductByPK(1);
-	// 	out.print(product.getProdName());
-	
-	
-	
 	DefAddressJDBCDAO dadao = new DefAddressJDBCDAO();
 	List<DefAddressVO> list2 = dadao.getAll();
 	
@@ -34,27 +20,10 @@
 	
 	MemberJDBCDAO medao = new MemberJDBCDAO();
 	MemberVO meVO = medao.findByPrimaryKey(1);
-// 	Integer id = meVO.getMemberId();
-	
-// 	out.print(id);
-	
-// 	for (DefAddressVO da : list2) {
-// 		if(da.getMemberId() == id && da.getStatus() == 1){
-// 			out.print(da.getDef711());
-// 		}
-// 	}
 
 	MemcouponDAO mcdao = new MemcouponDAO();
 	List<MemcouponVO> list = mcdao.getAll();
-	// 	PromolistDAO pldao = new PromolistDAO();
-	// 	PromolistVO plVO = pldao.findByPrimaryKey();
 
-	// 	for (PromolistVO pl : list3) {
-	// 		// 		out.println(pl.getCoupon_name());
-	// 		// 		out.println(pl.getCoupon_id());
-
-	// 	}
-	
 %>
 
 <html>

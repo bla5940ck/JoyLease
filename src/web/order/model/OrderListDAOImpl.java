@@ -17,6 +17,8 @@ public class OrderListDAOImpl implements OrderListDAO_interface {
 			"SELECT * FROM ORDER_LIST WHERE LIST_ID = ?";
 	private static final String GET_ALL = 
 			"SELECT * FROM ORDER_LIST";
+	private static final String FIND_BY_STATUS = 
+			"SELECT * FROM ORDER_LIST WHERE STATUS = ?";
 
 	static {
 		try {
@@ -176,6 +178,65 @@ public class OrderListDAOImpl implements OrderListDAO_interface {
 		return list;
 	}
 
+	@Override
+	public List<OrderListVO> findOrderListByStatus(Integer status) {
+		List<OrderListVO> list = new ArrayList<OrderListVO>();
+		OrderListVO orderListVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(FIND_BY_STATUS);
+			
+			pstmt.setInt(1, status);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				orderListVO = new OrderListVO();
+				orderListVO.setListID(rs.getInt("LIST_ID"));
+				orderListVO.setProdID(rs.getInt("PROD_ID"));
+				orderListVO.setOrdID(rs.getInt("ORD_ID"));
+				orderListVO.setPrice(rs.getInt("PRICE"));
+				orderListVO.setStatus(rs.getInt("STATUS"));
+				orderListVO.setEstStart(rs.getDate("EST_START"));
+				orderListVO.setEstEnd(rs.getDate("EST_END"));
+				
+				list.add(orderListVO);
+			}
+						
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
+
 	public static void main(String[] args) {
 		OrderListDAO_interface oldao = new OrderListDAOImpl();
 
@@ -189,7 +250,7 @@ public class OrderListDAOImpl implements OrderListDAO_interface {
 
 		// 眖PK琩高
 		OrderListVO ol2 = oldao.findOrderListByPK(2);
-		System.out.println(ol2);
+//		System.out.println(ol2);
 //		System.out.println(ol2.getListID() + ",");
 //		System.out.println(ol2.getProdID() + ",");
 //		System.out.println(ol2.getOrdID() + ",");
@@ -198,15 +259,22 @@ public class OrderListDAOImpl implements OrderListDAO_interface {
 
 		// 琩高场
 		List<OrderListVO> list = oldao.getAllOrderList();
-		for (OrderListVO ol3 : list) {
-			System.out.println(ol3);
+//		for (OrderListVO ol3 : list) {
+//			System.out.println(ol3);
 //			System.out.println(ol3.getListID() + ",");
 //			System.out.println(ol3.getProdID() + ",");
 //			System.out.println(ol3.getOrdID() + ",");
 //			System.out.println(ol3.getPrice() + ",");
 			System.out.println("======================================");
-		}
+//		}
 
+		// 琩高篈
+		List<OrderListVO> list1 = oldao.findOrderListByStatus(1);
+		for(OrderListVO ol4: list1) {
+			ol4.setStatus(1);
+			System.out.println(ol4);
+		}
+		
 	}
 
 }

@@ -31,4 +31,8 @@ public class OrderListService {
 	public List<OrderListVO> getAll(){
 		return dao.getAllOrderList();
 	}
+	
+	public List<OrderListVO> getStatus(Integer status){
+		return dao.findOrderListByStatus(status);
+	}
 }

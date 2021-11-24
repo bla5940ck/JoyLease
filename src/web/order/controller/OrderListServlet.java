@@ -28,20 +28,18 @@ public class OrderListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		
+
 		if ("getOne_For_Display".equals(action)) { // 來自listAllOrderList.jsp
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
-
 				String str = req.getParameter("listID");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請輸入訂單明細編號");
+					errorMsgs.add("請輸入編號");
 				}
-
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/orderList/listAllOrderList.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -52,37 +50,96 @@ public class OrderListServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("格式不正確");
 				}
-
+				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/orderList/listAllOrderList.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
+
 				/**************** 2.開始查詢資料 ****************/
 
 				OrderListDAOImpl oldao = new OrderListDAOImpl();
-				OrderListVO olVO = oldao.findOrderListByPK(listID);	
+				OrderListVO olVO = oldao.findOrderListByPK(listID);
 
 				if (olVO == null) {
 					errorMsgs.add("查無資料");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/orderList/listAllOrderList.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
 
 				/************** 3.查詢完成,準備轉交 *************/
 				req.setAttribute("OrderListVO", olVO);
-				System.out.println(req.getAttribute("OrderListVO"));
 				String url = "/orderList/listOneOrderList.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/orderMaster/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/orderList/listAllOrderList.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
+		if ("get_Status_Display".equals(action)) { // 來自listStatusOrderList.jsp
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+				System.out.println("進來了");
+			
+			try {
+
+				String str = req.getParameter("status");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("請輸入明細編號");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/orderList/listAllOrderList.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				Integer status = null;
+				try {
+					status = new Integer(str);
+				} catch (Exception e) {
+					errorMsgs.add("編號格式不正確");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/orderList/listAllOrderList.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				/**************** 2.開始查詢資料 ****************/
+
+				OrderListDAOImpl oldao = new OrderListDAOImpl();
+				List<OrderListVO> olVO = oldao.findOrderListByStatus(status);
+				if (olVO == null) {
+					errorMsgs.add("查無資料");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/orderList/listAllOrderList.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				for (OrderListVO ols : olVO) {
+										
+					/************** 3.查詢完成,準備轉交 *************/
+					req.setAttribute("OrderListVO", ols);
+					String url = "/orderList/listStatusOrderList.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url);
+					successView.forward(req, res);
+				}
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/orderList/listAllOrderList.jsp");
 				failureView.forward(req, res);
 			}
 		}
