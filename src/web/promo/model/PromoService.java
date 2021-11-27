@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PromoService {
 	
-	private Promo_impl dao;
+	private Promo_interface dao;
 	public PromoService() {
 		dao = new PromoDAO();
 	}

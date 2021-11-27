@@ -10,11 +10,11 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-  	<servlet-name>ProdServlet</servlet-name>
-  	<servlet-class>web.product.controller.ProdServlet</servlet-class>
+    <servlet-name>PromoServlet</servlet-name>
+    <servlet-class>web.promo.controller.PromoServlet</servlet-class>
   </servlet>
-  	<servlet-mapping>
-  	<servlet-name>ProdServlet</servlet-name>
-  	<url-pattern>/ProdServlet</url-pattern>
-  </servlet-mapping>  	
+  <servlet-mapping>
+    <servlet-name>PromoServlet</servlet-name>
+    <url-pattern>/promo/promo.do</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -4,7 +4,7 @@ import java.util.*;
 import java.sql.*;
 import util.Util;
 
-public class PromoDAO implements Promo_impl{
+public class PromoDAO implements Promo_interface{
 
 	static {
 		try {

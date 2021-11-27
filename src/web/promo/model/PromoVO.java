@@ -64,6 +64,6 @@ public class PromoVO implements java.io.Serializable{
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	
+
 	
 }
